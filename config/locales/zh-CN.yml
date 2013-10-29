@@ -3,6 +3,9 @@ zh-CN:
   show: "详情"
   new: "新建"
   edit: "编辑"
+  created: "创建成功"
+  destroyed: "删除成功"
+  updated: "修改成功"
   destroy: "删除"
   back: "返回"
   submit: "提交"
@@ -15,6 +18,11 @@ zh-CN:
       category:
         name: "名称"
         note: "说明"
+      property:
+        code: "代码"
+        name: "属性"
+        value: "值说明"
+        position: "排序"
       parameter:
         code: "代码"
         name: "属性"

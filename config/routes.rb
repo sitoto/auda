@@ -1,13 +1,9 @@
 Autodata::Application.routes.draw do
   resources :parameters
-
   resources :properties
 
   resources :categories do
-    member do 
-      resources :properties
-    end
-
+    resources :properties
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

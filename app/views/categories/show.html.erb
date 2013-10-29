@@ -2,13 +2,29 @@
 
 <p>
 <strong><%= t('categories.name') %></strong>
-  <%= @category.name %>
+<%= @category.name %>
 </p>
 
 <p>
- <strong><%= t('categories.note') %></strong>
-  <%= @category.note %>
+<strong><%= t('categories.note') %></strong>
+<%= @category.note %>
 </p>
-
-<%= link_to t('edit'), edit_category_path(@category) %> |
-<%= link_to t('back'), categories_path %>
+<hr>
+<h4><%= t('properties.list') %></h4>
+<div class="table-responsive">
+  <table class="table">
+    <tr><th>#</th>
+      <th><%= t('properties.code') %></th>
+      <th><%= t('properties.name') %></th>
+      <th><%= t('properties.value') %></th>
+      <th><%= t('properties.position') %></th>
+      <th><th></tr>
+        <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| %>
+          <tr><td><%= i+1 %></td><td><%= item.code %></td>
+            <td><%= item.name %></td><td> <%= item.value %></td><td> <%= item.position %></td><td> <%= link_to t('edit'), edit_category_property_path(@category, item) %></td></tr>
+        <% end %>
+      </table>
+</div>
+<hr>
+<h4><%= t('properties.new') %> </h4>
+<%= render 'pform' %>

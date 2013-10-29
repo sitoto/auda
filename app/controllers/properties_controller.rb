@@ -24,30 +24,17 @@ class PropertiesController < ApplicationController
   # POST /properties
   # POST /properties.json
   def create
-    @property = Property.new(property_params)
-
-    respond_to do |format|
-      if @property.save
-        format.html { redirect_to @property, notice: 'Property was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @property }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
-      end
-    end
+    id = params[:category_id]
+    @category = Category.find(id) 
+    @property = @category.properties.create(property_params)
+    redirect_to @category, notice: t('created')
   end
 
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
   def update
-    respond_to do |format|
-      if @property.update(property_params)
-        format.html { redirect_to @property, notice: 'Property was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
-      end
+    if @property.update(property_params)
+      redirect_to @category, notice: t('updated')
     end
   end
 
@@ -62,13 +49,14 @@ class PropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property
+    @category = Category.find(params[:category_id])
+    @property = @category.properties.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_params
-      params.require(:property).permit(:code, :name, :value, :position)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def property_params
+    params.require(:property).permit(:code, :name, :value, :position)
+  end
 end

@@ -1,0 +1,12 @@
+zh-CN:
+  properties:
+    list: "标准属性"
+    name: "名称"
+    code: "代码"
+    value: "值说明"
+    position: "排序"
+    new:  "新建标准属性"
+    edit: "编辑标准属性"
+    created: "属性已经成功创建."
+    updated: "属性已经被更新."
+    delete: "确定删除标准属性: '%{name}' 吗?"
