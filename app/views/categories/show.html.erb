@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+<strong><%= t('categories.name') %></strong>
   <%= @category.name %>
 </p>
 
 <p>
-  <strong>Note:</strong>
+ <strong><%= t('categories.note') %></strong>
   <%= @category.note %>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to t('edit'), edit_category_path(@category) %> |
+<%= link_to t('back'), categories_path %>

@@ -1,0 +1,22 @@
+zh-CN:
+  site_name: "数据管理"
+  show: "详情"
+  new: "新建"
+  edit: "编辑"
+  destroy: "删除"
+  back: "返回"
+  submit: "提交"
+  mongoid:
+    models:
+      category: "品类"
+      property: "标准属性"
+      parameter: "参数"
+    attributes:
+      category:
+        name: "名称"
+        note: "说明"
+      parameter:
+        code: "代码"
+        name: "属性"
+        value: "值"
+        position: "排序"
