@@ -4,11 +4,11 @@
 <strong><%= t('categories.name') %></strong>
 <%= @category.name %>
 </p>
-
 <p>
 <strong><%= t('categories.note') %></strong>
 <%= @category.note %>
 </p>
+<p><%= link_to t('back'), categories_path %></p>
 <hr>
 <h4><%= t('properties.list') %></h4>
 <div class="table-responsive">

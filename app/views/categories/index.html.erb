@@ -5,21 +5,26 @@
     <tr>
       <th><%= t("categories.name") %></th>
       <th><%= t("categories.note") %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= t("properties.list") %></th>
     </tr>
   </thead>
 
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.name %></td>
-        <td><%= category.note %></td>
-        <td><%= link_to t('show'), category %></td>
-        <td><%= link_to t('edit'), edit_category_path(category) %></td>
-        <td><%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %></td>
-      </tr>
+        <th title= "<%= category.note %>"><%= category.name %></th>
+        <td><%= link_to t('show'), category %>|
+        <%= link_to t('edit'), edit_category_path(category) %>|
+        <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %></td>
+        <td>
+          <table class="table table-bordered"> <tr>
+         <% category.properties.order_by(:'position'.asc).each do |item| %>
+           <td><%= item.name %></td>
+         <% end %>
+     </tr></table>
+       
+   </td>
+ </tr>
     <% end %>
   </tbody>
 </table>

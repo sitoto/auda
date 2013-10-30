@@ -9,4 +9,5 @@ class Category
   validates_uniqueness_of :name
 
   embeds_many :properties
+  has_many :products
 end

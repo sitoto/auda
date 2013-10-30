@@ -1,9 +1,12 @@
 Autodata::Application.routes.draw do
-  resources :parameters
-  resources :properties
+
+  resources :products do
+    resources :parameters
+  end
 
   resources :categories do
     resources :properties
+    resources :products
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -46,7 +49,7 @@ Autodata::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
