@@ -33,3 +33,5 @@ zh-CN:
         status: "状态"
         user_name: "创建者"
         ip: ip
+        category: "品类"
+

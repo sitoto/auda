@@ -4,12 +4,16 @@
       <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
       <ul>
-      <% @product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= f.label :category  %>
+    <%= render_product_category_select_tag(@product)%>
+  </div>
 
   <div class="field">
     <%= f.label :status %>
@@ -23,3 +27,18 @@
     <%= f.submit %>
   </div>
 <% end %>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+      $('#product_category_id').change(function(){
+        $.ajax({
+url: your_url,
+//orther options ...
+success: function(data){
+alert('ok')
+$("#floors_select").html(data);
+}
+});
+
+        });      
+      });
+    </script>
