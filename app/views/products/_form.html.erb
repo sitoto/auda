@@ -14,6 +14,9 @@
     <%= f.label :category  %>
     <%= render_product_category_select_tag(@product)%>
   </div>
+  <div id="parameter_input">
+
+  </div>
 
   <div class="field">
     <%= f.label :status %>
@@ -31,11 +34,10 @@
   $(document).ready(function() {
       $('#product_category_id').change(function(){
         $.ajax({
-url: your_url,
+url: "<%= getproperties_category_path(@category.id) %>",
 //orther options ...
 success: function(data){
-alert('ok')
-$("#floors_select").html(data);
+$("#parameter_input").html(data);
 }
 });
 

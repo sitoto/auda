@@ -15,7 +15,9 @@
         <th title= "<%= category.note %>"><%= category.name %></th>
         <td><%= link_to t('show'), category %>|
         <%= link_to t('edit'), edit_category_path(category) %>|
-        <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %></td>
+        <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %>|
+        <%= link_to t('products.new'), new_category_product_path(category) %>
+      </td>
         <td>
           <table class="table table-bordered"> <tr>
          <% category.properties.order_by(:'position'.asc).each do |item| %>

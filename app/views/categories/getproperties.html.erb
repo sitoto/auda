@@ -1,0 +1,6 @@
+<% @properties.each do |item| %>
+   <div class="field">
+    <%= item.name %>
+    <input id="parameter_<%= item.name %>" type="text" name="parameter[<%= item.name %>]"></input>
+  </div>
+<% end%>
