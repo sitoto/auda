@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:edit, :update, :show]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @category = Category.find(params[:category_id])
+    @products = @category.products
   end
 
   # GET /products/1
@@ -16,48 +17,45 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @category = Category.find(params[:category_id])
+    
   end
 
   # GET /products/1/edit
   def edit
   end
 
-  # POST /products
-  # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @category = Category.find(params[:category_id])
+    @product = @category.products.new()
+
+    update_parameters
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @product }
+        format.html { redirect_to [@category, @product], notice: t('products.created') }
       else
         format.html { render action: 'new' }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
+    update_parameters
     respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
+      if @product.save    #@product.update(product_params)
+        format.html { redirect_to [@category, @product], notice: t('updated') }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
+    @category = Category.find(params[:category_id])
+    @product = Product.find(params[:id])
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url }
+      format.html { redirect_to category_products_url(@category) }
       format.json { head :no_content }
     end
   end
@@ -67,6 +65,22 @@ class ProductsController < ApplicationController
     def set_product
       @product = Product.find(params[:id])
       @category = Category.find(params[:category_id])
+    end
+
+    def update_parameters
+      pars = []
+      items = params[:product]
+      items.each do |code, value|
+        property = @category.properties.find(code) 
+        name = property.name 
+        parameter = Parameter.new(name:name, value: value)     
+        parameter.code = property.id
+#        parameter.property = property 
+        pars << parameter
+      end
+      if pars.length > 0
+        @product.parameters = pars
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -7,8 +7,9 @@ class Property
   field :value, type: String
   field :position, type: Integer, default: 100
 
-  validates_presence_of :name, :code
-  validates_uniqueness_of :name, :code
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
-  embedded_in :category
+  belongs_to :category
+  belongs_to :parameter
 end

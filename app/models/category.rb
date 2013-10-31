@@ -8,6 +8,6 @@ class Category
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  embeds_many :properties
+  has_many :properties
   has_many :products
 end

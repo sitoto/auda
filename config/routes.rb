@@ -1,17 +1,17 @@
 Autodata::Application.routes.draw do
 
-  resources :products do
-    resources :parameters
-  end
-
   resources :categories do
     resources :properties
     resources :products
 
     get :getproperties, :on => :member
 
-
   end
+
+  #resources :products do
+  #  resources :parameters
+  #end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

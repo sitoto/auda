@@ -9,11 +9,9 @@
   <strong>User name:</strong>
   <%= @product.user_name %>
 </p>
+<% @product.parameters.each do |para| %>
+  <p><%= para.name + ':' + para.value %></p>
+<% end %>
 
-<p>
-  <strong>Ip:</strong>
-  <%= @product.ip %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to t('edit'), edit_category_product_path(@category, @product) %> |
+<%= link_to t('back'), category_products_path(@category) %>
