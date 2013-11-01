@@ -70,6 +70,7 @@ class ProductsController < ApplicationController
     def update_parameters
       pars = []
       items = params[:product]
+      return if items.blank?
       items.each do |code, value|
         property = @category.properties.find(code) 
         name = property.name 

@@ -3,10 +3,11 @@ zh-CN:
     status: "状态"
     user_name: "创建者"
     ip: ip
-    list: "全部商品"
+    list: "商品列表"
     position: "排序"
     new:  "新建商品"
     edit: "编辑商品"
+    back: "返回商品页"
     created: "商品已经成功创建."
     updated: "商品已经被更新."
     delete: "确定删除商品: '%{name}' 吗?"

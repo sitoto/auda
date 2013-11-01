@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @csvfile.name %>
+</p>
+
+<p>
+  <strong>Creater:</strong>
+  <%= @csvfile.creater %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @csvfile.size %>
+</p>
+
+<%- @csvfile.temproducts.each do |item| -%>
+  <%- item.parameters.each do |p| -%>
+    <%= p.name + ':' + p.value %>
+  <%-end -%>
+<%- end -%>
+<%= link_to 'Edit', edit_csvfile_path(@csvfile) %> |
+<%= link_to 'Back', csvfiles_path %>

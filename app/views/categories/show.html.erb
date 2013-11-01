@@ -17,11 +17,12 @@
       <th><%= t('properties.code') %></th>
       <th><%= t('properties.name') %></th>
       <th><%= t('properties.value') %></th>
+      <th><%= t('properties.alias') %></th>
       <th><%= t('properties.position') %></th>
       <th><th></tr>
         <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| %>
           <tr><td><%= i+1 %></td><td><%= item.id %></td>
-            <td><%= item.name %></td><td> <%= item.value %></td><td> <%= item.position %></td><td> <%= link_to t('edit'), edit_category_property_path(@category, item) %></td></tr>
+            <td><%= item.name %></td><td><%= item.value %></td><td> <%= item.alias %></td><td> <%= item.position %></td><td> <%= link_to t('edit'), edit_category_property_path(@category, item) %></td></tr>
         <% end %>
       </table>
 </div>

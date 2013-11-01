@@ -6,6 +6,21 @@ module ProductsHelper
   def render_product_parameter_value_tag(product, id) 
     return '' if product.blank?
     return '' if product.parameters.blank?
+    return '' if product.parameters.where(code: id).blank?
     return product.parameters.where(code: id).first.value
+  end
+  def render_product_status_tag(product)
+    return '' if product.blank?
+    case product.status
+    when 0
+        return t('draft')
+    when 1
+        return t('doing')
+    when 2 
+        return t('done')
+    else
+        return t('invalid')
+    end
+
   end
 end

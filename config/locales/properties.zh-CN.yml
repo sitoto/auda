@@ -2,6 +2,7 @@ zh-CN:
   properties:
     list: "标准属性"
     name: "名称"
+    alias: "别名"
     code: "代码"
     value: "值说明"
     position: "排序"

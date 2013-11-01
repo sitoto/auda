@@ -34,6 +34,13 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1.json
   def update
     if @property.update(property_params)
+      products = @category.products
+      products.each do |p|
+        p.parameters.each do |para|
+          para.update_attribute(:name, @property.name) if para.code.eql?(@property.id.to_s)
+        end
+      end
+
       redirect_to @category, notice: t('updated')
     end
   end
@@ -57,6 +64,6 @@ class PropertiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_params
-    params.require(:property).permit(:code, :name, :value, :position)
+    params.require(:property).permit(:code, :name, :alias, :value, :position)
   end
 end

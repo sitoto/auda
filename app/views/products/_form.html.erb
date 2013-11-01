@@ -13,12 +13,13 @@
   <div class="field">
     <%= t('categories.select') +':' + @category.name  %>
   </div>
-  <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| %>
+  <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| -%>
   <div class="field">
-    <%= f.label "#{item.id}", item.name %>
-    <%= f.text_field "#{item.id}", :value => render_product_parameter_value_tag(@product, item.id) %>
+    <%= f.label "#{item.id}", item.name -%>
+    <%= f.text_field "#{item.id}", :value => render_product_parameter_value_tag(@product, item.id) -%>
+    <%= item.value -%>
   </div>
-  <% end%>
+  <%- end -%>
 
  <div class="actions">
     <%= f.submit %>

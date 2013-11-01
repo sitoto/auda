@@ -1,0 +1,21 @@
+<%= form_for(@csvfile, :html => {:multipart => true}) do |f| %>
+  <% if @csvfile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@csvfile.errors.count, "error") %> prohibited this csvfile from being saved:</h2>
+
+      <ul>
+      <% @csvfile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.file_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

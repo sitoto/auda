@@ -1,36 +1,30 @@
-<h1><%= t('products.list') %></h1>
+<h1><%= "'" +  @category.name + "'" + t('products.list') %></h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
-    <tr>
-      <th><%= t('products.status') %></th>
-      <th><%= t('products.user_name') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
+   <tr>
+      <td></td>
+      <%- @products.each do |product| -%>
+        <td><%= render_product_status_tag(product) %><br>
+          <%= link_to t('show'), category_product_path(@category, product) %>|
+          <%= link_to t('edit'), edit_category_product_path(@category, product) %>|
+          <%= link_to t('destroy'), category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <%- end -%>
     </tr>
   </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
+    <tbody>
+    <%- @category.properties.each do |item| -%>
       <tr>
-        <td><%= product.status %></td>
-        <td><%= product.user_name %></td>
-        <td><%= link_to t('show'), category_product_path(@category, product) %></td>
-        <td><%= link_to 'Edit', edit_category_product_path(@category, product) %></td>
-        <td><%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= item.name -%></td>
+        <%- @products.each do |product| -%>
+          <td><%= render_product_parameter_value_tag(product, item.id) -%> </td> 
+        <%- end -%>
       </tr>
-      <tr>
-        <td colspan="5">
-          <% product.parameters.each do |item|%>
-            <%= item.name + ':' + item.value %>
-          <% end %>
-          </td>
-      </tr>
-    <% end %>
+    <%- end -%>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to t('new'), new_category_product_path(@category) %>
+<%= link_to t('new'), new_category_product_path(@category) %>|
+<%= link_to t('categories.back'), categories_path %>

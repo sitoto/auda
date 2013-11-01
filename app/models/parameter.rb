@@ -11,7 +11,9 @@ class Parameter
   #validates_uniqueness_of  :code
 
   embedded_in :product
-  has_one :property
+  embedded_in :temproduct
+
+  #  has_one :property
 
 
 end

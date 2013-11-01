@@ -3,6 +3,7 @@ class Category
   include Mongoid::Timestamps
 
   field :name, type: String
+  field :alias, type: String
   field :note, type: String
 
   validates_presence_of :name

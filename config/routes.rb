@@ -1,5 +1,7 @@
 Autodata::Application.routes.draw do
 
+  resources :csvfiles
+
   resources :categories do
     resources :properties
     resources :products

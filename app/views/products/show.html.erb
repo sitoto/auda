@@ -13,5 +13,6 @@
   <p><%= para.name + ':' + para.value %></p>
 <% end %>
 
-<%= link_to t('edit'), edit_category_product_path(@category, @product) %> |
-<%= link_to t('back'), category_products_path(@category) %>
+<%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
+<%= link_to t('products.back'), category_products_path(@category) -%>|
+<%= link_to t('categories.back'), category_path(@category) -%>
