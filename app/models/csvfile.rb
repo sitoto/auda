@@ -7,4 +7,6 @@ class Csvfile
   field :size, type: String
 
   has_many :temproducts
+  belongs_to :category
+
 end

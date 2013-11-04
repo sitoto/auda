@@ -20,5 +20,5 @@
     <%= p.name + ':' + p.value %>
   <%-end -%>
 <%- end -%>
-<%= link_to 'Edit', edit_csvfile_path(@csvfile) %> |
-<%= link_to 'Back', csvfiles_path %>
+
+<%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>

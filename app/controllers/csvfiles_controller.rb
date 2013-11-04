@@ -5,7 +5,8 @@ class CsvfilesController < ApplicationController
   # GET /csvfiles
   # GET /csvfiles.json
   def index
-    @csvfiles = Csvfile.all
+   @category = Category.find(params[:category_id])
+   @csvfiles = @category.csvfiles 
   end
 
   # GET /csvfiles/1
@@ -15,6 +16,7 @@ class CsvfilesController < ApplicationController
 
   # GET /csvfiles/new
   def new
+    @category = Category.find(params[:category_id])
     @csvfile = Csvfile.new
   end
 
@@ -25,7 +27,10 @@ class CsvfilesController < ApplicationController
   # POST /csvfiles
   # POST /csvfiles.json
   def create
+    @category = Category.find(params[:category_id])
     @csvfile = Csvfile.new(csvfile_params)
+    @csvfile.category = @category
+    file_name = params[:csvfile][:name].original_filename
 
     file_data = params[:csvfile][:name].read
     csv_rows = CSV.parse(file_data)
@@ -46,15 +51,13 @@ class CsvfilesController < ApplicationController
 
       end 
     end
-
+    params[:csvfile][:name] = file_name
 
     respond_to do |format|
-      if @csvfile.save
-        format.html { redirect_to @csvfile, notice: 'Csvfile was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @csvfile }
+      if @csvfile.update(csvfile_params)
+        format.html { redirect_to [@category, @csvfile], notice: t('csvfiles.created') }
       else
         format.html { render action: 'new' }
-        format.json { render json: @csvfile.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,14 +81,14 @@ class CsvfilesController < ApplicationController
   def destroy
     @csvfile.destroy
     respond_to do |format|
-      format.html { redirect_to csvfiles_url }
-      format.json { head :no_content }
+      format.html { redirect_to category_csvfiles_url(@category) }
     end
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_csvfile
+    @category = Category.find(params[:category_id])
     @csvfile = Csvfile.find(params[:id])
   end
 

@@ -18,9 +18,8 @@
         <td><%= csvfile.name %></td>
         <td><%= csvfile.creater %></td>
         <td><%= csvfile.size %></td>
-        <td><%= link_to 'Show', csvfile %></td>
-        <td><%= link_to 'Edit', edit_csvfile_path(csvfile) %></td>
-        <td><%= link_to 'Destroy', csvfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('show'), category_csvfile_path(@category, csvfile) %></td>
+        <td><%= link_to t('destroy'), category_csvfile_path(@category, csvfile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Csvfile', new_csvfile_path %>
+<%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>

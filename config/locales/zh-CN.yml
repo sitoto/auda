@@ -19,6 +19,7 @@ zh-CN:
       property: "标准属性"
       parameter: "参数"
       product: "商品"
+      csvfile: "csv文件"
     attributes:
       category:
         alias: "别名"
@@ -40,4 +41,8 @@ zh-CN:
         user_name: "创建者"
         ip: ip
         category: "品类"
+      csvfile:
+        name: "文件名"
+        creater: "上传人"
+        size: "文件大小"
 
