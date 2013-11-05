@@ -1,0 +1,11 @@
+zh-CN:
+  pairs:
+    list: "全部导入记录"
+    select: "选择匹配项"
+    pipei: "导入标准库"
+    creater: "创建人"
+    new:  "文件导入标准库"
+    back: "返回列表页"
+    created: "已经导入."
+    updated: "已经被更新."
+    delete: "确定删除导入数据: '%{name}' 吗?"

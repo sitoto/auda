@@ -1,14 +1,15 @@
 Autodata::Application.routes.draw do
 
-
   resources :categories do
     resources :properties
     resources :products
-    resources :csvfiles
-
+    resources :csvfiles do
+      resources :pairs
+    end
     get :getproperties, :on => :member
 
   end
+  resources :pairs
 
   #resources :products do
   #  resources :parameters

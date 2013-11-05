@@ -8,4 +8,5 @@ class Product
 
   belongs_to :category
   embeds_many :parameters
+  belongs_to :pair
 end

@@ -1,0 +1,31 @@
+<div class="field">
+  <%= t('categories.name') + ":" +@category.name %> 
+</div>
+<div class="field">
+  <%= t('csvfiles.name') + ":" + @csvfile.name %>
+</div>
+
+<%= form_for([@category, @csvfile, @pair]) do |f| %>
+  <% if @pair.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pair.errors.count, "error") %> prohibited this pair from being saved:</h2>
+
+      <ul>
+        <% @pair.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%- @category.properties.order_by(:'position'.asc).each do |item| -%>
+    <div class="field">
+      <%= f.label "#{item.id}", item.name %>
+      <%= render_category_csvfile_select_tag(item, @csvfile)  %>
+      <%= item.value %>
+    </div>
+  <%- end -%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

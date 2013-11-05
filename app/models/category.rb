@@ -12,4 +12,5 @@ class Category
   has_many :properties
   has_many :products
   has_many :csvfiles
+  has_many :pairs
 end

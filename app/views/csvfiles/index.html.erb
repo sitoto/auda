@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th><%= t('csvfiles.name') %></th>
-      <th><%= t('csvfiles.creater') %></th>
+      <th><%= t('csvfiles.status') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,8 +15,8 @@
     <% @csvfiles.each do |csvfile| %>
       <tr>
         <td><%= csvfile.name %></td>
-        <td><%= csvfile.creater %></td>
-        <td><%= link_to t('csvfiles.pipei'), '' %></td>
+        <td><%= csvfile.status %></td>
+        <td><%= link_to t('csvfiles.pipei'), new_category_csvfile_pair_path(@category, csvfile) %></td>
         <td><%= link_to t('show'), category_csvfile_path(@category, csvfile) %></td>
         <td><%= link_to t('destroy'), category_csvfile_path(@category, csvfile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

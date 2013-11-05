@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @pair.category_id %>
+</p>
+
+<p>
+  <strong>Csvfile:</strong>
+  <%= @pair.csvfile_id %>
+</p>
+
+<p>
+  <strong>Hash paris:</strong>
+  <%= @pair.hash_paris %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @pair.status %>
+</p>
+
+<%= link_to 'Edit', edit_pair_path(@pair) %> |
+<%= link_to 'Back', pairs_path %>
