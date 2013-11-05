@@ -1,11 +1,10 @@
-<h1>Listing csvfiles</h1>
+<h1><%=  @category.name + '>' + t('csvfiles.list') %></h1>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Creater</th>
-      <th>Size</th>
+      <th><%= t('csvfiles.name') %></th>
+      <th><%= t('csvfiles.creater') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,7 +16,7 @@
       <tr>
         <td><%= csvfile.name %></td>
         <td><%= csvfile.creater %></td>
-        <td><%= csvfile.size %></td>
+        <td><%= link_to t('csvfiles.pipei'), '' %></td>
         <td><%= link_to t('show'), category_csvfile_path(@category, csvfile) %></td>
         <td><%= link_to t('destroy'), category_csvfile_path(@category, csvfile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -26,5 +25,5 @@
 </table>
 
 <br>
-
+<%= link_to t('csvfiles.back'), categories_path() %>
 <%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>

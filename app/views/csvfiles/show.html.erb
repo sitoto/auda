@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @csvfile.name %>
+<strong><%= t('csvfiles.name') %></strong>
+<%= @csvfile.name %>
 </p>
+<table class='table'>
+  <%-item = @csvfile.temproducts.first -%>
+    <tr> <%- item.parameters.each do |p| -%>
+        <th><%= p.name %></th>
+      <%-end -%>
+    </tr>
 
-<p>
-  <strong>Creater:</strong>
-  <%= @csvfile.creater %>
-</p>
+    <%- @csvfile.temproducts.each do |item| -%>
+      <tr> <%- item.parameters.each do |p| -%>
+          <td><%= p.value %></td> 
+        <%-end -%>
+      </tr>
 
-<p>
-  <strong>Size:</strong>
-  <%= @csvfile.size %>
-</p>
-
-<%- @csvfile.temproducts.each do |item| -%>
-  <%- item.parameters.each do |p| -%>
-    <%= p.name + ':' + p.value %>
-  <%-end -%>
-<%- end -%>
-
-<%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>
+    <%- end -%>
+  </table>
+  <%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>

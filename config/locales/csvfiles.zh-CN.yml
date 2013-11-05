@@ -1,7 +1,8 @@
 zh-CN:
   csvfiles:
-    list: "全部文件"
+    list: "全部导入文件"
     select: "选择文件"
+    pipei: "导入标准库"
     name: "文件名"
     creater: "创建人"
     new:  "文件导入"
