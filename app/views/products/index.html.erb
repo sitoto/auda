@@ -15,7 +15,7 @@
     <tbody>
     <%- @category.properties.each do |item| -%>
       <tr>
-        <td><%= item.name -%></td>
+        <th><%= item.name -%></th>
         <%- @products.each do |product| -%>
           <td><%= render_product_parameter_value_tag(product, item.id) -%> </td> 
         <%- end -%>
@@ -23,7 +23,7 @@
     <%- end -%>
   </tbody>
 </table>
-
+<%= paginate @products %>
 <br>
 
 <%= link_to t('new'), new_category_product_path(@category) %>|

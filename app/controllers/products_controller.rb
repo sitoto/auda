@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @category = Category.find(params[:category_id])
-    @products = @category.products
+    @products = @category.products.page params[:page]
   end
 
   # GET /products/1
