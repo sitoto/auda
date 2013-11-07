@@ -4,6 +4,7 @@ zh-CN:
     user_name: "创建者"
     ip: ip
     list: "商品列表"
+    show: "商品详情"
     position: "排序"
     new:  "新建商品"
     edit: "编辑商品"

@@ -10,18 +10,23 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= t('categories.select') +':' + @category.name  %>
+  <div class="control-group"> 
+    <%= f.label  t('categories.select') , class: 'control-label' -%>
+    <div class="controls">
+      <%=  f.text_field 'category_name' ,value:  @category.name , disabled: 'disabled' %>
+    </div>
   </div>
   <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| -%>
-  <div class="field">
-    <%= f.label "#{item.id}", item.name -%>
-    <%= f.text_field "#{item.id}", :value => render_product_parameter_value_tag(@product, item.id) -%>
-    <%= item.value -%>
-  </div>
+    <div class="control-group"> 
+      <%= f.label "#{item.id}", item.name , class: 'control-label' -%>
+      <div class="controls">
+        <%= f.text_field "#{item.id}", :value => render_product_parameter_value_tag(@product, item.id) -%>
+        <%= item.value -%>
+      </div>
+    </div>
   <%- end -%>
 
- <div class="actions">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

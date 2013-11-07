@@ -52,7 +52,6 @@ class CsvfilesController < ApplicationController
       end 
     end
     params[:csvfile][:name] = file_name
-
     respond_to do |format|
       if @csvfile.update(csvfile_params)
         format.html { redirect_to [@category, @csvfile], notice: t('csvfiles.created') }
@@ -60,7 +59,10 @@ class CsvfilesController < ApplicationController
         format.html { render action: 'new' }
       end
     end
-  end
+   rescue
+    redirect_to [@category, @csvfile], notice: t('csvfiles.error') 
+
+ end
 
   # PATCH/PUT /csvfiles/1
   # PATCH/PUT /csvfiles/1.json

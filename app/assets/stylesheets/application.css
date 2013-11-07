@@ -15,5 +15,11 @@
  */
 
 .navbar-fixed-top {
-    position:static;right:0;left:0;margin-bottom:20px;
-  }
+  position:static;right:0;left:0;margin-bottom:20px;
+}
+.control-label {
+  float: left;
+  width: 140px;
+  padding-top: 5px;
+  text-align: right;
+}

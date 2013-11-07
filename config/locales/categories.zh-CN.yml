@@ -1,6 +1,7 @@
 zh-CN:
   categories:
     list: "全部品类"
+    property: "标准属性"
     select: "选择品类"
     name: "名称"
     note: "说明"

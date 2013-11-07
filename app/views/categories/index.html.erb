@@ -1,39 +1,37 @@
 <h1><%= t("categories.list") %></h1>
 
-<table class="table">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th><%= t("categories.name") %></th>
-      <th><%= t("categories.note") %></th>
       <th><%= t("categories.alias") %></th>
+      <th><%= t("categories.property") %></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <th rowspan='2' title= "<%= category.note %>"><%= category.name %></th>
-        <td><%= link_to t('show'), category %>|
-        <%= link_to t('edit'), edit_category_path(category) %>|
-        <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %>|
-        <%= link_to t('products.new'), new_category_product_path(category) %>|
-        <%= link_to t('products.list'), category_products_path(category) %>|
-        <%= link_to t('csvfiles.new'), new_category_csvfile_path(category) %>|
-        <%= link_to t('csvfiles.list'), category_csvfiles_path(category) %>
-     </td>
-     <td><%= category.alias %></td>
+    <%- unless @categories.blank?  -%>
+      <% @categories.each do |category| %>
+        <tr>
+          <th rowspan='1' title= "<%= category.note %>"><%= category.name %></th>
+          <td><%= category.alias %></td>
+          <td>
+            <%= category.properties.order_by(:'position'.asc).map {|item| item.name}.join(",") %>
+          </td>
+          <td colspan="1">
+            <%= link_to t('show'), category %>|
+            <%= link_to t('edit'), edit_category_path(category) %>|
+            <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %>|
+            <%= link_to t('products.new'), new_category_product_path(category) %>|
+            <%= link_to t('products.list'), category_products_path(category) %>|
+            <%= link_to t('csvfiles.new'), new_category_csvfile_path(category) %>|
+            <%= link_to t('csvfiles.list'), category_csvfiles_path(category) %>
 
-   </tr>
-   <tr>
-        <td colspan="2">
-          <table class="table table-bordered"> <tr>
-         <% category.properties.order_by(:'position'.asc).each do |item| %>
-           <td><%= item.name %></td>
-         <% end %>
-     </tr></table>
-       
-   </td>
- </tr>
+            </td>
+
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

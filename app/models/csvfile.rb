@@ -6,6 +6,8 @@ class Csvfile
   field :creater, type: String
   field :size, type: String
   field :status, type: Integer, default: 0
+  validates_presence_of :name
+
 
   has_many :temproducts
   belongs_to :category

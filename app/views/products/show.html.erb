@@ -1,18 +1,21 @@
+<h1><%= "#{@category.name}> #{t('products.show')}" %></h1>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @product.status %>
+<strong><%= t('products.status') %></strong>
+<%= @product.status %>
 </p>
 
 <p>
-  <strong>User name:</strong>
-  <%= @product.user_name %>
+<strong><%= t('products.user_name') %></strong>
+<%= @product.user_name %>
 </p>
-<% @product.parameters.each do |para| %>
-  <p><%= para.name + ':' + para.value %></p>
-<% end %>
-
+<table class="table">
+  <% @product.parameters.each do |para| %>
+    <tr><td><%= para.name.to_s %></td><td>:</td><td><%= para.value.to_s %></td></tr>
+  <% end %>
+</table>
+<p>
 <%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
 <%= link_to t('products.back'), category_products_path(@category) -%>|
 <%= link_to t('categories.back'), category_path(@category) -%>

@@ -1,3 +1,12 @@
+production:
+  options:
+    identity_map_enabled: true        
+  sessions:
+    default:
+      hosts:
+        - localhost:27017 
+      database: autodata_pro
+    
 development:
   # Configure available database sessions. (required)
   sessions:
