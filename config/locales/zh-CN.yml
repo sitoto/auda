@@ -1,5 +1,6 @@
 zh-CN:
   site_name: "数据管理"
+  logout: "注销"
   show: "详情"
   new: "新建"
   edit: "编辑"
@@ -20,6 +21,7 @@ zh-CN:
       parameter: "参数"
       product: "商品"
       csvfile: "csv文件"
+      user: "用户"
     attributes:
       category:
         alias: "别名"
@@ -45,4 +47,8 @@ zh-CN:
         name: "文件名"
         creater: "上传人"
         size: "文件大小"
+      user:
+        name: "用户名"
+        email: "邮箱"
+        password: "密码"
 

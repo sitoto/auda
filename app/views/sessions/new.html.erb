@@ -1,0 +1,26 @@
+<% if current_user %>
+  <h1><%= t("users.profile") %></h1>
+  <p>
+  <strong><%= t('users.name') %></strong>
+    <%= current_user.name %>
+  </p>
+  <p><%= link_to t("logout"), logout_path %></p>
+<% else %>
+  <h1><%= t("users.sign")  %></h1>
+ 
+  <p>
+    <%= link_to t("users.new"), new_identity_path %>
+  </p>
+  
+  <%= form_tag "/auth/identity/callback" do %>
+    <div class="field">
+      <%= label_tag :auth_key, t("users.email") %>
+      <%= text_field_tag :auth_key %>
+    </div>
+    <div class="field">
+      <%= label_tag :password, t("users.password") %>
+      <%= password_field_tag :password %>
+    </div>
+    <div class="actions"><%= submit_tag t("users.login") %></div>
+  <% end %>
+<% end %>
