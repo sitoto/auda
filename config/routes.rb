@@ -2,6 +2,10 @@ Autodata::Application.routes.draw do
 
 
 
+  namespace :cpanel do
+    resources :users
+  end
+
   resources :categories do
     resources :properties
     resources :products
@@ -15,7 +19,7 @@ Autodata::Application.routes.draw do
 
   root "sessions#new"
   post "/auth/:provider/callback", to: "sessions#create"
-  post "/auth/failure", to: "sessions#failure"
+  get "/auth/:provider/failure", to: "sessions#failure"
   get "/logout", to: "sessions#destroy", :as => "logout"
   resources :identities
 

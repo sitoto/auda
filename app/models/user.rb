@@ -2,9 +2,13 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  ROLES = %w[admin gather edit data_manager]
+
   field :provider, type: String
   field :uid, type: String
   field :name, type: String
+  field :email, type: String
+  field :role, type: String , default: ''
 
 
   def self.from_omniauth(auth)
@@ -17,6 +21,8 @@ class User
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+
     end
   end
 

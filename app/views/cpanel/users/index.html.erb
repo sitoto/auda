@@ -1,0 +1,33 @@
+<h1>Listing users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t('users.name') %></th>
+      <th><%= t('users.role') %></th>
+      <th><%= t('users.email') %></th>
+      
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name.to_s %></td>
+        <td><%= user.role.to_s %></td>
+        <td><%= user.email.to_s %></td>
+
+        <td><%= link_to t('show'), cpanel_user_path(user) %></td>
+        <td><%= link_to t('edit'), edit_cpanel_user_path(user) %></td>
+        <td><%= link_to t('destroy'), cpanel_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_cpanel_user_path %>

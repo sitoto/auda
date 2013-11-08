@@ -1,6 +1,7 @@
 zh-CN:
   users:
     name: "用户名"
+    role: "角色"
     alias: "别名"
     new:  "注册"
     edit: "修改"
@@ -9,6 +10,7 @@ zh-CN:
     password: "密码"
     sign: "登录"
     login: "登录"
+    nologin: "请先登录"
     profile: "个人信息"
     signedin: "已经登录" 
     signedout: "已经注销"

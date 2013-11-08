@@ -14,6 +14,6 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to root_url, alert: t("users.authfailed")
+    redirect_to root_url, notice: t("users.authfailed")
   end
 end

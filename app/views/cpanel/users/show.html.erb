@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<p><%= t('users.name') + ":" + @user.name.to_s %></p>
+<p><%= t('users.role') + ":" + @user.role.to_s %></p>
+
+
+<%= link_to t('edit'), edit_cpanel_user_path(@user) %> |
+<%= link_to t('back'), cpanel_users_path %>

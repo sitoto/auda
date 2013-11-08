@@ -48,6 +48,7 @@ zh-CN:
         creater: "上传人"
         size: "文件大小"
       user:
+        role: "角色"
         name: "用户名"
         email: "邮箱"
         password: "密码"
