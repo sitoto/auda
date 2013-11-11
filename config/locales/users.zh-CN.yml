@@ -8,6 +8,7 @@ zh-CN:
     back: "返回"
     email: "邮箱"
     password: "密码"
+    password_confirmation: "重复密码"
     sign: "登录"
     login: "登录"
     nologin: "请先登录"

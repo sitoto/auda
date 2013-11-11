@@ -4,6 +4,7 @@ zh-CN:
   show: "详情"
   new: "新建"
   edit: "编辑"
+  register: "注册"
   created: "创建成功"
   destroyed: "删除成功"
   updated: "修改成功"
@@ -52,4 +53,9 @@ zh-CN:
         name: "用户名"
         email: "邮箱"
         password: "密码"
-
+      identity:
+        name: "用户名"
+        email: "邮件"
+        password: "密码"
+        password_confirmation: "重复密码"
+      
