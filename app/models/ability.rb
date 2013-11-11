@@ -2,6 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new
+
     if user.blank?
       cannot :manage , :all
       basic_read_only
@@ -13,9 +15,12 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:data_manager)
-      can :manage, :category
+      can :read, Category
+      can :create, Category
+      #can :update, Category
+      
 
-    elsif user.has_roles?(:data_gather)
+    elsif user.has_role?(:data_gather)
       can :read, :all
     end
     #

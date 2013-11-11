@@ -21,10 +21,10 @@
           </td>
           <td colspan="1">
             <%= link_to t('show'), category %>|
-            <%- if can? :update, @category -%>
+            <%- if can? :update, category -%>
               <%= link_to t('edit'), edit_category_path(category) %>|
             <%- end -%>
-            <%- if can? :destroy, @category -%>
+            <%- if can? :destroy, category -%>
               <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %>|
             <%- end -%>
             <%= link_to t('products.new'), new_category_product_path(category) %>|
