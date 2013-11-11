@@ -21,14 +21,18 @@
           </td>
           <td colspan="1">
             <%= link_to t('show'), category %>|
-            <%= link_to t('edit'), edit_category_path(category) %>|
-            <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %>|
+            <%- if can? :update, @category -%>
+              <%= link_to t('edit'), edit_category_path(category) %>|
+            <%- end -%>
+            <%- if can? :destroy, @category -%>
+              <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %>|
+            <%- end -%>
             <%= link_to t('products.new'), new_category_product_path(category) %>|
             <%= link_to t('products.list'), category_products_path(category) %>|
             <%= link_to t('csvfiles.new'), new_category_csvfile_path(category) %>|
             <%= link_to t('csvfiles.list'), category_csvfiles_path(category) %>
 
-            </td>
+          </td>
 
         </tr>
       <% end %>

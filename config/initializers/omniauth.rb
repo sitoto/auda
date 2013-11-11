@@ -1,5 +1,5 @@
 OmniAuth.config.on_failure do |env|
-    [302, {'Location' => "/auth/#{env['omniauth.error.strategy'].name}/failure?message=#{env['omniauth.error.type']}"}, ["Redirecting..."]]
+  [302, {'Location' => "/auth/#{env['omniauth.error.strategy'].name}/failure?message=#{env['omniauth.error.type']}"}, ["Redirecting..."]]
 end
 Rails.application.config.middleware.use OmniAuth::Builder do
   # ...

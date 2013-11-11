@@ -10,7 +10,11 @@
     <div class="navbar navbar-inverse  navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <h3><%= t('site_name') %></h3>
+          <ul class="nav nav-tab">
+            <li><%= link_to t('home'), root_url  %></li>
+            <li><%= link_to t('categories.list'), categories_path  %></li>
+          </ul>
+          <%= render "common/user_nav" %>
         </div>
       </div>
     </div>

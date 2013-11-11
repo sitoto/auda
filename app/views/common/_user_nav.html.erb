@@ -1,0 +1,5 @@
+<%- if current_user -%>
+  <ul class="nav pull-right" id="userbar">
+    <li><%= link_to render_user_name_tag(current_user), root_url %> </li>
+  </ul>
+<%- end -%>
