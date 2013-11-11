@@ -1,7 +1,5 @@
 Autodata::Application.routes.draw do
 
-
-
   namespace :cpanel do
     resources :users
   end

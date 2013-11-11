@@ -15,7 +15,7 @@ zh-CN:
     profile: "个人信息"
     signedin: "已经登录" 
     signedout: "已经注销"
-    authfailed: "登录验证失败，请重试!"
+    authfailed: "没有权限，请重试!"
     created: "已经成功创建."
     updated: "已经被更新."
     delete: "确定删除品类: '%{name}' 吗?"
