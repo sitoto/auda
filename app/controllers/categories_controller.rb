@@ -4,25 +4,19 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource
 
 
-  # GET /categories
-  # GET /categories.json
   def index
     @categories = Category.all
   end
 
-  # GET /categories/1
-  # GET /categories/1.json
   def show
     @properties = @category.properties
     @property = Property.new
   end
 
-  # GET /categories/new
   def new
     @category = Category.new
   end
 
-  # GET /categories/1/edit
   def edit
   end
 
@@ -33,38 +27,29 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # POST /categories
-  # POST /categories.json
   def create
     @category = Category.new(category_params)
+    #@category.user = current_user
 
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: t('categories.created') }
-        format.json { render action: 'show', status: :created, location: @category }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
+    if @category.save
+      redirect_to @category, notice: t('categories.created')
+    else
+      render action: 'new'
     end
   end
 
-  # PATCH/PUT /categories/1
-  # PATCH/PUT /categories/1.json
   def update
+    @category.last_edit_user_id = current_user.id
+
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: t('categories.updated') }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.json
   def destroy
     @category.destroy
     respond_to do |format|
@@ -85,7 +70,7 @@ class CategoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
-    params.require(:category).permit(:name, :note, :alias)
+    params.require(:category).permit(:name, :alias, :note)
   end
   def property_params
     params.require(:property).permit(:code, :name, :value, :position)

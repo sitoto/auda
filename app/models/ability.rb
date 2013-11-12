@@ -17,7 +17,7 @@ class Ability
     elsif user.has_role?(:data_manager)
       can :read, Category
       can :create, Category
-      #can :update, Category
+      can :update, Category
       
 
     elsif user.has_role?(:data_gather)

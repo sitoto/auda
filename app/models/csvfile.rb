@@ -10,8 +10,9 @@ class Csvfile
 
 
   has_many :temproducts
-  belongs_to :category
   belongs_to :pair
-  belongs_to :user
+
+  belongs_to :category, :inverse_of => :csvfiles
+  belongs_to :user, :inverse_of => :csvfiles
 
 end

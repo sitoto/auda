@@ -7,6 +7,7 @@
       <th><%= t("categories.alias") %></th>
       <th><%= t("categories.property") %></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -33,6 +34,7 @@
             <%= link_to t('csvfiles.list'), category_csvfiles_path(category) %>
 
           </td>
+          <td><%= category.user.blank? ? "" : category.user.name %></td>
 
         </tr>
       <% end %>
