@@ -13,4 +13,6 @@ class Category
   has_many :products
   has_many :csvfiles
   has_many :pairs
+
+  belongs_to :user
 end

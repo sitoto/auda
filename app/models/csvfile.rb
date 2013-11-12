@@ -12,5 +12,6 @@ class Csvfile
   has_many :temproducts
   belongs_to :category
   belongs_to :pair
+  belongs_to :user
 
 end

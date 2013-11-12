@@ -12,4 +12,5 @@ class Property
 
   belongs_to :category
 #  belongs_to :parameter
+  belongs_to :user
 end

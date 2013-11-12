@@ -11,4 +11,6 @@ class Pair
   belongs_to :category
   has_one :csvfile
   has_many :product
+  belongs_to :user
+
 end

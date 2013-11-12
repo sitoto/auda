@@ -10,9 +10,15 @@ class User
   field :email, type: String
   field :role, type: String , default: ''
 
+  has_many :categories
+  has_many :csvfiles
+  has_many :pairs
+  has_many :products
+  has_many :properties
+
+  
 
   def self.from_omniauth(auth)
-    #create_with_omniauth(auth)
     where(provider: auth["provider"], uid: auth["uid"]).first || create_with_omniauth(auth)
   end
 
