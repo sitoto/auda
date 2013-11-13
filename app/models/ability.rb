@@ -18,6 +18,7 @@ class Ability
       can :read, Category
       can :create, Category
       can :update, Category
+      can :read, Product
       
 
     elsif user.has_role?(:data_gather)

@@ -7,7 +7,8 @@
       <th><%= t("categories.alias") %></th>
       <th><%= t("categories.property") %></th>
       <th></th>
-      <th></th>
+      <th><%= t("creater") %></th>
+      <th><%= t("last_editor") %></th>
     </tr>
   </thead>
 
@@ -35,7 +36,7 @@
 
           </td>
           <td><%= category.user.blank? ? "" : category.user.name %></td>
-
+          <td><%= category.last_edit_user.blank? ? "" : category.last_edit_user.name %></td>
         </tr>
       <% end %>
     <% end %>

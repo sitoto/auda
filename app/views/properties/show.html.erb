@@ -20,5 +20,5 @@
   <%= @property.position %>
 </p>
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+<%= link_to t('edit'), edit_category_property_path(@category, @property) %> |
+<%= link_to t('back'), category_path(@category) %>

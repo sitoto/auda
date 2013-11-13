@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :set_category_id, only: [:getproperties]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
 
 
   def index
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    #@category.user = current_user
+    @category.user = current_user
 
     if @category.save
       redirect_to @category, notice: t('categories.created')
@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category.last_edit_user_id = current_user.id
+    @category.last_edit_user = current_user
 
     respond_to do |format|
       if @category.update(category_params)

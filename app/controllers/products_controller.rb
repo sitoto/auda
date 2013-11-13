@@ -1,27 +1,24 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :update, :show]
+  load_and_authorize_resource except: [:create]
 
-  # GET /products
-  # GET /products.json
   def index
     @category = Category.find(params[:category_id])
     @products = @category.products.page params[:page]
   end
 
-  # GET /products/1
-  # GET /products/1.json
   def show
   end
 
-  # GET /products/new
   def new
     @product = Product.new
     @category = Category.find(params[:category_id])
-    
+    @category.properties.build
   end
 
-  # GET /products/1/edit
   def edit
+    @category.properties.build
+
   end
 
   def create
@@ -40,15 +37,18 @@ class ProductsController < ApplicationController
   end
 
   def update
-    update_parameters
-    respond_to do |format|
-      if @product.save    #@product.update(product_params)
-        format.html { redirect_to [@category, @product], notice: t('updated') }
-      else
-        format.html { render action: 'edit' }
-      end
+    if current_user.data_manager? || @product.status == 0
+      update_parameters
+    end
+
+    if @product.update(product_params)
+      redirect_to [@category, @product], notice: t('updated') 
+    else
+      redirect_to [@category, @product], notice: t('error') 
+ #    render action: 'edit' 
     end
   end
+
 
   def destroy
     @category = Category.find(params[:category_id])
@@ -61,31 +61,35 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-      @category = Category.find(params[:category_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+    @category = Category.find(params[:category_id])
+  end
 
-    def update_parameters
-      pars = []
-      items = params[:product]
-      return if items.blank?
-      items.each do |code, value|
-        property = @category.properties.find(code) 
-        name = property.name 
-        parameter = Parameter.new(name:name, value: value)     
-        parameter.code = property.id
-#        parameter.property = property 
-        pars << parameter
-      end
-      if pars.length > 0
-        @product.parameters = pars
-      end
+  def update_parameters
+    pars = []
+    items =  params[:product]
+    return if items.blank?
+    items.each do |code, value|
+      puts value
+      property = @category.properties.find(code) 
+      name = property.name 
+      parameter = Parameter.new(name:name, value: value)     
+      parameter.code = property.id
+      #        parameter.property = property 
+      pars << parameter
     end
+    if pars.length > 0
+      @product.parameters = pars
+    end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:status, :user_name, :ip)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params.require(:product).permit(:status, :user_name, :ip)
+  end
+  def product_params_parameter
+    params.require(:product).permit!
+  end
 end
