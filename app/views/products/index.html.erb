@@ -1,11 +1,13 @@
 <h1><%= "'" +  @category.name + "'" + t('products.list') %></h1>
+<p id="notice"><%= notice %></p>
 
 <table class="table table-bordered">
   <thead>
    <tr>
       <td></td>
       <%- @products.each do |product| -%>
-        <td><%= render_product_status_tag(product) %><br>
+        <td><span class="status"><%= render_product_status_tag(product) %></span>
+<br>
           <%= link_to t('show'), category_product_path(@category, product) %>|
           <%= link_to t('edit'), edit_category_product_path(@category, product) %>|
           <%= link_to t('destroy'), category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>

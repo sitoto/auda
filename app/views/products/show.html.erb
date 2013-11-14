@@ -1,11 +1,14 @@
 <h1><%= "#{@category.name}> #{t('products.show')}" %></h1>
 <p id="notice"><%= notice %></p>
 
+<%- if @product.status == 0 -%>
+<%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
+<%- else -%>
 <p>
 <strong><%= t('products.status') %></strong>
-<%= @product.status %>
+<%= render_product_status_tag(@product) %>
 </p>
-
+<%- end-%>
 <p>
 <strong><%= t('products.user_name') %></strong>
 <%= @product.user_name %>

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :update, :show]
+  before_action :set_product, only: [:edit, :update, :show, :agree]
   load_and_authorize_resource except: [:create]
 
   def index
@@ -8,6 +8,16 @@ class ProductsController < ApplicationController
   end
 
   def show
+  end
+
+  def agree
+    @product.status = 2 
+    @product.save
+
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+
   end
 
   def new
@@ -45,7 +55,7 @@ class ProductsController < ApplicationController
       redirect_to [@category, @product], notice: t('updated') 
     else
       redirect_to [@category, @product], notice: t('error') 
- #    render action: 'edit' 
+      #    render action: 'edit' 
     end
   end
 
@@ -53,10 +63,11 @@ class ProductsController < ApplicationController
   def destroy
     @category = Category.find(params[:category_id])
     @product = Product.find(params[:id])
-    @product.destroy
-    respond_to do |format|
-      format.html { redirect_to category_products_url(@category) }
-      format.json { head :no_content }
+    if @product.status == 2
+      redirect_to  category_products_url(@category), notice: t('destroyed_failed') 
+    else
+      @product.destroy
+      redirect_to category_products_url(@category), notice: t('destroyed')
     end
   end
 

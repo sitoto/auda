@@ -6,7 +6,9 @@ Autodata::Application.routes.draw do
 
   resources :categories do
     resources :properties
-    resources :products
+    resources :products do
+      get :agree, :on => :member
+    end
     resources :csvfiles do
       resources :pairs
     end
