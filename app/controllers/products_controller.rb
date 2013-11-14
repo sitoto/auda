@@ -7,6 +7,13 @@ class ProductsController < ApplicationController
     @products = @category.products.page params[:page]
   end
 
+  def draft 
+    @category = Category.find(params[:category_id])
+    @products = @category.products.draft.page params[:page]
+    render :index
+  end
+
+
   def show
   end
 

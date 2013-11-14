@@ -1,4 +1,6 @@
+<% @page_title =  t("categories.list") %>
 <h1><%= t("categories.list") %></h1>
+
 
 <table class="table table-bordered">
   <thead>
@@ -31,6 +33,8 @@
             <%- end -%>
             <%= link_to t('products.new'), new_category_product_path(category) %>|
             <%= link_to t('products.list'), category_products_path(category) %>|
+            <%= link_to t('products.draft'), draft_category_products_path(category) %>|
+
             <%= link_to t('csvfiles.new'), new_category_csvfile_path(category) %>|
             <%= link_to t('csvfiles.list'), category_csvfiles_path(category) %>
 

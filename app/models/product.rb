@@ -11,4 +11,6 @@ class Product
   belongs_to :pair
   belongs_to :user
 
+  scope :draft, -> { where(status: 0) }
+
 end

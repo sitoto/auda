@@ -1,5 +1,4 @@
 <h1><%= "#{@category.name}> #{t('products.show')}" %></h1>
-<p id="notice"><%= notice %></p>
 
 <%- if @product.status == 0 -%>
 <%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>

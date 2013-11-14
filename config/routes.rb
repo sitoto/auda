@@ -8,6 +8,7 @@ Autodata::Application.routes.draw do
     resources :properties
     resources :products do
       get :agree, :on => :member
+      get :draft, :on => :collection
     end
     resources :csvfiles do
       resources :pairs

@@ -2,6 +2,7 @@ zh-CN:
   products:
     status: "状态"
     user_name: "创建者"
+    draft: "草稿"
     ip: ip
     list: "商品列表"
     show: "商品详情"
