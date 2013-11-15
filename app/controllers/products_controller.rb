@@ -7,11 +7,18 @@ class ProductsController < ApplicationController
     @products = @category.products.page params[:page]
   end
 
-  def draft 
+  def draft
     @category = Category.find(params[:category_id])
     @products = @category.products.draft.page params[:page]
     render :index
   end
+  
+  def done
+    @category = Category.find(params[:category_id])
+    @products = @category.products.done.page params[:page]
+    render :index
+  end
+
 
 
   def show
@@ -19,6 +26,7 @@ class ProductsController < ApplicationController
 
   def agree
     @product.status = 2 
+    @product.last_agree_user = current_user 
     @product.save
 
     respond_to do |format|
@@ -41,6 +49,7 @@ class ProductsController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
     @product = @category.products.new()
+    @product.user = current_user
 
     update_parameters
 
@@ -57,6 +66,7 @@ class ProductsController < ApplicationController
     if current_user.data_manager? || @product.status == 0
       update_parameters
     end
+    @product.last_edit_user = current_user
 
     if @product.update(product_params)
       redirect_to [@category, @product], notice: t('updated') 

@@ -10,6 +10,7 @@ Autodata::Application.routes.draw do
     resources :products do
       get :agree, :on => :member
       get :draft, :on => :collection
+      get :done, :on => :collection
     end
     resources :csvfiles do
       resources :pairs

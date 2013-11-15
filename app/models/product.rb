@@ -5,12 +5,23 @@ class Product
   field :status, type: Integer , default: 0
   field :user_name, type: String
   field :ip, type: String
+  field :last_active_mark, :type => Integer
 
   belongs_to :category
   embeds_many :parameters
   belongs_to :pair
   belongs_to :user
 
-  scope :draft, -> { where(status: 0) }
+  belongs_to :last_edit_user, :class_name => 'User'
+  belongs_to :last_agree_user, :class_name => 'User'
 
+  scope :draft, -> { where(status: 0) }
+  scope :done, -> { where(status: 2) }
+
+  before_create :init_last_active_mark_on_create
+  def init_last_active_mark_on_create
+    self.last_active_mark = Time.now.to_i
+  end
+
+ 
 end

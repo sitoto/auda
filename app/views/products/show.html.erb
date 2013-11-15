@@ -10,7 +10,7 @@
 <%- end-%>
 <p>
 <strong><%= t('products.user_name') %></strong>
-<%= @product.user_name %>
+<%= @product.user.blank? ? "" : @product.user.name %>
 </p>
 <table class="table">
   <% @product.parameters.each do |para| %>
