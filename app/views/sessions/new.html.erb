@@ -1,17 +1,17 @@
+
 <% if current_user %>
   <h1><%= t("users.profile") %></h1>
   <p>
   <strong><%= t('users.name') %></strong>
-    <%= current_user.name %>
+  <%= current_user.name %>
   </p>
   <p><%= link_to t("logout"), logout_path %></p>
 <% else %>
   <h1><%= t("users.sign")  %></h1>
- 
   <p>
-    <%= link_to t("users.new"), new_identity_path %>
+  <%= link_to t("create_account"), new_identity_path %> 
   </p>
-  
+
   <%= form_tag "/auth/identity/callback" do %>
     <div class="field">
       <%= label_tag :auth_key, t("users.email") %>

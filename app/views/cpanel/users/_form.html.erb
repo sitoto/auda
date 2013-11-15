@@ -16,7 +16,7 @@
   </div>
   <div class"field">
     <%= f.label :role %>
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+    <%= f.collection_select :role, User::ROLES, :to_s, :humanize ,{:prompt => "select_role"} %>
   </div>
 
   <div class="actions">

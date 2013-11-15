@@ -1,9 +1,9 @@
 module ApplicationHelper
   def render_user_name_tag(user)
     if user.role.blank?
-      user.name
+      "#{t('users.name')}:#{user.name}"
     else
-      "#{user.role}:#{user.name}" 
+      "#{t('users.name')}:#{user.name}, #{t('users.role')}:#{user.role}" 
     end
   end
 

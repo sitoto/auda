@@ -2,6 +2,7 @@ Autodata::Application.routes.draw do
 
   namespace :cpanel do
     resources :users
+    resources :identities
   end
 
   resources :categories do

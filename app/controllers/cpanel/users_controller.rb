@@ -5,6 +5,7 @@ class Cpanel::UsersController < Cpanel::ApplicationController
   # GET /cpanel/users.json
   def index
     @users = User.all
+    @identities = Identity.all
   end
 
   # GET /cpanel/users/1
@@ -12,31 +13,9 @@ class Cpanel::UsersController < Cpanel::ApplicationController
   def show
   end
 
-  # GET /cpanel/users/new
-  def new
-    @user = User.new
-  end
-
   # GET /cpanel/users/1/edit
   def edit
   end
-
-  # POST /cpanel/users
-  # POST /cpanel/users.json
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /cpanel/users/1
   # PATCH/PUT /cpanel/users/1.json
   def update
