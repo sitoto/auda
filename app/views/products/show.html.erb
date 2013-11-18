@@ -12,6 +12,11 @@
 <strong><%= t('products.user_name') %></strong>
 <%= @product.user.blank? ? "" : @product.user.name %>
 </p>
+
+<p>
+<strong><%= t('last_editor') %></strong>
+<%= @product.last_edit_user.blank? ? "" : @product.last_edit_user.name %>
+</p>
 <table class="table">
   <% @product.parameters.each do |para| %>
     <tr><td><%= para.name.to_s %></td><td>:</td><td><%= para.value.to_s %></td></tr>

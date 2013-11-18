@@ -18,11 +18,13 @@ class Ability
       can :read, Category
       can :create, Category
       can :update, Category
-      can :read, Product
+      can :read, Product do |product|
+        (product.user_id == user.id)
+      end
       
 
     elsif user.has_role?(:data_gather)
-      can :read, :all
+      can :read, Category 
     end
     #
     # The first argument to `can` is the action you are giving the user 
