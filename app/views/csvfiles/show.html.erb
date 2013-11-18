@@ -1,20 +1,23 @@
+<p><%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>|
+<%= link_to @csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, @csvfile) %>|<%= link_to t('destroy'), category_csvfile_path(@category, @csvfile), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
 <p>
 <strong><%= t('csvfiles.name') %></strong>
 <%= @csvfile.name %>
 </p>
 <table class='table'>
   <%-item = @csvfile.temproducts.first -%>
+  <tr> <%- item.parameters.each do |p| -%>
+      <th><%= p.name %></th>
+    <%-end -%>
+  </tr>
+
+  <%- @csvfile.temproducts.each do |item| -%>
     <tr> <%- item.parameters.each do |p| -%>
-        <th><%= p.name %></th>
+        <td><%= p.value %></td> 
       <%-end -%>
     </tr>
 
-    <%- @csvfile.temproducts.each do |item| -%>
-      <tr> <%- item.parameters.each do |p| -%>
-          <td><%= p.value %></td> 
-        <%-end -%>
-      </tr>
+  <%- end -%>
+</table>
 
-    <%- end -%>
-  </table>
-  <%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>

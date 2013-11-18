@@ -7,7 +7,6 @@
       <th><%= t('csvfiles.status') %></th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -15,11 +14,10 @@
     <% @csvfiles.each do |csvfile| %>
       <tr>
         <td><%= csvfile.name %></td>
-        <td><%= csvfile.status %></td>
-        <td><%= link_to t('csvfiles.pipei'), new_category_csvfile_pair_path(@category, csvfile) %></td>
+        <td><%= render_csvfile_status_tag(csvfile.status) %></td>
+        <td><%= link_to csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, csvfile) %></td>
         <td><%= link_to t('show'), category_csvfile_path(@category, csvfile) %></td>
-        <td><%= link_to t('destroy'), category_csvfile_path(@category, csvfile), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+     </tr>
     <% end %>
   </tbody>
 </table>
@@ -27,3 +25,4 @@
 <br>
 <%= link_to t('csvfiles.back'), categories_path() %>
 <%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>
+

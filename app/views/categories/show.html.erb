@@ -1,5 +1,11 @@
 <% @page_title =  @category.name  %>
-
+<p><%= link_to t('back'), categories_path %>|
+<%= link_to t('products.new'), new_category_product_path(@category) %>|
+<%= link_to t('products.list'), category_products_path(@category) %>|
+<%= link_to t('products.draft'), draft_category_products_path(@category) %>|
+<%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>|
+<%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>
+</p>
 <p>
 <strong><%= t('categories.name') %></strong>
 <%= @category.name %>
@@ -8,7 +14,6 @@
 <strong><%= t('categories.note') %></strong>
 <%= @category.note %>
 </p>
-<p><%= link_to t('back'), categories_path %></p>
 <hr>
 <h4><%= t('properties.list') %></h4>
 <div class="table-responsive">
@@ -25,7 +30,7 @@
             <td><%= item.name %></td><td><%= item.value %></td><td> <%= item.alias %></td><td> <%= item.position %></td><td> <%= link_to t('edit'), edit_category_property_path(@category, item) %></td></tr>
         <% end %>
       </table>
-</div>
-<hr>
-<h4><%= t('properties.new') %> </h4>
-<%= render 'pform' %>
+    </div>
+    <hr>
+    <h4><%= t('properties.new') %> </h4>
+    <%= render 'pform' %>
