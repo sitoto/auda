@@ -9,6 +9,7 @@ class User
   field :name, type: String
   field :email, type: String
   field :role, type: String , default: ''
+  field :last_login_ip, type: String 
 
   has_many :categories
   has_many :csvfiles

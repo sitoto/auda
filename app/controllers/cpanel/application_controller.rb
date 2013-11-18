@@ -8,4 +8,6 @@ class Cpanel::ApplicationController < ApplicationController
       redirect_to root_url, notice: t("users.authfailed")
     end
   end
+
+
 end

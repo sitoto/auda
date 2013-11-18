@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
 
   def create
     user = User.from_omniauth(env["omniauth.auth"])
+    user.last_login_ip = remote_ip
+    user.save
     session[:user_id] = user.id
     redirect_to root_url, notice: t("users.signedin")
   end

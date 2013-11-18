@@ -11,6 +11,7 @@ zh-CN:
     password_confirmation: "重复密码"
     sign: "登录"
     login: "登录"
+    last_login_ip: "登录IP"
     nologin: "请先登录"
     profile: "个人信息"
     signedin: "已经登录" 

@@ -21,7 +21,7 @@ class Cpanel::UsersController < Cpanel::ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to cpanel_user_url(@user), notice: 'User was successfully updated.' }
+        format.html { redirect_to cpanel_user_url(@user), notice: t('updated') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

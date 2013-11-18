@@ -6,7 +6,8 @@
       <th><%= t('users.name') %></th>
       <th><%= t('users.role') %></th>
       <th><%= t('users.email') %></th>
-      
+      <th><%= t('created_at') %></th>
+     
       <th></th>
       <th></th>
       <th></th>
@@ -19,6 +20,7 @@
         <td><%= user.name.to_s %></td>
         <td><%= user.role.to_s %></td>
         <td><%= user.email.to_s %></td>
+        <td><%= user.created_at.to_s %></td>
 
         <td><%= link_to t('show'), cpanel_user_path(user) %></td>
         <td><%= link_to t('edit'), edit_cpanel_user_path(user) %></td>
@@ -37,7 +39,7 @@
     <tr>
       <th><%= t('users.name') %></th>
       <th><%= t('users.email') %></th>
-      
+
       <th></th>
       <th></th>
       <th></th>
