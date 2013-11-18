@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def node_tree
+    tree = []
+    Node.roots.each do |node|
+      node.get_tree(tree)
+    end
+    return tree
+  end
   def render_user_name_tag(user)
     if user.role.blank?
       "#{t('users.name')}:#{user.name}"

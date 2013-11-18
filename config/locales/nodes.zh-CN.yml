@@ -1,0 +1,11 @@
+zh-CN:
+  nodes:
+    select: "选择分类"
+    name: "名称"
+    note: "说明"
+    new:  "新建分类"
+    edit: "编辑分类"
+    back: "返回分类页"
+    created: "分类已经成功创建."
+    updated: "分类已经被更新."
+    delete: "确定删除分类: '%{name}' 吗?"

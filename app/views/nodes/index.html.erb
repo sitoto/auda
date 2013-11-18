@@ -1,0 +1,27 @@
+<h1>nodes</h1>
+<%= node_tree %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Position</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nodes.each do |node| %>
+      <tr>
+        <td><%= node.name %></td>
+        <td><%= node.position %></td>
+        <td><%= link_to t('show'), node %></td>
+        <td><%= link_to t('edit'), edit_node_path(node) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Node', new_node_path %>

@@ -16,6 +16,7 @@ class Category
   has_many :csvfiles
   has_many :pairs
 
+  belongs_to :node
   belongs_to :user
   belongs_to :last_edit_user, :class_name => 'User'
 
