@@ -33,11 +33,13 @@ zh-CN:
       product: "商品"
       csvfile: "csv文件"
       user: "用户"
+      node: "分类"
     attributes:
       category:
         alias: "别名"
         name: "名称"
         note: "说明"
+        node_id: "分类"
       property:
         alias: "别名"
         code: "代码"
@@ -68,4 +70,8 @@ zh-CN:
         email: "邮件"
         password: "密码"
         password_confirmation: "重复密码"
+      node:
+        name: "分类名称"
+        position: "排序"
+        parent_node: "父节点"
       

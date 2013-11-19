@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class Node
   include Mongoid::Document
   field :name, type: String
@@ -5,7 +6,7 @@ class Node
 
   has_many :child_nodes, :class_name => 'Node', :inverse_of => :parent_node
   belongs_to :parent_node, :class_name => 'Node', :inverse_of => :child_nodes
-    
+
   has_many :categories
 
   def get_tree(tree)
@@ -13,9 +14,13 @@ class Node
       tree << ["#{self.name}", "#{self.id}"]
     else
       level = self.depth
-      bloc = "  " * level
+      bloc = "　" * level
       tree << [bloc + "|--#{self.name}", "#{self.id}"]
-      self.children
+    end
+    if self.child_nodes?
+      self.child_nodes.each do |chi|
+        chi.get_tree(tree)
+      end
     end
   end
   def self.roots
@@ -26,14 +31,7 @@ class Node
     self.parent_node.blank? ? true : false
   end
 
-  def self.children
-    self.child_nodes.each do |chi|
-      chi.get_tree(tree)
-    end
-
-  end
-
-  def self.depth
+  def depth
     i = 0
     @k = self
     while @k.parent_node

@@ -7,6 +7,11 @@
 <%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>
 </p>
 <p>
+<strong><%= t('categories.node') %></strong>
+<%= @category.node.blank? ? "" : @category.node.name %>
+</p>
+
+<p>
 <strong><%= t('categories.name') %></strong>
 <%= @category.name %>
 </p>

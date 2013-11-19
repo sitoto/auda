@@ -1,10 +1,15 @@
-<h1>nodes</h1>
-<%= node_tree %>
+<h1><%= t('nodes.list') %></h1>
+<ul class="list-group list-unstyled">
+<%- node_tree.each do |item| -%>
+  <li class="list-group-item"> <%= item[0] %></li>
+<%- end -%>
+</ul>
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Position</th>
+      <th>Parent</th>
       <th></th>
       <th></th>
     </tr>
@@ -15,8 +20,13 @@
       <tr>
         <td><%= node.name %></td>
         <td><%= node.position %></td>
+        <td><%= node.parent_node.blank? ? "" :node.parent_node.name %></td>
         <td><%= link_to t('show'), node %></td>
         <td><%= link_to t('edit'), edit_node_path(node) %></td>
+        <td><%- if can? :destroy, node -%>
+         <%= link_to t('destroy'), node, method: :delete, data: { confirm: t('nodes.delete', name: node.name) } %>
+            <%- end -%>
+          </td>
       </tr>
     <% end %>
   </tbody>
