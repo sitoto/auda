@@ -5,11 +5,11 @@ class Pair
   field :category_id, type: String
   field :csvfile_id, type: String
 
-  field :hash_paris, type: Hash
+  field :hash_pairs, type: Hash
   field :status, type: Integer
 
   belongs_to :category
-  has_one :csvfile
+  belongs_to :csvfile
   has_many :product
   belongs_to :user
 

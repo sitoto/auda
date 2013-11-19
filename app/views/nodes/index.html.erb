@@ -1,15 +1,17 @@
-<h1><%= t('nodes.list') %></h1>
+<h2><%= t('nodes.tree') %></h2>
 <ul class="list-group list-unstyled">
 <%- node_tree.each do |item| -%>
   <li class="list-group-item"> <%= item[0] %></li>
 <%- end -%>
 </ul>
-<table>
+
+<h2><%= t('nodes.list') %></h2>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Position</th>
-      <th>Parent</th>
+      <th><%= t('nodes.name') %></th>
+      <th><%= t('nodes.position') %></th>
+      <th><%= t('nodes.parent_node') %></th>
       <th></th>
       <th></th>
     </tr>
@@ -34,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Node', new_node_path %>
+<%= link_to t('nodes.new'), new_node_path %>

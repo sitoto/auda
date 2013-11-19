@@ -1,12 +1,12 @@
-<h1>Listing pairs</h1>
+<h2><%= t('pairs.list') %></h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Category</th>
-      <th>Csvfile</th>
-      <th>Hash paris</th>
-      <th>Status</th>
+      <th><%= t('pairs.catename') %></th>
+      <th><%= t('pairs.filename') %></th>
+      <th><%= t('pairs.username') %></th>
+      <th><%= t('pairs.created_at') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,18 +16,15 @@
   <tbody>
     <% @pairs.each do |pair| %>
       <tr>
-        <td><%= pair.category_id %></td>
-        <td><%= pair.csvfile_id %></td>
-        <td><%= pair.hash_paris %></td>
-        <td><%= pair.status %></td>
-        <td><%= link_to 'Show', pair %></td>
-        <td><%= link_to 'Edit', edit_pair_path(pair) %></td>
-        <td><%= link_to 'Destroy', pair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= pair.category.blank? ? "": pair.category.name %></td>
+        <td><%= pair.csvfile.blank? ? "" : pair.csvfile.name %></td>
+        <td><%= pair.user.blank? ? "" : pair.user.name %></td>
+        <td><%= timeago(pair.created_at) %></td>
+        <td><%= link_to t('show'), pair %></td>
+        <td><%= link_to t('destroy'), pair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Pair', new_pair_path %>

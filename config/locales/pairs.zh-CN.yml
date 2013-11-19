@@ -1,6 +1,11 @@
 zh-CN:
   pairs:
     list: "全部导入记录"
+    catename: "品类名称"
+    filename: "文件名称"
+    username: "导入用户"
+    hash_pairs: "匹配"
+    created_at: "创建时间"
     select: "选择匹配项"
     pipei: "导入标准库"
     creater: "创建人"

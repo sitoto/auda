@@ -24,7 +24,7 @@ class Node
     end
   end
   def self.roots
-    Node.where(parent_node: nil)
+    Node.where(parent_node: nil).asc(:position)
   end
 
   def root?

@@ -10,11 +10,11 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :parent_node %><br>
-    <%= render_parent_node_collection_tag %>
+    <%= f.label :parent_node_id %>
+    <%= f.select :parent_node_id, node_tree, {:include_blank => t('nodes.select')}%>
   </div>
+
  
   <div class="field">
     <%= f.label :name %><br>

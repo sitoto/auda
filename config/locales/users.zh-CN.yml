@@ -17,6 +17,7 @@ zh-CN:
     signedin: "已经登录" 
     signedout: "已经注销"
     authfailed: "没有权限，请重试!"
+    created_at: "创建时间"
     created: "已经成功创建."
     updated: "已经被更新."
     delete: "确定删除品类: '%{name}' 吗?"

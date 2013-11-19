@@ -4,55 +4,41 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    @nodes = Node.all
+    @nodes = Node.all.asc(:position)
   end
 
-  # GET /nodes/1
-  # GET /nodes/1.json
   def show
   end
 
-  # GET /nodes/new
   def new
     @node = Node.new
   end
 
-  # GET /nodes/1/edit
   def edit
   end
 
-  # POST /nodes
-  # POST /nodes.json
   def create
     @node = Node.new(node_params)
 
     respond_to do |format|
       if @node.save
-        format.html { redirect_to @node, notice: 'Node was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @node }
+        format.html { redirect_to @node, notice: t('created') }
       else
         format.html { render action: 'new' }
-        format.json { render json: @node.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /nodes/1
-  # PATCH/PUT /nodes/1.json
   def update
     respond_to do |format|
       if @node.update(node_params)
-        format.html { redirect_to @node, notice: 'Node was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to @node, notice: t('updated') }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @node.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /nodes/1
-  # DELETE /nodes/1.json
   def destroy
     @node.destroy
     respond_to do |format|

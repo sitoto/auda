@@ -1,12 +1,5 @@
 module ApplicationHelper
-  def node_tree
-    tree = []
-    Node.roots.each do |node|
-      node.get_tree(tree)
-    end
-    return tree
-  end
-  def render_user_name_tag(user)
+ def render_user_name_tag(user)
     if user.role.blank?
       "#{t('users.name')}:#{user.name}"
     else
@@ -30,5 +23,9 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
-
+  def timeago(time, options = {})
+    options[:class]
+    options[:class] = options[:class].blank? ? "timeago" : [options[:class],"timeago"].join(" ")
+    content_tag(:abbr, "", options.merge(:title => time.iso8601)) if time
+  end 
 end

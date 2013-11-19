@@ -1,22 +1,29 @@
 <p>
-  <strong>Category:</strong>
-  <%= @pair.category_id %>
+<strong><%= t('pairs.catename') %></strong>
+<%= @pair.category.name %>
 </p>
-
 <p>
-  <strong>Csvfile:</strong>
-  <%= @pair.csvfile_id %>
+<strong><%= t('pairs.filename') %></strong>
+<%= @pair.csvfile.name %>
 </p>
 
+<%- unless @pair.hash_pairs.blank? -%>
 <p>
-  <strong>Hash paris:</strong>
-  <%= @pair.hash_paris %>
+<strong><%= t('pairs.hash_pairs')%></strong>
+  <% @pair.hash_pairs.each do |proid, parname| %>
+    <%= render_get_property_name_tag(proid) + ':' + parname %>
+  <%- end -%>
 </p>
-
+<%- end -%>
 <p>
-  <strong>Status:</strong>
-  <%= @pair.status %>
+<strong><%= t('pairs.created_at') %></strong>
+<%= @pair.created_at %>
+</p>
+<p>
+<strong><%= t('pairs.creater') %></strong>
+<%= @pair.user.name %>
 </p>
 
-<%= link_to 'Edit', edit_pair_path(@pair) %> |
-<%= link_to 'Back', pairs_path %>
+
+
+<%= link_to t('back'), pairs_path %>
