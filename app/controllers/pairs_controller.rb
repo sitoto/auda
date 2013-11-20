@@ -1,5 +1,6 @@
 class PairsController < ApplicationController
   #before_action :set_pair, only: [:show]
+  load_and_authorize_resource except: [:create]
 
   # GET /pairs
   # GET /pairs.json

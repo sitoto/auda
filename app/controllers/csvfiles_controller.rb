@@ -1,6 +1,7 @@
 require 'csv'
 class CsvfilesController < ApplicationController
   before_action :set_csvfile, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource except: [:create]
 
   # GET /csvfiles
   # GET /csvfiles.json

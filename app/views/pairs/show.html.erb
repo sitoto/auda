@@ -10,8 +10,9 @@
 <%- unless @pair.hash_pairs.blank? -%>
 <p>
 <strong><%= t('pairs.hash_pairs')%></strong>
+<br />
   <% @pair.hash_pairs.each do |proid, parname| %>
-    <%= render_get_property_name_tag(proid) + ':' + parname %>
+    <%= render_get_property_name_tag(proid) + ':' + parname %> <br />
   <%- end -%>
 </p>
 <%- end -%>
