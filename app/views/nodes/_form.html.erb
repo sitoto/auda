@@ -14,14 +14,13 @@
     <%= f.label :parent_node_id %>
     <%= f.select :parent_node_id, node_tree, {:include_blank => t('nodes.select')}%>
   </div>
-
  
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :position %><br>
+    <%= f.label :position %>
     <%= f.text_field :position %>
   </div>
   <div class="actions">

@@ -5,6 +5,8 @@
     <tr>
       <th><%= t('csvfiles.name') %></th>
       <th><%= t('csvfiles.status') %></th>
+      <th><%= t('csvfiles.creater') %></th>
+      <th><%= t('csvfiles.created_at') %></th>
       <th></th>
       <th></th>
     </tr>
@@ -15,6 +17,8 @@
       <tr>
         <td><%= csvfile.name %></td>
         <td><%= render_csvfile_status_tag(csvfile.status) %></td>
+        <td><%= csvfile.user.blank? ? "" : csvfile.user.name %></td>
+        <td><%= csvfile.created_at %></td>
         <td><%= link_to csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, csvfile) %></td>
         <td><%= link_to t('show'), category_csvfile_path(@category, csvfile) %></td>
      </tr>

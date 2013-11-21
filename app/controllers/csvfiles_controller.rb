@@ -7,7 +7,7 @@ class CsvfilesController < ApplicationController
   # GET /csvfiles.json
   def index
    @category = Category.find(params[:category_id])
-   @csvfiles = @category.csvfiles 
+   @csvfiles = @category.csvfiles.desc(:id) 
   end
 
   # GET /csvfiles/1
@@ -31,6 +31,7 @@ class CsvfilesController < ApplicationController
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.new(csvfile_params)
     @csvfile.category = @category
+    @csvfile.user = current_user
     file_name = params[:csvfile][:name].original_filename
 
     file_data = params[:csvfile][:name].read

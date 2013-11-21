@@ -17,12 +17,12 @@
 <strong><%= t('last_editor') %></strong>
 <%= @product.last_edit_user.blank? ? "" : @product.last_edit_user.name %>
 </p>
-<table class="table">
+<table class="table-bordered">
   <% @product.parameters.each do |para| %>
     <tr><td><%= para.name.to_s %></td><td>:</td><td><%= para.value.to_s %></td></tr>
   <% end %>
 </table>
 <p>
 <%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
-<%= link_to t('products.back'), category_products_path(@category) -%>|
+<%= link_to t('products.back'), draft_category_products_path(@category) -%>|
 <%= link_to t('categories.back'), category_path(@category) -%>

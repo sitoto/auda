@@ -4,7 +4,7 @@ module CsvfilesHelper
     return if csvfile.blank?
     parameters = csvfile.temproducts.first.parameters
     
-    collection_select :pairparameters, property.id, parameters, :name, :name, {:prompt => t('pairs.select')}, :style => "width:145px;"
+    collection_select :pairparameters, property.id, parameters, :name, :name, { :selected => property.name, :include_blank => t('pairs.select')}, :style => "width:185px;"
   end
 
   def render_csvfile_status_tag(status)

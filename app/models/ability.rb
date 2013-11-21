@@ -4,8 +4,8 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    if user.blank?
-      cannot :manage , :all
+    if !user.blank?
+      #cannot :manage , :all
       basic_read_only
     end
 
@@ -15,16 +15,36 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:data_manager)
-      can :read, Category
-      can :create, Category
-      can :update, Category
-      can :read, Product do |product|
-        (product.user_id == user.id)
+      can :manage, Property
+      can :manage, Node
+      can :manage, Pair
+      can :manage, Category
+      can :manage, Product
+
+    elsif user.has_role?(:data_editor)
+      can :read, Csvfile
+      can :read, Property
+      can :create, Property
+      can :create, Csvfile
+      can :read, Pair
+      can :read, Node
+      can :draft, Product
+      can :read, Product
+      can :update, Product do |product|
+        product.status == 0
       end
-      
+      can :create, Product
+      can :read, Category
+
 
     elsif user.has_role?(:data_gather)
       can :read, Category 
+      can :read, Csvfile
+      can :read, Pair
+      can :read, Node
+      can :create, Csvfile
+      can :create, Pair
+
     end
     #
     # The first argument to `can` is the action you are giving the user 
@@ -47,6 +67,5 @@ class Ability
   end
   protected
     def basic_read_only
-
     end
 end

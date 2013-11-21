@@ -20,7 +20,9 @@ Autodata::Application.routes.draw do
     get :getproperties, :on => :member
 
   end
-  resources :pairs
+  resources :pairs do 
+    resources :products
+  end
 
   root "sessions#new"
   post "/auth/:provider/callback", to: "sessions#create"

@@ -21,10 +21,12 @@
         <td><%= pair.user.blank? ? "" : pair.user.name %></td>
         <td><%= timeago(pair.created_at) %></td>
         <td><%= link_to t('show'), pair %></td>
-        <td><%= link_to t('destroy'), pair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%- if can? :manage, @pair -%>
+            <%= link_to t('destroy'), pair, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%- end -%>
+          </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>

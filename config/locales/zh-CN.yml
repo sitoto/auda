@@ -44,7 +44,7 @@ zh-CN:
         alias: "别名"
         code: "代码"
         name: "属性"
-        value: "值说明"
+        value: "说明"
         position: "排序"
       parameter:
         code: "代码"
@@ -74,4 +74,5 @@ zh-CN:
         name: "分类名称"
         position: "排序"
         parent_node: "父节点"
+        parent_node_id: "父节点"
       

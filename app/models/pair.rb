@@ -10,7 +10,7 @@ class Pair
 
   belongs_to :category
   belongs_to :csvfile
-  has_many :product
+  has_many :products
   belongs_to :user
 
 end

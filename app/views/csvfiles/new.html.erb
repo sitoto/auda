@@ -1,5 +1,7 @@
-<h1><%= t('csvfiles.new') %></h1>
+<h1><%=  @category.name + '>' + t('csvfiles.new') %></h1>
 
 <%= render 'form' %>
-
+<p>
+<%= link_to t('categories.back'), category_path(@category) %>
 <%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>
+</p>

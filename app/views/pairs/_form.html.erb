@@ -19,10 +19,12 @@
   <% end %>
 
   <%- @category.properties.order_by(:'position'.asc).each do |item| -%>
-    <div class="field">
-      <%= f.label "#{item.id}", item.name %>
-      <%= render_category_csvfile_select_tag(item, @csvfile)  %>
-      <%= item.value %>
+    <div class="control-group">
+      <%= f.label "#{item.id}", item.name, class: 'control-label' %>
+      <div class="controls">
+        <%= render_category_csvfile_select_tag(item, @csvfile)  %>
+        <%= item.value %>
+      </div>
     </div>
   <%- end -%>
   <div class="actions">

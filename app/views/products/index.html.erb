@@ -1,6 +1,17 @@
 <h1><%= "'" +  @category.name + "'" + t('products.list') %></h1>
+<p><%= link_to t('back'), @category %>|
+<%= link_to t('products.new'), new_category_product_path(@category) %>|
+<%- if can? :list, @product -%>
+<%= link_to t('products.done'), done_category_products_path(@category) %>|
+<%- end -%>
+<%= link_to t('products.draft'), draft_category_products_path(@category) %>|
+<%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>|
+<%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>
+</p>
 
-<table class="table table-bordered">
+<%= paginate @products %>
+
+<table class="table-bordered">
   <thead>
     <tr>
       <td></td>

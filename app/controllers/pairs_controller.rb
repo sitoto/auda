@@ -12,6 +12,7 @@ class PairsController < ApplicationController
   # GET /pairs/1.json
   def show
     @pair = Pair.find(params[:id])
+    @products = @pair.products
   end
 
   # GET /pairs/new
@@ -69,7 +70,7 @@ class PairsController < ApplicationController
     @csvfile.save
    
     respond_to do |format|
-      format.html { redirect_to category_products_path(@category), notice: t('csvfiles.created') }
+      format.html { redirect_to pairs_path, notice: t('csvfiles.imported') }
     end
   end
 

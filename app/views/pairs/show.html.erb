@@ -11,9 +11,15 @@
 <p>
 <strong><%= t('pairs.hash_pairs')%></strong>
 <br />
+<table class="table-bordered">
+  <tr>
+    <th width=150><%= @pair.category.name %></th>
+    <th><%= @pair.csvfile.name %></th>
+  </tr>
   <% @pair.hash_pairs.each do |proid, parname| %>
-    <%= render_get_property_name_tag(proid) + ':' + parname %> <br />
+    <tr><td><%= render_get_property_name_tag(proid) %></td><td><%= parname %> </td></tr>
   <%- end -%>
+</table>
 </p>
 <%- end -%>
 <p>
@@ -24,7 +30,16 @@
 <strong><%= t('pairs.creater') %></strong>
 <%= @pair.user.name %>
 </p>
-
-
+<h2></h2>
+<p>agree all</p>
+<table class="table-bordered">
+<%- @products.each do |item| -%>
+  <tr>
+  <% item.parameters.each do |par|  %>
+    <td><%= par.name %> : <%= par.value %></td>
+  <% end %>
+</tr>
+<%- end -%>
+</table>
 
 <%= link_to t('back'), pairs_path %>

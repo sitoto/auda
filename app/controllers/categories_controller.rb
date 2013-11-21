@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   before_action :set_category_id, only: [:getproperties]
   load_and_authorize_resource except: [:create]
 
+  
 
   def index
     @categories = Category.all

@@ -5,6 +5,8 @@ zh-CN:
     list: "分类"
     root: "顶级分类"
     parent_node: "父类"
+    parent_node_id: "父类"
+
     position: "排序"
     name: "名称"
     note: "说明"

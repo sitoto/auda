@@ -1,8 +1,12 @@
 <% @page_title =  @category.name  %>
 <p><%= link_to t('back'), categories_path %>|
-<%= link_to t('products.new'), new_category_product_path(@category) %>|
-<%= link_to t('products.list'), category_products_path(@category) %>|
-<%= link_to t('products.draft'), draft_category_products_path(@category) %>|
+<%- if can? :update, @category.products.build -%>
+  <%= link_to t('products.new'), new_category_product_path(@category) %>|
+  <%= link_to t('products.draft'), draft_category_products_path(@category) %>|
+<%- end -%>
+<%- if can? :done, @category.products.build -%>
+  <%= link_to t('products.done'), done_category_products_path(@category) %>|
+<%- end -%>
 <%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>|
 <%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>
 </p>
@@ -31,10 +35,17 @@
       <th><th></tr>
         <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| %>
           <tr><td><%= i+1 %></td>
-            <td><%= item.name %></td><td><%= item.value %></td><td> <%= item.alias %></td><td> <%= item.position %></td><td> <%= link_to t('edit'), edit_category_property_path(@category, item) %></td></tr>
+            <td><%= item.name %></td><td><%= item.value %></td><td> <%= item.alias %></td><td> <%= item.position %></td>
+            <td>
+              <%- if can? :update, @property -%>
+                <%= link_to t('edit'), edit_category_property_path(@category, item) %>
+              <%- end -%>
+          </td></tr>
         <% end %>
       </table>
     </div>
     <hr>
-    <h4><%= t('properties.new') %> </h4>
-    <%= render 'pform' %>
+    <%- if can? :create, @property -%>
+      <h4><%= t('properties.new') %> </h4>
+      <%= render 'pform' %>
+    <%- end -%>

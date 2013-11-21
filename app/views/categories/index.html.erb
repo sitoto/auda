@@ -6,11 +6,11 @@
     <tr>
       <th width="80"><%= t("categories.name") %></th>
       <th><%= t("categories.alias") %></th>
-      <th><%= t("categories.property") %></th>
-      <th></th>
-      <th></th>
       <th><%= t("creater") %></th>
       <th><%= t("last_editor") %></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -20,9 +20,8 @@
         <tr>
           <th rowspan='1' title= "<%= category.note %>"><%= category.name %></th>
           <td><%= category.alias %></td>
-          <td>
-            <%= category.properties.order_by(:'position'.asc).map {|item| item.name}.join(",") %>
-          </td>
+          <td><%= category.user.blank? ? "" : category.user.name %></td>
+          <td><%= category.last_edit_user.blank? ? "" : category.last_edit_user.name %></td>
           <td colspan="1">
             <%= link_to t('show'), category %>
           </td>
@@ -30,12 +29,13 @@
             <%- if can? :update, category -%>
               <%= link_to t('edit'), edit_category_path(category) %>
             <%- end -%>
+          </td>
+          <td>
             <%- if can? :destroy, category -%>
               <%= link_to t('destroy'), category, method: :delete, data: { confirm: t('categories.delete', name: category.name) } %>
             <%- end -%>
           </td>
-          <td><%= category.user.blank? ? "" : category.user.name %></td>
-          <td><%= category.last_edit_user.blank? ? "" : category.last_edit_user.name %></td>
+
         </tr>
       <% end %>
     <% end %>
@@ -43,5 +43,6 @@
 </table>
 
 <br>
-
-<%= link_to t('categories.new'), new_category_path %>
+<%- if can? :create, @category -%>
+  <%= link_to t('categories.new'), new_category_path %>
+<%- end -%>
