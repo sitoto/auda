@@ -16,7 +16,9 @@ class Product
   belongs_to :last_agree_user, :class_name => 'User'
 
   scope :draft, -> { where(status: 0) }
+  scope :ready, -> { where(status: 1) }
   scope :done, -> { where(status: 2) }
+  scope :not_done, -> { where(:status.lt => 2) }
 
   before_create :init_last_active_mark_on_create
   def init_last_active_mark_on_create

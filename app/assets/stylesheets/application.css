@@ -27,6 +27,9 @@
   text-align: right;
   margin: 0;
 }
+.controls{
+  margin-left: 160px;
+}
 .navbar-fixed-top h3 {
   margin: 2px 10px 0px 0px;
   padding: 0px;
@@ -46,4 +49,8 @@
 }
 table.m{
  width: 750px;
+}
+.form-actions{
+  padding: 17px 20px 18px;
+  padding-left: 120px;
 }

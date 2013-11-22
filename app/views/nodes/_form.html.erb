@@ -2,28 +2,40 @@
   <% if @node.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@node.errors.count, "error") %> prohibited this node from being saved:</h2>
-
       <ul>
-      <% @node.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @node.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :parent_node_id %>
-    <%= f.select :parent_node_id, node_tree, {:include_blank => t('nodes.select')}%>
-  </div>
- 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :position %>
-    <%= f.text_field :position %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <fieldset>
+    <legend><%= t('nodes.new') %></legend>
+
+    <div class="control-group"> 
+      <%= f.label  :parent_node_id , class: 'control-label' -%>
+      <div class="controls">
+        <%= f.select :parent_node_id, node_tree, {:include_blank => t('nodes.select')}%>
+      </div>
+    </div>
+
+    <div class="control-group"> 
+      <%= f.label  :name , class: 'control-label' -%>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="control-group"> 
+      <%= f.label  :position , class: 'control-label' -%>
+      <div class="controls">
+        <%= f.text_field :position %>
+      </div>
+    </div>
+
+
+    <div class="form-actions">
+      <%= f.submit value: t('submit') , class: 'btn btn-primary'%>
+    </div>
+  </fieldset>
 <% end %>

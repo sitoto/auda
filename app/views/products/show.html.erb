@@ -1,13 +1,18 @@
 <h1><%= "#{@category.name}> #{t('products.show')}" %></h1>
-
-<%- if @product.status == 0 -%>
-<%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
-<%- else -%>
 <p>
 <strong><%= t('products.status') %></strong>
 <%= render_product_status_tag(@product) %>
+<%- if @product.status == 0 -%>
+<%= link_to t('ready'), doing_category_product_path(@category, @product), remote: true, id: "ready" %>
+<%- elsif @product.status == 1 -%>
+<%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
+<%- end -%>
 </p>
-<%- end-%>
+<p>
+<%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
+<%= link_to t('products.back'), draft_category_products_path(@category) -%>|
+<%= link_to t('categories.back'), category_path(@category) -%>
+</p>
 <p>
 <strong><%= t('products.user_name') %></strong>
 <%= @product.user.blank? ? "" : @product.user.name %>
@@ -26,3 +31,4 @@
 <%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
 <%= link_to t('products.back'), draft_category_products_path(@category) -%>|
 <%= link_to t('categories.back'), category_path(@category) -%>
+</p>

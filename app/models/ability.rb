@@ -27,9 +27,11 @@ class Ability
       can :create, Property
       can :create, Csvfile
       can :read, Pair
+      can :doing, Pair
       can :read, Node
       can :draft, Product
       can :read, Product
+      can :doing, Product
       can :update, Product do |product|
         product.status == 0
       end

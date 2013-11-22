@@ -9,6 +9,20 @@ module ProductsHelper
     return '' if product.parameters.where(code: id).blank?
     return product.parameters.where(code: id).first.value
   end
+  def render_status_tag(status)
+    return '' if product.blank?
+    case status
+    when 0
+        return t('draft')
+    when 1
+        return t('doing')
+    when 2 
+        return t('done')
+    else
+        return t('invalid')
+    end
+
+  end
   def render_product_status_tag(product)
     return '' if product.blank?
     case product.status

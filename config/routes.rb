@@ -10,8 +10,11 @@ Autodata::Application.routes.draw do
   resources :categories do
     resources :properties
     resources :products do
+      get :doing, :on => :member
       get :agree, :on => :member
+
       get :draft, :on => :collection
+      get :ready, :on => :collection
       get :done, :on => :collection
     end
     resources :csvfiles do
@@ -21,6 +24,8 @@ Autodata::Application.routes.draw do
 
   end
   resources :pairs do 
+    post :doing, :on => :member
+    post :agree, :on => :member
     resources :products
   end
 

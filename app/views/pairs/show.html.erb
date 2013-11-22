@@ -30,16 +30,25 @@
 <strong><%= t('pairs.creater') %></strong>
 <%= @pair.user.name %>
 </p>
-<h2></h2>
-<p>agree all</p>
+
+<% unless @products.blank?  %>
+  <%- if can? :agree, @pair -%>
+    <p><%= link_to t('pairs.agree'), agree_pair_path(@pair), method: :agree, data: {confirm: t('pairs.agree_confirm')} %></p>
+<%- elsif can? :doing, @pair -%>
+<p><%= link_to t('pairs.doing'), doing_pair_path(@pair) , method: :doing, data: {confirm: t('pairs.ready_confirm')}%></p>
+<%- end -%>
+
 <table class="table-bordered">
 <%- @products.each do |item| -%>
   <tr>
+    <th><%= render_product_status_tag(item) %></th>
   <% item.parameters.each do |par|  %>
     <td><%= par.name %> : <%= par.value %></td>
   <% end %>
 </tr>
 <%- end -%>
 </table>
-
+<%- else -%>
+  <p class='alert alert-success'><%= t('pairs.nothing_to_do') %></p>
+<%- end -%>
 <%= link_to t('back'), pairs_path %>

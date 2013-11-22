@@ -2,20 +2,36 @@ class PairsController < ApplicationController
   #before_action :set_pair, only: [:show]
   load_and_authorize_resource except: [:create]
 
-  # GET /pairs
-  # GET /pairs.json
   def index
     @pairs = Pair.all
   end
 
-  # GET /pairs/1
-  # GET /pairs/1.json
-  def show
+  def doing 
     @pair = Pair.find(params[:id])
+    @pair.products.each do |product|
+      product.update_attribute(:status, 1)
+    end
     @products = @pair.products
+
+    render :show
   end
 
-  # GET /pairs/new
+
+  def agree
+    @pair = Pair.find(params[:id])
+    @pair.products.each do |product|
+      product.update_attribute(:status, 2)
+    end
+    @products = nil
+
+    render :show
+  end
+
+  def show
+    @pair = Pair.find(params[:id])
+    @products = @pair.products.where(:status.lt => 2 )
+  end
+
   def new
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.find(params[:csvfile_id])
@@ -23,8 +39,6 @@ class PairsController < ApplicationController
   end
 
 
-  # POST /pairs
-  # POST /pairs.json
   def create
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.find(params[:csvfile_id])
@@ -74,8 +88,6 @@ class PairsController < ApplicationController
     end
   end
 
-  # DELETE /pairs/1
-  # DELETE /pairs/1.json
   def destroy
     @pair = Pair.find(params[:id])
     @pair.destroy

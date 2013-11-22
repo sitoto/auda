@@ -1,14 +1,17 @@
 <h1><%= "'" +  @category.name + "'" + t('products.list') %></h1>
 <p><%= link_to t('back'), @category %>|
 <%= link_to t('products.new'), new_category_product_path(@category) %>|
-<%- if can? :list, @product -%>
-<%= link_to t('products.done'), done_category_products_path(@category) %>|
+<%- if can? :manage, @category.products.build -%>
+  <%= link_to t('products.ready'), ready_category_products_path(@category) %>|
+  <%= link_to t('products.done'), done_category_products_path(@category) %>|
 <%- end -%>
 <%= link_to t('products.draft'), draft_category_products_path(@category) %>|
 <%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>|
 <%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>
 </p>
-
+<% if @products.blank? %>
+  <p class="alert alert-success">Nothing to do</p>
+<%- else -%>
 <%= paginate @products %>
 
 <table class="table-bordered">
@@ -22,7 +25,9 @@
           <%- if product.status == 0 -%>
             <%= link_to t('show'), category_product_path(@category, product) %>|
             <%= link_to t('edit'), edit_category_product_path(@category, product) %>|
-            <%= link_to t('destroy'), category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%- if can? :delete, product -%>
+              <%= link_to t('destroy'), category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %>        <%- end-%>
+          </td>
 
         <%- end -%>
       <%- end -%>
@@ -41,6 +46,6 @@
 </table>
 <%= paginate @products %>
 <br>
-
+<%- end -%>
 <%= link_to t('new'), new_category_product_path(@category) %>|
 <%= link_to t('categories.back'), categories_path %>

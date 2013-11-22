@@ -2,7 +2,8 @@ zh-CN:
   products:
     status: "状态"
     user_name: "创建者"
-    draft: "待审核"
+    draft: "编辑中"
+    ready: "待审核"
     done: "已审核"
     ip: ip
     list: "数据项列表"

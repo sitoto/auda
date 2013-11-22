@@ -4,12 +4,17 @@ class ProductsController < ApplicationController
 
   def index
     @category = Category.find(params[:category_id])
-    @products = @category.products.draft.desc(:id).page params[:page]
+    @products = @category.products.not_done.desc(:id).page params[:page]
   end
 
   def draft
     @category = Category.find(params[:category_id])
     @products = @category.products.draft.desc(:id).page params[:page]
+    render :index
+  end
+  def ready 
+    @category = Category.find(params[:category_id])
+    @products = @category.products.ready.desc(:id).page params[:page]
     render :index
   end
   
@@ -22,6 +27,17 @@ class ProductsController < ApplicationController
 
 
   def show
+  end
+
+  def doing
+    @product.status = 1 
+    @product.last_edit_user = current_user 
+    @product.save
+
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+
   end
 
   def agree
