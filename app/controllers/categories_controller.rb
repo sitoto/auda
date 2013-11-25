@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   
 
   def index
-    @categories = Category.all
+    @categories = Category.all.asc(:node_id)
   end
 
   def show

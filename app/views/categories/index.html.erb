@@ -4,6 +4,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th><%= t('nodes.list') %></th>
       <th width="80"><%= t("categories.name") %></th>
       <th><%= t("categories.alias") %></th>
       <th><%= t("creater") %></th>
@@ -18,6 +19,7 @@
     <%- unless @categories.blank?  -%>
       <% @categories.each do |category| %>
         <tr>
+          <th><%= category.node.blank? ? "" : category.node.name  %></th>
           <th rowspan='1' title= "<%= category.note %>"><%= category.name %></th>
           <td><%= category.alias %></td>
           <td><%= category.user.blank? ? "" : category.user.name %></td>
