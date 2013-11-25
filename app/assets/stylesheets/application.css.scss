@@ -10,9 +10,11 @@
  *
  */
 /*
- *= require bootstrap
  *= require_self
  */
+$link-color: red;
+
+@import "twitter/bootstrap";
 
 .navbar-nav li {
   float: left;
