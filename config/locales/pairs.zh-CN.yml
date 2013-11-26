@@ -1,6 +1,6 @@
 zh-CN:
   pairs:
-    list: "全部导入记录"
+    list: "导入记录"
     catename: "品类名称"
     filename: "文件名称"
     username: "导入用户"

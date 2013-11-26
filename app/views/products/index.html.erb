@@ -12,40 +12,40 @@
 <% if @products.blank? %>
   <p class="alert alert-success">Nothing to do</p>
 <%- else -%>
-<%= paginate @products %>
+  <%= paginate @products %>
 
-<table class="table-bordered">
-  <thead>
-    <tr>
-      <td></td>
-      <%- @products.each do |product| -%>
-        <td>
-          <span class="status"><%= render_product_status_tag(product) %></span> <br />
-
-          <%- if product.status == 0 -%>
-            <%= link_to t('show'), category_product_path(@category, product) %>|
-            <%= link_to t('edit'), edit_category_product_path(@category, product) %>|
-            <%- if can? :delete, product -%>
-              <%= link_to t('destroy'), category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %>        <%- end-%>
-          </td>
-
-        <%- end -%>
-      <%- end -%>
-    </tr>
-  </thead>
-  <tbody>
-    <%- @category.properties.each do |item| -%>
+  <table class="table-bordered">
+    <thead>
       <tr>
-        <th><%= item.name -%></th>
+        <td></td>
         <%- @products.each do |product| -%>
-          <td><%= render_product_parameter_value_tag(product, item.id) -%> </td> 
+          <td>
+            <span class="status"><%= render_product_status_tag(product) %></span> <%= link_to t('show'), category_product_path(@category, product) %> <br />
+            <%- if product.status == 0 -%>
+              <%= link_to t('edit'), edit_category_product_path(@category, product) %>
+            <%- elsif product.status == 1 -%>
+              <%= link_to t('edit'), edit_category_product_path(@category, product) %>
+              <%- if can? :delete, product -%>
+                |<%= link_to t('destroy'), category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %>        <%- end-%>
+            </td>
+
+          <%- end -%>
         <%- end -%>
       </tr>
-    <%- end -%>
-  </tbody>
-</table>
-<%= paginate @products %>
-<br>
+    </thead>
+    <tbody>
+      <%- @category.properties.each do |item| -%>
+        <tr>
+          <th><%= item.name -%></th>
+          <%- @products.each do |product| -%>
+            <td><%= render_product_parameter_value_tag(product, item.id) -%> </td> 
+          <%- end -%>
+        </tr>
+      <%- end -%>
+    </tbody>
+  </table>
+  <%= paginate @products %>
+  <br>
 <%- end -%>
 <%= link_to t('new'), new_category_product_path(@category) %>|
 <%= link_to t('categories.back'), categories_path %>

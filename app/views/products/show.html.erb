@@ -3,9 +3,9 @@
 <strong><%= t('products.status') %></strong>
 <%= render_product_status_tag(@product) %>
 <%- if @product.status == 0 -%>
-<%= link_to t('ready'), doing_category_product_path(@category, @product), remote: true, id: "ready" %>
+  <%= link_to t('ready'), doing_category_product_path(@category, @product), remote: true, id: "ready" %>
 <%- elsif @product.status == 1 -%>
-<%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
+  <%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
 <%- end -%>
 </p>
 <p>
@@ -15,18 +15,17 @@
 </p>
 <p>
 <strong><%= t('products.user_name') %></strong>
-<%= @product.user.blank? ? "" : @product.user.name %>
-</p>
-
-<p>
+<%= @product.user.blank? ? "user" : @product.user.name %>
 <strong><%= t('last_editor') %></strong>
 <%= @product.last_edit_user.blank? ? "" : @product.last_edit_user.name %>
 </p>
-<table class="table-bordered">
+
+<dl class="dl-horizontal">
   <% @product.parameters.each do |para| %>
-    <tr><td><%= para.name.to_s %></td><td>:</td><td><%= para.value.to_s %></td></tr>
+    <dt><%= para.name.to_s %></dt>
+    <dd><%= para.value.to_s %></dd>
   <% end %>
-</table>
+</dl>
 <p>
 <%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
 <%= link_to t('products.back'), draft_category_products_path(@category) -%>|
