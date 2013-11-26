@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new
+#    user ||= User.new
 
     if !user.blank?
       #cannot :manage , :all
@@ -30,6 +30,7 @@ class Ability
       can :create, Property
       can :create, Csvfile
       can :read, Pair
+      can :create, Pair
       can :doing, Pair
       can :read, Node
       can :draft, Product
@@ -40,7 +41,7 @@ class Ability
       end
       can :create, Product
       can :read, Category
-
+      can :create, Category
 
     elsif user.has_role?(:data_gather)
       can :read, Category 
@@ -72,5 +73,6 @@ class Ability
   end
   protected
     def basic_read_only
+      can :node, Category
     end
 end

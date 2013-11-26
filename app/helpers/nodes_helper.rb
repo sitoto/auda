@@ -1,4 +1,12 @@
 module NodesHelper
+  def node_nav_tree
+    tree = []
+    Node.roots.each do |node|
+      node.get_nav_tree(tree)
+    end
+    return tree
+  end
+ 
   def node_tree
     tree = []
     Node.roots.each do |node|

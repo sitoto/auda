@@ -1,6 +1,7 @@
 class Category
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::CounterCache
 
   field :name, type: String
   field :alias, type: String
@@ -9,7 +10,7 @@ class Category
   field :last_active_mark, :type => Integer
 
   validates_presence_of :name
-  validates_uniqueness_of :name
+# validates_uniqueness_of :name
 
   has_many :properties
   has_many :products
@@ -20,6 +21,7 @@ class Category
   belongs_to :user
   belongs_to :last_edit_user, :class_name => 'User'
 
+  counter_cache :name => :node, :inverse_of => :categories
   index :user_id => 1
   index :last_active_mark => -1
 

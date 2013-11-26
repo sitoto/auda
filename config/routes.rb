@@ -7,8 +7,10 @@ Autodata::Application.routes.draw do
     resources :identities
   end
 
+  get 'categories/node/:node_id' => 'categories#node', as: :nodecategory
+
   resources :categories do
-    resources :properties
+   resources :properties
     resources :products do
       get :doing, :on => :member
       get :agree, :on => :member
