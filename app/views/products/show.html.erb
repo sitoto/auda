@@ -3,7 +3,7 @@
   <div class="col-md-1">
     <%= link_to t('products.back'), draft_category_products_path(@category) -%>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-3">
     <%= raw render_product_status_tag(@product) %>
     <%- if @product.status == 0 -%>
       <%= link_to t('ready'), doing_category_product_path(@category, @product), remote: true, id: "ready" %>
@@ -17,7 +17,7 @@
     <strong><%= t('last_editor') %></strong>
     <%= @product.last_edit_user.blank? ? "" : @product.last_edit_user.name %>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
   </div>
   <div class="col-md-3">
     <%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
