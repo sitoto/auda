@@ -27,6 +27,7 @@ zh-CN:
   created_at: "创建时间"
   last_editor: "最后编辑者"
   cancanerror: "没有权限或认证失败。"
+  option: "操作"
   mongoid:
     models:
       category: "品类"

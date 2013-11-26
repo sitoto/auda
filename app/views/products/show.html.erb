@@ -1,25 +1,30 @@
-<h1><%= "#{@category.name}> #{t('products.show')}" %></h1>
-<p>
-<strong><%= t('products.status') %></strong>
-<%= render_product_status_tag(@product) %>
-<%- if @product.status == 0 -%>
-  <%= link_to t('ready'), doing_category_product_path(@category, @product), remote: true, id: "ready" %>
-<%- elsif @product.status == 1 -%>
-  <%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
-<%- end -%>
+<h2><%= "#{@category.name}> #{t('products.show')}" %><small><%= raw render_product_status_tag(@product) %></small>  </h2>
+<div class="row">
+  <div class="col-md-1">
+    <%= link_to t('products.back'), draft_category_products_path(@category) -%>
+  </div>
+  <div class="col-md-2">
+    <%= raw render_product_status_tag(@product) %>
+    <%- if @product.status == 0 -%>
+      <%= link_to t('ready'), doing_category_product_path(@category, @product), remote: true, id: "ready" %>
+    <%- elsif @product.status == 1 -%>
+      <%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
+    <%- end -%>
+  </div>
+  <div class="col-md-3">
+    <strong><%= t('products.user_name') %></strong>
+    <%= @product.user.blank? ? "user" : @product.user.name %>
+    <strong><%= t('last_editor') %></strong>
+    <%= @product.last_edit_user.blank? ? "" : @product.last_edit_user.name %>
+  </div>
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-3">
+    <%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
+    <%= link_to t('categories.back'), category_path(@category) -%>
+  </div>
+</div>
 </p>
-<p>
-<%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
-<%= link_to t('products.back'), draft_category_products_path(@category) -%>|
-<%= link_to t('categories.back'), category_path(@category) -%>
-</p>
-<p>
-<strong><%= t('products.user_name') %></strong>
-<%= @product.user.blank? ? "user" : @product.user.name %>
-<strong><%= t('last_editor') %></strong>
-<%= @product.last_edit_user.blank? ? "" : @product.last_edit_user.name %>
-</p>
-
 <dl class="dl-horizontal">
   <% @product.parameters.each do |para| %>
     <dt><%= para.name.to_s %></dt>
@@ -27,7 +32,6 @@
   <% end %>
 </dl>
 <p>
-<%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
 <%= link_to t('products.back'), draft_category_products_path(@category) -%>|
+<%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
 <%= link_to t('categories.back'), category_path(@category) -%>
-</p>

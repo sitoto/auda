@@ -27,11 +27,11 @@ module ProductsHelper
     return '' if product.blank?
     case product.status
     when 0
-        return t('draft')
+       return "<span class='glyphicon glyphicon-edit'>#{t('draft')}</span>"
     when 1
-        return t('doing')
+       return "<span class='glyphicon glyphicon-check'>#{t('doing')}</span>"
     when 2 
-        return t('done')
+       return "<span class='glyphicon glyphicon-ok'>#{t('done')}</span>"
     else
         return t('invalid')
     end

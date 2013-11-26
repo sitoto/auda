@@ -9,7 +9,7 @@
       <th><%= t("categories.alias") %></th>
       <th><%= t("creater") %></th>
       <th><%= t("last_editor") %></th>
-      <th></th>
+      <th><%= t('option') %></th>
     </tr>
   </thead>
 
@@ -18,7 +18,7 @@
       <% @categories.each do |category| %>
         <tr>
           <th><%= category.node.blank? ? "" : category.node.name  %></th>
-          <th rowspan='1' title= "<%= category.note %>"><%= category.name %></th>
+          <th rowspan='1' title= "<%= category.note %>"><%= link_to category.name, category %></th>
           <td><%= category.alias %></td>
           <td><%= category.user.blank? ? "" : category.user.name %></td>
           <td><%= category.last_edit_user.blank? ? "" : category.last_edit_user.name %></td>

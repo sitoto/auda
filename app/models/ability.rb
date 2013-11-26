@@ -15,11 +15,14 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:data_manager)
+      can :read, Csvfile
+     
       can :manage, Property
       can :manage, Node
       can :manage, Pair
       can :manage, Category
       can :manage, Product
+      cannot :destroy, Category
 
     elsif user.has_role?(:data_editor)
       can :read, Csvfile

@@ -20,7 +20,7 @@
         <td></td>
         <%- @products.each do |product| -%>
           <td>
-            <span class="status"><%= render_product_status_tag(product) %></span> <%= link_to t('show'), category_product_path(@category, product) %> <br />
+            <span class="status"><%= raw render_product_status_tag(product) %></span> <%= link_to t('show'), category_product_path(@category, product) %>
             <%- if product.status == 0 -%>
               <%= link_to t('edit'), edit_category_product_path(@category, product) %>
             <%- elsif product.status == 1 -%>
