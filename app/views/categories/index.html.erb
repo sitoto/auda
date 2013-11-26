@@ -17,7 +17,7 @@
     <%- unless @categories.blank?  -%>
       <% @categories.each do |category| %>
         <tr>
-          <th><%= category.node.blank? ? "" : category.node.name  %></th>
+          <th><%= category.node.blank? ? "" : category.node.root.name  %></th>
           <th rowspan='1' title= "<%= category.note %>"><%= link_to category.name, category %></th>
           <td><%= category.alias %></td>
           <td><%= category.user.blank? ? "" : category.user.name %></td>
@@ -39,6 +39,6 @@
 </table>
 
 <br>
-<%- if can? :create, @category -%>
+<%- if can? :create, Category -%>
   <%= link_to t('categories.new'), new_category_path %>
 <%- end -%>

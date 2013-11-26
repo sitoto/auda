@@ -31,6 +31,14 @@ class Node
     self.parent_node.blank? ? true : false
   end
 
+  def root
+    @r = self
+    while @r.parent_node
+      @r = @r.parent_node
+    end
+    @r
+  end
+
   def depth
     i = 0
     @k = self
