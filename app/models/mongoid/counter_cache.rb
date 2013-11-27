@@ -22,6 +22,7 @@ module Mongoid
       def counter_cache(metadata)
         counter_name = "#{metadata[:inverse_of]}_count"
 
+
         set_callback(:create, :after) do |document|
           relation = document.send(metadata[:name])
           if relation

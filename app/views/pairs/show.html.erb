@@ -41,7 +41,7 @@
 <table class="table-bordered">
 <%- @products.each do |item| -%>
   <tr>
-    <th><%= render_product_status_tag(item) %></th>
+    <th><%= raw render_product_status_tag(item) %></th>
   <% item.parameters.each do |par|  %>
     <td><%= par.name %> : <%= par.value %></td>
   <% end %>

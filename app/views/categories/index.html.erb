@@ -1,13 +1,7 @@
-<% @page_title =  t("categories.list") %>
-<h4><%= t("categories.list") %></h4>
-<div class="col-sm-3">
-  <%= render "common/node_nav" %>
-</div>
-<div class="col-sm-9">
+<h4><%= @page_title %></h4>
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th><%= t('nodes.list') %></th>
       <th><%= t("categories.name") %></th>
       <th><%= t("categories.alias") %></th>
       <th><%= t("creater") %></th>
@@ -20,7 +14,6 @@
     <%- unless @categories.blank?  -%>
       <% @categories.each do |category| %>
         <tr>
-          <th><%= category.node.blank? ? "" : category.node.root.name  %></th>
           <th rowspan='1' title= "<%= category.note %>"><%= link_to category.name, category %></th>
           <td><%= category.alias %></td>
           <td><%= category.user.blank? ? "" : category.user.name %></td>
@@ -45,4 +38,3 @@
 <%- if can? :create, Category -%>
   <%= link_to t('categories.new'), new_category_path %>
 <%- end -%>
-</div>

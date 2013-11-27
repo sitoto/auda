@@ -2,11 +2,13 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :set_category_id, only: [:getproperties]
   load_and_authorize_resource except: [:create]
-#  layout "main"
+  layout "main"
   
 
   def index
-    @categories = nil #Category.all.asc(:node_id)
+    @categories = Category.all.asc(:node_id)
+    @page_title = t('categories.list')
+
   end
 
   def show
@@ -17,6 +19,7 @@ class CategoriesController < ApplicationController
   def node
    @node = Node.find(params[:node_id])
    @categories = @node.categories
+   @page_title = @node.name
    render :index
 
   end
