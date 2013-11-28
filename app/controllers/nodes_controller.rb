@@ -42,7 +42,7 @@ class NodesController < ApplicationController
   def destroy
     @node.destroy
     respond_to do |format|
-      format.html { redirect_to nodes_url }
+      format.html { redirect_to nodes_path }
       format.json { head :no_content }
     end
   end

@@ -86,7 +86,7 @@ class CsvfilesController < ApplicationController
   def destroy
     @csvfile.destroy
     respond_to do |format|
-      format.html { redirect_to category_csvfiles_url(@category) }
+      format.html { redirect_to category_csvfiles_path(@category) }
     end
   end
 

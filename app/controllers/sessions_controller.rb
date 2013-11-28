@@ -7,15 +7,15 @@ class SessionsController < ApplicationController
     user.last_login_ip = remote_ip
     user.save
     session[:user_id] = user.id
-    redirect_to root_url, notice: t("users.signedin")
+    redirect_to root_path, notice: t("users.signedin")
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: t("users.signedout")
+    redirect_to root_path, notice: t("users.signedout")
   end
 
   def failure
-    redirect_to root_url, notice: t("users.authfailed")
+    redirect_to root_path, notice: t("users.authfailed")
   end
 end
