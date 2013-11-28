@@ -5,7 +5,8 @@
 <strong><%= t('csvfiles.name') %></strong>
 <%= @csvfile.name %>
 </p>
-<table class='table'>
+<div style="overflow: auto; width: 100%">
+<table class='table table-bordered'>
   <%-item = @csvfile.temproducts.first -%>
   <tr> <%- item.parameters.each do |p| -%>
       <th><%= p.name %></th>
@@ -20,4 +21,4 @@
 
   <%- end -%>
 </table>
-
+</div>

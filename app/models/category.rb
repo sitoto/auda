@@ -9,7 +9,7 @@ class Category
   field :lock_category, :type => Mongoid::Boolean, :default => false
   field :last_active_mark, :type => Integer
 
-  validates_presence_of :name
+  validates_presence_of :name, :node_id
 # validates_uniqueness_of :name
 
   has_many :properties

@@ -1,4 +1,4 @@
-<h1><%=  @category.name + '>' + t('csvfiles.list') %></h1>
+<h4><%=  @category.name + '>' + t('csvfiles.list') %></h4>
 
 <table class='table'>
   <thead>
@@ -8,19 +8,17 @@
       <th><%= t('csvfiles.creater') %></th>
       <th><%= t('csvfiles.created_at') %></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @csvfiles.each do |csvfile| %>
       <tr>
-        <td><%= csvfile.name %></td>
+        <td><%= link_to csvfile.name , category_csvfile_path(@category, csvfile) %></td>
         <td><%= render_csvfile_status_tag(csvfile.status) %></td>
         <td><%= csvfile.user.blank? ? "" : csvfile.user.name %></td>
-        <td><%= csvfile.created_at %></td>
+        <td><%= timeago(csvfile.created_at) %></td>
         <td><%= link_to csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, csvfile) %></td>
-        <td><%= link_to t('show'), category_csvfile_path(@category, csvfile) %></td>
      </tr>
     <% end %>
   </tbody>

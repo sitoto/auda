@@ -41,6 +41,9 @@ class Ability
         product.status == 0
       end
       can :create, Product
+      # temp add 
+      can :manage, Property
+      can :update, Category
       can :read, Category
       can :create, Category
       can :node, Category

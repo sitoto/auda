@@ -16,9 +16,6 @@ $link-color: blue;
 
 @import "twitter/bootstrap";
 
-.navbar-nav li {
-  float: left;
-}
 .navbar-fixed-top {
   position:static;right:0;left:0;margin-bottom:20px;
 }
@@ -65,3 +62,5 @@ table.m{
   font-size: 12px;
 
 }
+table th, td{ word-break: keep-all;white-space:nowrap;}
+

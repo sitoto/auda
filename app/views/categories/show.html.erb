@@ -14,35 +14,35 @@
 <p>
 <strong><%= t('categories.node') %></strong>
 <%= @category.node.blank? ? "" : @category.node.name %>
-</p>
-
-<p>
+<br />
 <strong><%= t('categories.name') %></strong>
 <%= @category.name %>
-</p>
-<p>
+<br />
 <strong><%= t('categories.note') %></strong>
 <%= @category.note %>
 </p>
-<hr>
 <h4><%= t('properties.list') %></h4>
 <div class="table-responsive">
   <table class="table">
-    <tr><th>#</th>
-      <th><%= t('properties.name') %></th>
-      <th><%= t('properties.value') %></th>
-      <th><%= t('properties.alias') %></th>
-      <th><%= t('properties.position') %></th>
-      <th><th></tr>
-        <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| %>
-          <tr><td><%= i+1 %></td>
-            <td><%= item.name %></td><td><%= item.value %></td><td> <%= item.alias %></td><td> <%= item.position %></td>
-            <td>
-              <%- if can? :update, @property -%>
-                <%= link_to t('edit'), edit_category_property_path(@category, item) %>
-              <%- end -%>
-          </td></tr>
-        <% end %>
+    <thead>
+      <tr><th>#</th>
+        <th><%= t('properties.name') %></th>
+        <th><%= t('properties.value') %></th>
+        <th><%= t('properties.alias') %></th>
+        <th><%= t('properties.position') %></th>
+        <th><th></tr>
+        </thead>
+        <tbody>
+          <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| %>
+            <tr><td><%= i+1 %></td>
+              <td><%= item.name %></td><td><%= item.value %></td><td> <%= item.alias %></td><td> <%= item.position %></td>
+              <td>
+                <%- if can? :update, @property -%>
+                  <%= link_to t('edit'), edit_category_property_path(@category, item) %>
+                <%- end -%>
+            </td></tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
     <hr>

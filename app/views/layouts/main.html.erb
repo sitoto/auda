@@ -32,14 +32,15 @@
             <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('option') %><b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-              <li role="presentation"><%= link_to t('nodes.list'), nodes_path  %></li>
+              <%= render "common/user_nav_li" %>
               <li role="presentation" class="divider"></li>
+
+              <li role="presentation"><%= link_to t('nodes.list'), nodes_path  %></li>
               <li role="presentation"><%= link_to t('categories.list'), categories_path  %></li>
 
             </ul>
             </li>
           </ul>
-          <%= render "common/user_nav" %>
 
         </div>
         </nav>
