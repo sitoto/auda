@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-#    user ||= User.new
+    user ||= User.new
 
     if !user.blank?
       #cannot :manage , :all
@@ -16,7 +16,8 @@ class Ability
       can :manage, :all
     elsif user.has_role?(:data_manager)
       can :read, Csvfile
-     
+      can :node, Category
+
       can :manage, Property
       can :manage, Node
       can :manage, Pair
@@ -42,6 +43,7 @@ class Ability
       can :create, Product
       can :read, Category
       can :create, Category
+      can :node, Category
 
     elsif user.has_role?(:data_gather)
       can :read, Category 
@@ -50,6 +52,7 @@ class Ability
       can :read, Node
       can :create, Csvfile
       can :create, Pair
+      can :node, Category
 
     end
     #
@@ -72,7 +75,7 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
   protected
-    def basic_read_only
-      can :node, Category
-    end
+  def basic_read_only
+#    can :node, Category
+  end
 end
