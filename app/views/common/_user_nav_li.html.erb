@@ -1,7 +1,35 @@
-<%- if current_user -%>
-    <li><%= link_to current_user.name, root_url %> </li>
-    <li><%= link_to current_user.role, root_url %> </li>
-    <%- if current_user.admin? -%>
-    <li><%= link_to t('cpanel'), cpanel_users_path %></li>
+<ul class="nav navbar-nav">
+  <%- Node.roots.each do |root| -%>
+    <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= root.name %> <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+      <li><%= link_to t('all') + root.name,  nodecategory_path(root.id)  %></li>
+      <li role="presentation" class="divider"></li>
+      <%- root.child_nodes.each do |child|  -%>
+        <li><%= link_to raw("#{child.name}  <span class='badge'>#{child.categories_count}</span>"), nodecategory_path(child.id) %> </li>
+      <%- end  -%>
+    </ul> 
+    </li>
   <%- end -%>
-<%- end -%>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+  <li id="fat-menu" class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('option') %><b class="caret"></b></a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+    <%- if current_user -%>
+      <li><%= link_to current_user.name, root_url %> </li>
+      <li><%= link_to current_user.role, root_url %> </li>
+      <%- if current_user.admin? -%>
+        <li><%= link_to t('cpanel'), cpanel_users_path %></li>
+      <%- end -%>
+    <%- end -%> 
+    <li role="presentation" class="divider"></li>
+
+    <li role="presentation"><%= link_to t('nodes.list'), nodes_path  %></li>
+    <li role="presentation"><%= link_to t('categories.list'), categories_path  %></li>
+
+  </ul>
+  </li>
+</ul>
+
+

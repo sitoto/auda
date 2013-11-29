@@ -37,20 +37,28 @@ $link-color: blue;
 }
 .bs-nav {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.15);
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(213, 213, 213);
   border-color: rgb(229, 229, 229);
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1);
 }
 .navbar-inverse .navbar-nav > li > a {
-      color: #000000; }
+color: #000000; }
 
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #222222;
-  background-color: transparent;
+  background-color: rgb(193, 193, 193);
 }
+.navbar-inverse .navbar-nav > .open > a, 
+.navbar-inverse .navbar-nav > .open > a:hover, 
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #999;
+  color: white; 
+}
+
+
 table.m{
- width: 750px;
+  width: 750px;
 }
 .form-actions{
   padding: 17px 20px 18px;

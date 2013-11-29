@@ -1,5 +1,6 @@
 zh-CN:
   site_name: "内部数据管理"
+  all: "全部"
   home: "首页"
   logout: "注销"
   cpanel: "进入管理"
