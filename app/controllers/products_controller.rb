@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :update, :show, :agree]
   load_and_authorize_resource except: [:create]
+  layout "main"
 
   def index
     @category = Category.find(params[:category_id])
