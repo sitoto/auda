@@ -5,7 +5,7 @@ zh-CN:
     import: "导入标准库"
     imported: "已经导入产品库"
     reimport: "再次导入"
-    name: "文件名"
+    name: "数据源文件名"
     creater: "创建人"
     created_at: "创建时间"
     status: "状态"

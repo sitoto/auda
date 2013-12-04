@@ -1,3 +1,5 @@
+<h3><%=  @category.name + '>' + t('csvfiles.name') + '>' + @csvfile.name %><small><%= render_csvfile_status_tag(@csvfile.status) %></small></h3>
+
 <p><%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>|
 <%= link_to @csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, @csvfile) %>|<%= link_to t('destroy'), category_csvfile_path(@category, @csvfile), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 
@@ -8,13 +10,17 @@
 <div style="overflow: auto; width: 100%">
 <table class='table table-bordered'>
   <%-item = @temproducts.first -%>
-  <tr> <%- item.parameters.each do |p| -%>
+  <tr> 
+    <th>ID</th>
+    <%- item.parameters.each do |p| -%>
       <th><%= p.name %></th>
     <%-end -%>
   </tr>
 
-  <%- @temproducts.each do |item| -%>
-    <tr> <%- item.parameters.each do |p| -%>
+  <%- @temproducts.each_with_index do |item, i| -%>
+    <tr>
+      <td><%= i+1 %></td>
+      <%- item.parameters.each do |p| -%>
         <td><%= p.value %></td> 
       <%-end -%>
     </tr>
