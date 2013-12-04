@@ -14,6 +14,9 @@ class CsvfilesController < ApplicationController
   # GET /csvfiles/1
   # GET /csvfiles/1.json
   def show
+    @temproducts = @csvfile.temproducts.limit(100)
+    @page_title = "first 100"
+
   end
 
   # GET /csvfiles/new

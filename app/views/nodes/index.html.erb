@@ -1,36 +1,40 @@
-<h2><%= t('nodes.tree') %></h2>
-<ul class="list-group list-unstyled">
-<%- node_tree.each do |item| -%>
-  <li class="list-group-item"> <%= item[0] %></li>
-<%- end -%>
-</ul>
-
-<h2><%= t('nodes.list') %></h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th><%= t('nodes.name') %></th>
-      <th><%= t('nodes.position') %></th>
-      <th><%= t('nodes.parent_node') %></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @nodes.each do |node| %>
+<div class="col-sm-3">
+  <h2><%= t('nodes.tree') %></h2>
+  <ul class="list-group list-unstyled">
+    <%- node_tree.each do |item| -%>
+      <li class="list-group-item"> <%= item[0] %></li>
+    <%- end -%>
+  </ul>
+</div>
+<div class="col-sm-9">
+  <h2><%= t('nodes.list') %></h2>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= node.name %></td>
-        <td><%= node.position %></td>
-        <td><%= node.parent_node.blank? ? "" :node.parent_node.name %></td>
-        <%- if can? :destroy, node -%>
-        <td><%= link_to t('edit'), edit_node_path(node) %></td>
-        <td><%= link_to t('destroy'), node, method: :delete, data: { confirm: t('nodes.delete', name: node.name) } %>
-          </td>
-        <%- end -%>
+        <th><%= t('nodes.name') %></th>
+        <th><%= t('nodes.position') %></th>
+        <th><%= t('nodes.parent_node') %></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to t('nodes.new'), new_node_path %>
+    </thead>
+
+    <tbody>
+      <% @nodes.each do |node| %>
+        <tr>
+          <td><%= node.name %></td>
+          <td><%= node.position %></td>
+          <td><%= node.parent_node.blank? ? "" :node.parent_node.name %></td>
+          <%- if can? :destroy, node -%>
+            <td><%= link_to t('edit'), edit_node_path(node) %></td>
+            <td><%= link_to t('destroy'), node, method: :delete, data: { confirm: t('nodes.delete', name: node.name) } %>
+            </td>
+          <%- end -%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to t('nodes.new'), new_node_path %>
+</div>
+

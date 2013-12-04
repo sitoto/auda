@@ -72,3 +72,15 @@ table.m{
 }
 table th, td{ word-break: keep-all;white-space:nowrap;}
 
+.bs-footer {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  margin-top: 80px;
+  color: rgb(119, 119, 119);
+  text-align: center;
+  border-top: 1px solid rgb(229, 229, 229);
+}
+.bs-footer p{
+margin-bottom: 0px;
+}
+

@@ -24,9 +24,18 @@
     <div class="container">
       <%= notice_message %>
       <div id="main" class="container-fluid">
-        <%= yield %>
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-9">
+          <%= yield %>
+        </div>
       </div>
     </div>
+    <footer class="bs-footer">
+    <div class="container">
+      <%= render 'common/footer' %>
+    </div>
+    </footer>
     <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

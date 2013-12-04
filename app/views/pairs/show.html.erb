@@ -1,54 +1,53 @@
+<h3><%= "#{@pair.category.name} > #{t('pairs.show')}" %></h3>
+<%= link_to t('back'), pairs_path %>
 <p>
 <strong><%= t('pairs.catename') %></strong>
 <%= @pair.category.name %>
-</p>
-<p>
+<br />
 <strong><%= t('pairs.filename') %></strong>
 <%= @pair.csvfile.name %>
 </p>
 
 <%- unless @pair.hash_pairs.blank? -%>
-<p>
-<strong><%= t('pairs.hash_pairs')%></strong>
-<br />
-<table class="table-bordered">
-  <tr>
-    <th width=150><%= @pair.category.name %></th>
-    <th><%= @pair.csvfile.name %></th>
-  </tr>
-  <% @pair.hash_pairs.each do |proid, parname| %>
-    <tr><td><%= render_get_property_name_tag(proid) %></td><td><%= parname %> </td></tr>
-  <%- end -%>
-</table>
-</p>
+  <p>
+  <strong><%= t('pairs.hash_pairs')%></strong>
+  <br />
+  <table class="table-bordered">
+    <tr>
+      <th width=150><%= @pair.category.name %></th>
+      <th><%= @pair.csvfile.name %></th>
+    </tr>
+    <% @pair.hash_pairs.each do |proid, parname| %>
+      <tr><td><%= render_get_property_name_tag(proid) %></td><td><%= parname %> </td></tr>
+    <%- end -%>
+  </table>
+  </p>
 <%- end -%>
-<p>
-<strong><%= t('pairs.created_at') %></strong>
-<%= @pair.created_at %>
-</p>
 <p>
 <strong><%= t('pairs.creater') %></strong>
 <%= @pair.user.name %>
+<strong><%= t('pairs.created_at') %></strong>
+<%= @pair.created_at %>
 </p>
 
 <% unless @products.blank?  %>
   <%- if can? :agree, @pair -%>
     <p><%= link_to t('pairs.agree'), agree_pair_path(@pair), method: :agree, data: {confirm: t('pairs.agree_confirm')} %></p>
-<%- elsif can? :doing, @pair -%>
-<p><%= link_to t('pairs.doing'), doing_pair_path(@pair) , method: :doing, data: {confirm: t('pairs.ready_confirm')}%></p>
-<%- end -%>
-
-<table class="table-bordered">
-<%- @products.each do |item| -%>
-  <tr>
-    <th><%= raw render_product_status_tag(item) %></th>
-  <% item.parameters.each do |par|  %>
-    <td><%= par.name %> : <%= par.value %></td>
-  <% end %>
-</tr>
-<%- end -%>
-</table>
+  <%- elsif can? :doing, @pair -%>
+    <p><%= link_to t('pairs.doing'), doing_pair_path(@pair) , method: :doing, data: {confirm: t('pairs.ready_confirm')}%></p>
+  <%- end -%>
+  <div style="overflow: auto; width: 100%">
+    <table class="table-bordered">
+      <%- @products.each do |item| -%>
+        <tr>
+          <th><%= raw render_product_status_tag(item) %></th>
+          <% item.parameters.each do |par|  %>
+            <td><%= par.name %> </td><th> <%= par.value %></th>
+          <% end %>
+        </tr>
+      <%- end -%>
+    </table>
+  </div>
 <%- else -%>
   <p class='alert alert-success'><%= t('pairs.nothing_to_do') %></p>
 <%- end -%>
-<%= link_to t('back'), pairs_path %>

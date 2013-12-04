@@ -7,13 +7,13 @@
 </p>
 <div style="overflow: auto; width: 100%">
 <table class='table table-bordered'>
-  <%-item = @csvfile.temproducts.first -%>
+  <%-item = @temproducts.first -%>
   <tr> <%- item.parameters.each do |p| -%>
       <th><%= p.name %></th>
     <%-end -%>
   </tr>
 
-  <%- @csvfile.temproducts.each do |item| -%>
+  <%- @temproducts.each do |item| -%>
     <tr> <%- item.parameters.each do |p| -%>
         <td><%= p.value %></td> 
       <%-end -%>

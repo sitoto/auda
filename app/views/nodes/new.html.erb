@@ -1,4 +1,12 @@
-
-<%= render 'form' %>
-
-<%= link_to t('back'), nodes_path %>
+<div class="col-sm-3">
+  <h2><%= t('nodes.tree') %></h2>
+  <ul class="list-group list-unstyled">
+    <%- node_tree.each do |item| -%>
+      <li class="list-group-item"> <%= item[0] %></li>
+    <%- end -%>
+  </ul>
+</div>
+<div class="col-sm-9">
+  <%= render 'form' %>
+  <%= link_to t('back'), nodes_path %>
+</div>

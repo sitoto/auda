@@ -1,12 +1,23 @@
-<p>
-<strong><%= t('nodes.name') %></strong>
+<div class="col-sm-3">
+  <h2><%= t('nodes.tree') %></h2>
+  <ul class="list-group list-unstyled">
+    <%- node_tree.each do |item| -%>
+      <li class="list-group-item"> <%= item[0] %></li>
+    <%- end -%>
+  </ul>
+</div>
+<div class="col-sm-9">
+
+  <p>
+  <strong><%= t('nodes.name') %></strong>
   <%= @node.name %>
-</p>
+  </p>
 
-<p>
- <strong><%= t('nodes.position') %></strong>
+  <p>
+  <strong><%= t('nodes.position') %></strong>
   <%= @node.position %>
-</p>
+  </p>
 
-<%= link_to t('edit'), edit_node_path(@node) %> |
-<%= link_to t('back'), nodes_path %>
+  <%= link_to t('edit'), edit_node_path(@node) %> |
+  <%= link_to t('back'), nodes_path %>
+</div>
