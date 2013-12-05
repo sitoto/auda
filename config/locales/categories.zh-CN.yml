@@ -9,6 +9,7 @@ zh-CN:
     alias: "别名"
     new:  "新建类目"
     edit: "编辑类目"
+    destroy: "删除类目"
     back: "返回类目页"
     created: "类目已经成功创建."
     updated: "类目已经被更新."

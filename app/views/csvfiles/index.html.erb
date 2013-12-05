@@ -25,6 +25,6 @@
 </table>
 
 <br>
-<%= link_to t('csvfiles.back'), categories_path() %>
+<%= link_to t('csvfiles.back'), nodecategory_path(@category.node_id) %>
 <%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>
 
