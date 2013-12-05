@@ -1,5 +1,11 @@
 Autodata::Application.routes.draw do
 
+  if Rails.env.development?
+      get "/uploads/*path" => "gridfs#serve"
+  end
+
+  get "manage/export"
+  get "manage/events"
   resources :nodes
 
   namespace :cpanel do
@@ -21,6 +27,7 @@ Autodata::Application.routes.draw do
     end
     resources :csvfiles do
       resources :pairs
+      get :download, on: :member
     end
     get :getproperties, :on => :member
 

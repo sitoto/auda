@@ -1,14 +1,22 @@
 require 'csv'
 class CsvfilesController < ApplicationController
-  before_action :set_csvfile, only: [:show, :edit, :update, :destroy]
+  before_action :set_csvfile, only: [:show, :edit, :update, :destroy, :download]
   load_and_authorize_resource except: [:create]
   layout "main"
 
   # GET /csvfiles
   # GET /csvfiles.json
   def index
-   @category = Category.find(params[:category_id])
-   @csvfiles = @category.csvfiles.desc(:id) 
+    @category = Category.find(params[:category_id])
+    @csvfiles = @category.csvfiles.desc(:id) 
+  end
+
+  def download
+    content = @csvfile.file.read
+    if stale?(etag: content, last_modified: @csvfile.updated_at.utc, public: true)
+      send_data content, name: @csvfile.file.filename,  disposition: "inline"
+      expires_in 0, public: true
+    end
   end
 
   # GET /csvfiles/1
@@ -36,9 +44,9 @@ class CsvfilesController < ApplicationController
     @csvfile = Csvfile.new(csvfile_params)
     @csvfile.category = @category
     @csvfile.user = current_user
-    file_name = params[:csvfile][:name].original_filename
+    file_name = params[:csvfile][:source].original_filename
 
-    file_data = params[:csvfile][:name].read
+    file_data = params[:csvfile][:source].read
     csv_rows = CSV.parse(file_data)
 
     unstandtitle = [] 
@@ -58,17 +66,19 @@ class CsvfilesController < ApplicationController
       end 
     end
     params[:csvfile][:name] = file_name
+    @csvfile.update(csvfile_params)
+
     respond_to do |format|
-      if @csvfile.update(csvfile_params)
+      if @csvfile.save
         format.html { redirect_to [@category, @csvfile], notice: t('csvfiles.created') }
       else
         format.html { render action: 'new' }
       end
     end
-   rescue
+  rescue
     redirect_to [@category, @csvfile], notice: t('csvfiles.error') 
 
- end
+  end
 
   # PATCH/PUT /csvfiles/1
   # PATCH/PUT /csvfiles/1.json
@@ -102,6 +112,6 @@ class CsvfilesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def csvfile_params
-    params.require(:csvfile).permit(:name, :creater, :size)
+    params.require(:csvfile).permit(:name, :creater, :size, :source)
   end
 end

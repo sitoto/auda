@@ -6,6 +6,12 @@
 <p>
 <strong><%= t('csvfiles.name') %></strong>
 <%= @csvfile.name %>
+<br />
+<%= @csvfile.source_identifier %>
+<br />
+<%= @csvfile.source.current_path %>
+
+
 </p>
 <div style="overflow: auto; width: 100%">
 <table class='table table-bordered'>

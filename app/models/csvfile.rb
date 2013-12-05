@@ -6,7 +6,10 @@ class Csvfile
   field :creater, type: String
   field :size, type: String
   field :status, type: Integer, default: 0
-  validates_presence_of :name
+
+  mount_uploader :source, SourcefileUploader
+
+  validates_presence_of :source #name
 
 
   has_many :temproducts

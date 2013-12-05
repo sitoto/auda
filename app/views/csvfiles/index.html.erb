@@ -3,7 +3,10 @@
 <table class='table'>
   <thead>
     <tr>
+      <th></th>
       <th><%= t('csvfiles.name') %></th>
+      <th><%= t('csvfiles.size') %></th>
+
       <th><%= t('csvfiles.status') %></th>
       <th><%= t('csvfiles.creater') %></th>
       <th><%= t('csvfiles.created_at') %></th>
@@ -14,7 +17,10 @@
   <tbody>
     <% @csvfiles.each do |csvfile| %>
       <tr>
+        <td><%= csvfile.source.blank? ? "" : csvfile.source  %></td>
         <td><%= link_to csvfile.name , category_csvfile_path(@category, csvfile) %></td>
+        <td><%= csvfile.source.blank? ? "" : csvfile.source.size  %></td>
+
         <td><%= render_csvfile_status_tag(csvfile.status) %></td>
         <td><%= csvfile.user.blank? ? "" : csvfile.user.name %></td>
         <td><%= timeago(csvfile.created_at) %></td>
