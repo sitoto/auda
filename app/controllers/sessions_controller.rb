@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to root_path, notice: t("users.authfailed")
+    flash[:danger] =  t("users.authfailed")
+    redirect_to root_path 
   end
 end
