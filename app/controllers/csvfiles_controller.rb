@@ -12,33 +12,26 @@ class CsvfilesController < ApplicationController
   end
 
   def download
-    content = @csvfile.file.read
+    content = @csvfile.source.read
     if stale?(etag: content, last_modified: @csvfile.updated_at.utc, public: true)
-      send_data content, name: @csvfile.file.filename,  disposition: "inline"
+      send_data content, filename: @csvfile.name,  disposition: "inline"
       expires_in 0, public: true
     end
   end
 
-  # GET /csvfiles/1
-  # GET /csvfiles/1.json
   def show
     @temproducts = @csvfile.temproducts.limit(100)
-    @page_title = "first 100"
-
+    @page_title = @csvfile.name
   end
 
-  # GET /csvfiles/new
   def new
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.new
   end
 
-  # GET /csvfiles/1/edit
   def edit
   end
 
-  # POST /csvfiles
-  # POST /csvfiles.json
   def create
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.new(csvfile_params)
@@ -76,12 +69,10 @@ class CsvfilesController < ApplicationController
       end
     end
   rescue
-    redirect_to [@category, @csvfile], notice: t('csvfiles.error') 
-
+    flash[:danger] = t('csvfiles.error_upload') 
+    redirect_to new_category_csvfile_path(@category, @csvfile)  
   end
 
-  # PATCH/PUT /csvfiles/1
-  # PATCH/PUT /csvfiles/1.json
   def update
     respond_to do |format|
       if @csvfile.update(csvfile_params)

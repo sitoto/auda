@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   
 
   def index
-    @categories = Category.all.asc(:node_id)
+    @categories = Category.all.asc(:node_id).page params[:page]
     @page_title = t('categories.list')
 
   end
@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
 
   def node
    @node = Node.find(params[:node_id])
-   @categories = @node.categories
+   @categories = @node.categories.page params[:page]
    @page_title = @node.name
    render :index
 

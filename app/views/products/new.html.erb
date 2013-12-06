@@ -1,5 +1,5 @@
-<h1><%= t('products.new')  %></h1>
+<%= link_to t('back'), category_products_path(@category) %>
+<h3><%= t('products.new')  %></h3>
 
 <%= render 'form' %>
 
-<%= link_to t('back'), category_products_path(@category) %>

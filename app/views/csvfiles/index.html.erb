@@ -1,3 +1,7 @@
+<p>
+<%= link_to t('csvfiles.back'), nodecategory_path(@category.node_id) %>
+<%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>
+</p>
 <h4><%=  @category.name + '>' + t('csvfiles.list') %></h4>
 
 <table class='table'>
@@ -31,6 +35,4 @@
 </table>
 
 <br>
-<%= link_to t('csvfiles.back'), nodecategory_path(@category.node_id) %>
-<%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>
 

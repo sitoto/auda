@@ -1,17 +1,17 @@
-<h3><%=  @category.name + '>' + t('csvfiles.name') + '>' + @csvfile.name %><small><%= render_csvfile_status_tag(@csvfile.status) %></small></h3>
-
 <p><%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>|
-<%= link_to @csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, @csvfile) %>|<%= link_to t('destroy'), category_csvfile_path(@category, @csvfile), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<%= link_to @csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, @csvfile) %>|<%= link_to t('destroy'), category_csvfile_path(@category, @csvfile), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<%- if can? :download, @csvfile -%>
+|<%= link_to t('csvfiles.download'), download_category_csvfile_path(@category, @csvfile) %>
+<%- end -%>
+</p>
+
+
+<h3><%=  @category.name + '>' + t('csvfiles.name') + '>' + @csvfile.name %><small><%= render_csvfile_status_tag(@csvfile.status) %></small></h3>
 
 <p>
 <strong><%= t('csvfiles.name') %></strong>
 <%= @csvfile.name %>
-<br />
-<%= @csvfile.source_identifier %>
-<br />
-<%= @csvfile.source.current_path %>
-
-
 </p>
 <div style="overflow: auto; width: 100%">
 <table class='table table-bordered'>

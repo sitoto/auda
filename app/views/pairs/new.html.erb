@@ -1,5 +1,7 @@
-<h1><%= t('pairs.new') %></h1>
+<p>
+<%= link_to t('csvfiles.back'), category_csvfile_path(@category, @csvfile) %>
+</p>
+<h3><%= t('pairs.new') %></h3>
 
 <%= render 'form' %>
 
-<%= link_to t('csvfiles.back'), category_csvfile_path(@category, @csvfile) %>

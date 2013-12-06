@@ -37,6 +37,10 @@ class PairsController < ApplicationController
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.find(params[:csvfile_id])
     @pair = Pair.new
+    if @category.properties.length == 0
+      flash[:danger] = @category.name + t('error_no_property')
+      redirect_to category_csvfiles_path(@category)
+    end
   end
 
 

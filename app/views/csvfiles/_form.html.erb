@@ -1,25 +1,30 @@
-<%= form_for([@category, @csvfile], :html => {:multipart => true}) do |f| %>
+<%= form_for([@category, @csvfile], :html => {:multipart => true, :class => 'form-horizontal'}) do |f| %>
   <% if @csvfile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@csvfile.errors.count, "error") %> prohibited this csvfile from being saved:</h2>
-
       <ul>
-      <% @csvfile.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @csvfile.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="field hidden" >
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+  <div class="form-group hidden"> 
+    <%= f.label  :status , class: 'col-sm-2 control-label'  -%>
+    <div class="col-sm-5">
+      <%= f.text_field :status, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :file %><br>
-    <%= f.file_field :source %>
+  <div class="form-group"> 
+    <%= f.label :file, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-5">
+      <%= f.file_field :source %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit value: t('submit') %>
+  <div class="form-group"> 
+    <div class='col-sm-offset-2 col-sm-5'>
+      <%= f.submit value: t('submit'), class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>

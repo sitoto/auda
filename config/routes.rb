@@ -1,9 +1,5 @@
 Autodata::Application.routes.draw do
 
-  if Rails.env.development?
-      get "/uploads/*path" => "gridfs#serve"
-  end
-
   get "manage/export"
   get "manage/events"
   resources :nodes

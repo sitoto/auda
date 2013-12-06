@@ -1,4 +1,9 @@
-<h4><%= @page_title %></h4>
+<p>
+<%- if can? :create, Category -%>
+  <%= link_to t('categories.new'), new_category_path %>
+<%- end -%>
+</p>
+<h3><%= @page_title %></h3>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -50,8 +55,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<%- if can? :create, Category -%>
-  <%= link_to t('categories.new'), new_category_path %>
-<%- end -%>
+<%= paginate @categories %>
