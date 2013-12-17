@@ -4,7 +4,7 @@ class PairsController < ApplicationController
   layout "main"
 
   def index
-    @pairs = Pair.all
+    @pairs = Pair.all.desc(:id)
   end
 
   def doing 
@@ -64,6 +64,12 @@ class PairsController < ApplicationController
 
       items.each do |proid, parname|
         property = @category.properties.find(proid) 
+        alias_arr = property.alias.split(",")
+        alias_arr <<  parname  unless (parname.blank? || parname.eql?(property.name))
+       
+        alias_arr.uniq!
+        property.alias = alias_arr.join(',')
+        property.save
         name = property.name 
         parameter = Parameter.new()     
 

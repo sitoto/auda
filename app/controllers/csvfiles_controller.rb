@@ -68,9 +68,9 @@ class CsvfilesController < ApplicationController
         format.html { render action: 'new' }
       end
     end
-  rescue
-    flash[:danger] = t('csvfiles.error_upload') 
-    redirect_to new_category_csvfile_path(@category, @csvfile)  
+#  rescue
+#    flash[:danger] = t('csvfiles.error_upload') 
+#    redirect_to new_category_csvfile_path(@category)  
   end
 
   def update

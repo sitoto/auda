@@ -20,4 +20,5 @@ zh-CN:
     pipei: "已经导入"
     unpipei: "未导入"
     file: "文件"
+    size: "大小"
     source: "文件"

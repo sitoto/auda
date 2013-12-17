@@ -5,7 +5,7 @@ class Property
   field :code, type: String
   field :name, type: String
   field :value, type: String
-  field :alias, type: String
+  field :alias, type: String #Array ,default: [] 
   field :position, type: Integer, default: 100
 
   validates_presence_of :name

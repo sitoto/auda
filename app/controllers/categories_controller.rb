@@ -16,9 +16,14 @@ class CategoriesController < ApplicationController
     @property = Property.new
   end
 
+  def branch_ids
+    @node.child_nodes.map(&:id).uniq <<  @node.id
+  end
+
   def node
    @node = Node.find(params[:node_id])
-   @categories = @node.categories.page params[:page]
+   #@categories = @node.categories.page params[:page]
+   @categories = Category.in(node_id: branch_ids).page params[:page]
    @page_title = @node.name
    render :index
 

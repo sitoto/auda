@@ -6,6 +6,13 @@ module NodesHelper
     end
     return tree
   end
+  def root_tree
+    tree = []
+    Node.roots.each do |node|
+      tree << ["#{node.name}", "#{node.id}"]
+    end
+    return tree
+  end
  
   def node_tree
     tree = []

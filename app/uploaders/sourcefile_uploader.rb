@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+require "digest/md5"
 class SourcefileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
@@ -14,9 +14,15 @@ class SourcefileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{mounted_as}"
   end
 
+  # 调整临时文件的存放路径，默认是再 public 下面
+  def cache_dir
+    "#{Rails.root}/tmp/uploads"
+  end
+  #
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -45,8 +51,14 @@ class SourcefileUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    if original_filename
+      # current_path 是 Carrierwave 上传过程临时创建的一个文件，有时间标记
+      @name ||= Digest::MD5.hexdigest(current_path)
+      "#{@name}#{File.extname(original_filename).downcase}"
+    end
+
+#     "#{model.id}.#{File.extname(original_filename).downcase}"# if original_filename
+   end
 
 end
