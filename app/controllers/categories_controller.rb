@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.all.asc(:node_id).page params[:page]
     @page_title = t('categories.list')
-
   end
 
   def show

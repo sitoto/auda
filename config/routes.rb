@@ -1,8 +1,6 @@
 Autodata::Application.routes.draw do
 
-  get "manage/export"
-  get "manage/events"
-  resources :nodes
+ resources :nodes
 
   namespace :cpanel do
     resources :users
@@ -39,7 +37,10 @@ Autodata::Application.routes.draw do
   get "/auth/:provider/failure", to: "sessions#failure"
   get "/logout", to: "sessions#destroy", :as => "logout"
   resources :identities
-
+  
+  get "manage/export" => 'cpanel/manage#export'
+  get "manage/events" => 'cpanel/manage#events'
+ 
   #resources :products do
   #  resources :parameters
   #end

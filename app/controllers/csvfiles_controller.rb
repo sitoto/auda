@@ -8,7 +8,9 @@ class CsvfilesController < ApplicationController
   # GET /csvfiles.json
   def index
     @category = Category.find(params[:category_id])
-    @csvfiles = @category.csvfiles.desc(:id) 
+    @csvfiles = @category.csvfiles.desc(:id).page params[:page]
+    @page_title = t('csvfiles.list')
+
   end
 
   def download

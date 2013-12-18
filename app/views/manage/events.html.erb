@@ -1,2 +1,8 @@
-<h1>Manage#events</h1>
-<p>Find me in app/views/manage/events.html.erb</p>
+<h4><%= t('manages.events') %></h4>
+<% @events.each do |event|%>
+  <p>
+  <%= event.username %>,<%= event.name %>,ip:<%= event.note %><br />
+  <small><%= event.created_at %></small>
+  </p>
+<% end %>
+

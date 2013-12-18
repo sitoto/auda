@@ -4,7 +4,8 @@ class PairsController < ApplicationController
   layout "main"
 
   def index
-    @pairs = Pair.all.desc(:id)
+    @pairs = Pair.all.desc(:id).page params[:page]
+    @page_title = t('pairs.list')
   end
 
   def doing 

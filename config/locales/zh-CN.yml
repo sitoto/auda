@@ -32,6 +32,7 @@ zh-CN:
   sources: "数据源"
   data_list: "数据列表"
   option: "管理"
+  events: "事件"
   manages:
     export: "导出"
     events: "事件"

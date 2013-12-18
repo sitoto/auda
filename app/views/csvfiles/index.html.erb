@@ -7,21 +7,21 @@
 <table class='table'>
   <thead>
     <tr>
-      <th></th>
+      <th>ID</th>
       <th><%= t('csvfiles.name') %></th>
       <th><%= t('csvfiles.size') %></th>
 
       <th><%= t('csvfiles.status') %></th>
       <th><%= t('csvfiles.creater') %></th>
       <th><%= t('csvfiles.created_at') %></th>
-      <th></th>
+      <th><%= t('option') %></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @csvfiles.each do |csvfile| %>
+    <% @csvfiles.each_with_index do |csvfile, i| %>
       <tr>
-        <td><%= csvfile.source.blank? ? "" : csvfile.source  %></td>
+        <td><%= i + 1 %></td>
         <td><%= link_to csvfile.name , category_csvfile_path(@category, csvfile) %></td>
         <td><%= csvfile.source.blank? ? "" : csvfile.source.size  %></td>
 
@@ -33,6 +33,6 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @csvfiles %>
 <br>
 

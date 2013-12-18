@@ -5,7 +5,8 @@ class Cpanel::ApplicationController < ApplicationController
 
   def require_admin
     unless current_user.has_role?("admin") || current_user.email.eql?('huangw@jiaparts.com')
-      redirect_to root_url, notice: t("users.authfailed")
+      flash[:danger] = t("cancanerror")
+      redirect_to root_url
     end
   end
 

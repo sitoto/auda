@@ -16,6 +16,7 @@ class User
   has_many :pairs
   has_many :products
   has_many :properties
+  has_many :events
 
   
 
