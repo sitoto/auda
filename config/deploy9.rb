@@ -13,8 +13,8 @@ set :repository,  "git://github.com/sitoto/auda.git"
 set :branch, "master"
 set :scm, :git
 set :user, "sitoto"
-set :deploy_to, "/jiapei/www/#{application}"
-set :runner, "sitoto"
+set :deploy_to, "/data/www/#{application}"
+set :runner, "sototo"
 # set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 
