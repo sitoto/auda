@@ -4,8 +4,6 @@ class CsvfilesController < ApplicationController
   load_and_authorize_resource except: [:create]
   layout "main"
 
-  # GET /csvfiles
-  # GET /csvfiles.json
   def index
     @category = Category.find(params[:category_id])
     @csvfiles = @category.csvfiles.desc(:id).page params[:page]
@@ -31,17 +29,29 @@ class CsvfilesController < ApplicationController
     @csvfile = Csvfile.new
   end
 
-  def edit
-  end
-
   def create
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.new(csvfile_params)
     @csvfile.category = @category
     @csvfile.user = current_user
+
+    
+    params[:csvfile][:name] = params[:csvfile][:source].original_filename
+    @csvfile.update(csvfile_params)
+
+    if @csvfile.save
+      redirect_to [@category, @csvfile], notice: t('csvfiles.created') 
+
+    else
+      render :new
+    end
+=begin
+
     file_name = params[:csvfile][:source].original_filename
 
     file_data = params[:csvfile][:source].read
+
+
     csv_rows = CSV.parse(file_data)
 
     unstandtitle = [] 
@@ -70,25 +80,12 @@ class CsvfilesController < ApplicationController
         format.html { render action: 'new' }
       end
     end
-#  rescue
-#    flash[:danger] = t('csvfiles.error_upload') 
-#    redirect_to new_category_csvfile_path(@category)  
+  rescue
+    flash[:danger] = t('csvfiles.error_upload') 
+    redirect_to new_category_csvfile_path(@category)  
+=end    
   end
 
-  def update
-    respond_to do |format|
-      if @csvfile.update(csvfile_params)
-        format.html { redirect_to @csvfile, notice: 'Csvfile was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @csvfile.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /csvfiles/1
-  # DELETE /csvfiles/1.json
   def destroy
     @csvfile.destroy
     respond_to do |format|
