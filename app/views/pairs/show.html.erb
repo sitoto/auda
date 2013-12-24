@@ -42,7 +42,7 @@
         <tr>
           <th><%= raw render_product_status_tag(item) %></th>
           <% item.parameters.each do |par|  %>
-            <td><%= par.name %> </td><th> <%= par.value %></th>
+            <td><%= par.name %><strong> <%= par.value %></strong></td>
           <% end %>
         </tr>
       <%- end -%>
