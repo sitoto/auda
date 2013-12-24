@@ -14,7 +14,6 @@ class PairsController < ApplicationController
       product.update_attribute(:status, 1)
     end
     @products = @pair.products
-
     render :show
   end
 
@@ -25,7 +24,6 @@ class PairsController < ApplicationController
       product.update_attribute(:status, 2)
     end
     @products = nil
-
     render :show
   end
 
@@ -48,9 +46,16 @@ class PairsController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
     @csvfile = Csvfile.find(params[:csvfile_id])
-    
+
     items = params[:pairparameters]
-    return if items.blank?
+    if items.blank?
+      redirect_to [@category, @csvfile], notice: t("blank") 
+      return
+    end
+    if @csvfile.status != 0
+      redirect_to [@category, @csvfile], notice: t('csvfiles.imported')  
+      return
+    end
     @pair = Pair.new()
     @pair.category = @category
     @pair.csvfile = @csvfile
@@ -58,7 +63,7 @@ class PairsController < ApplicationController
     @pair.hash_pairs = items
 
     @pair.save
-   
+
     @csvfile.temproducts.each do |tp|
       product = @category.products.new
       pars = []
@@ -67,7 +72,7 @@ class PairsController < ApplicationController
         property = @category.properties.find(proid) 
         alias_arr = property.alias.split(",")
         alias_arr <<  parname  unless (parname.blank? || parname.eql?(property.name))
-       
+
         alias_arr.uniq!
         property.alias = alias_arr.join(',')
         property.save
@@ -90,13 +95,13 @@ class PairsController < ApplicationController
         product.pair = @pair 
         product.save
       end
-      
+
     end
     @csvfile.update_attribute(:status, 1)
     @csvfile.save
-   
+
     respond_to do |format|
-      format.html { redirect_to pairs_path, notice: t('csvfiles.imported') }
+      format.html { redirect_to @pair, notice: t('csvfiles.imported') }
     end
   end
 
@@ -121,6 +126,5 @@ class PairsController < ApplicationController
   def pair_params
     #params.require(:pair).permit(:category_id, :csvfile_id, :hash_paris, :status)
     #params.require(:pairparameters).permit(:category_id, :csvfile_id, :hash_paris, :status)
-
   end
 end

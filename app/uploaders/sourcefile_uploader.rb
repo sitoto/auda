@@ -58,7 +58,7 @@ class SourcefileUploader < CarrierWave::Uploader::Base
       "#{@name}#{File.extname(original_filename).downcase}"
     end
 
-#     "#{model.id}.#{File.extname(original_filename).downcase}"# if original_filename
-   end
+    #     "#{model.id}.#{File.extname(original_filename).downcase}"# if original_filename
+  end
 
 end

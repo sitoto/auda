@@ -28,8 +28,12 @@
         <td><%= render_csvfile_status_tag(csvfile.status) %></td>
         <td><%= csvfile.user.blank? ? "" : csvfile.user.name %></td>
         <td><%= timeago(csvfile.created_at) %></td>
-        <td><%= link_to csvfile.status == 0 ? t('csvfiles.import') : t('csvfiles.reimport'), new_category_csvfile_pair_path(@category, csvfile) %></td>
-     </tr>
+        <td><% if csvfile.status == 0  %>
+            <%= link_to t('csvfiles.import') , new_category_csvfile_pair_path(@category, csvfile) %>
+          <% else %>
+            <%=  t('csvfiles.reimport') %>        <%- end -%>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>

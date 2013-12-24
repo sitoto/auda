@@ -1,4 +1,5 @@
-require 'csv'
+require 'roo'
+
 class CsvfilesController < ApplicationController
   before_action :set_csvfile, only: [:show, :edit, :update, :destroy, :download]
   load_and_authorize_resource except: [:create]
@@ -31,44 +32,27 @@ class CsvfilesController < ApplicationController
 
   def create
     @category = Category.find(params[:category_id])
-    @csvfile = Csvfile.new(csvfile_params)
+    @csvfile = Csvfile.new()#.init(csvfile_params)
     @csvfile.category = @category
     @csvfile.user = current_user
 
-    
-    params[:csvfile][:name] = params[:csvfile][:source].original_filename
-    @csvfile.update(csvfile_params)
-
-    if @csvfile.save
-      redirect_to [@category, @csvfile], notice: t('csvfiles.created') 
-
-    else
-      render :new
-    end
-=begin
-
     file_name = params[:csvfile][:source].original_filename
+    file_path = params[:csvfile][:source].path
+    #file_data = params[:csvfile][:source].read
+    #csv_rows = CSV.parse(file_data)
 
-    file_data = params[:csvfile][:source].read
+    spreadsheet = open_spreadsheet(file_name, file_path)
+    header = spreadsheet.row(1)
 
-
-    csv_rows = CSV.parse(file_data)
-
-    unstandtitle = [] 
-    csv_rows.each_with_index do  |row, i|
-      if i == 0
-        unstandtitle = row 
-        next
-      else
-        product =  Temproduct.new
-        unstandtitle.each_with_index do |pname, j|
-          parameter = Parameter.new(name: pname, value: row[j])
-          product.parameters << parameter
-        end
-        product.csvfile = @csvfile
-        product.save
-
-      end 
+    (2..spreadsheet.last_row).map do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      product =  Temproduct.new
+      row.each do |pname, value|
+        parameter = Parameter.new(name: pname, value: value)
+        product.parameters << parameter
+      end
+      product.csvfile = @csvfile
+      product.save
     end
     params[:csvfile][:name] = file_name
     @csvfile.update(csvfile_params)
@@ -80,10 +64,9 @@ class CsvfilesController < ApplicationController
         format.html { render action: 'new' }
       end
     end
-  rescue
-    flash[:danger] = t('csvfiles.error_upload') 
+  rescue StandardError  
+    flash[:danger] = t('csvfiles.error_upload') + "Error: " + $!.to_s
     redirect_to new_category_csvfile_path(@category)  
-=end    
   end
 
   def destroy
@@ -94,6 +77,16 @@ class CsvfilesController < ApplicationController
   end
 
   private
+  def open_spreadsheet(file_name, file_path)
+    case File.extname(file_name)
+    when ".csv" then Roo::CSV.new(file_path,csv_options: {col_sep: ","})#, encoding: Encoding::ISO_8859_1})
+    when ".xls" then Roo::Excel.new(file_path, nil, :ignore)
+    when ".xlsx" then Roo::Excelx.new(file_path, nil, :ignore)
+    else raise "Unknown file type: #{file_name}"
+    end
+  end
+
+
   # Use callbacks to share common setup or constraints between actions.
   def set_csvfile
     @category = Category.find(params[:category_id])
