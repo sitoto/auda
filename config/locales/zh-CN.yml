@@ -33,6 +33,8 @@ zh-CN:
   data_list: "数据列表"
   option: "管理"
   events: "事件"
+  blank: "无匹配数据！"
+  pipei_blank: "匹配值为空，无法匹配！"
   manages:
     export: "导出"
     events: "事件"

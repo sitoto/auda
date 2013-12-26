@@ -15,7 +15,7 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:data_manager)
-      can :read, Csvfile
+      can :manage, Csvfile
       can :node, Category
 
       can :manage, Property
