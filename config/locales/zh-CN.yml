@@ -34,7 +34,7 @@ zh-CN:
   option: "管理"
   events: "事件"
   blank: "无匹配数据！"
-  pipei_blank: "匹配值为空，无法匹配！"
+  pipei_blank: "必填属性 未选择匹配项，提交失败！"
   manages:
     export: "导出"
     events: "事件"

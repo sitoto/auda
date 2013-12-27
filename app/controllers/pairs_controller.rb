@@ -52,17 +52,22 @@ class PairsController < ApplicationController
       redirect_to [@category, @csvfile], notice: t("blank") 
       return
     end
+
+    if @csvfile.status != 0
+      redirect_to [@category, @csvfile], notice: t('csvfiles.imported')  
+      return
+    end
+
+    # return if some required field if null
     items.each do |name, value|
-      if value.blank?
+      property = @category.properties.find(name) 
+
+      if property.required && value.blank?
         flash[:danger] =  t("pipei_blank") 
         redirect_to new_category_csvfile_pair_path(@category, @csvfile)
         return
       end
 
-    end
-    if @csvfile.status != 0
-      redirect_to [@category, @csvfile], notice: t('csvfiles.imported')  
-      return
     end
     @pair = Pair.new()
     @pair.category = @category
