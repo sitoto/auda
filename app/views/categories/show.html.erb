@@ -29,13 +29,18 @@
         <th><%= t('properties.name') %></th>
         <th><%= t('properties.value') %></th>
         <th><%= t('properties.alias') %></th>
+        <th><%= t('properties.required') %></th>
         <th><%= t('properties.position') %></th>
         <th><th></tr>
         </thead>
         <tbody>
           <% @category.properties.order_by(:'position'.asc).each_with_index do |item, i| %>
             <tr><td><%= i+1 %></td>
-              <td><%= item.name %></td><td><%= item.value %></td><td> <%= item.alias %></td><td> <%= item.position %></td>
+              <td><%= item.name %></td>
+              <td><%= item.value %></td>
+              <td> <%= item.alias %></td>
+              <td> <%= item.required ? "Y" : "" %></td>
+              <td> <%= item.position %></td>
               <td>
                 <%- if can? :update, @property -%>
                   <%= link_to t('edit'), edit_category_property_path(@category, item) %>

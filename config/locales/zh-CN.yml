@@ -60,6 +60,8 @@ zh-CN:
         name: "属性"
         value: "说明"
         position: "排序"
+        required: "必填"
+
       parameter:
         code: "代码"
         name: "属性"
