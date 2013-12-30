@@ -30,10 +30,12 @@
           <td>
             <%- if can? :update, category.products.build -%>
               <%= link_to t('products.new'), new_category_product_path(category) %>|
-              <%= link_to t('products.draft'), draft_category_products_path(category) %>
+              <%= link_to t('products.draft') , draft_category_products_path(category) %>
+              <small>(<%= category.products.draft.count.to_s %>)</small>
             <%- end -%>
             <%- if can? :done, category.products.build -%>
-              <%= link_to t('products.ready'), ready_category_products_path(category) %>|
+              <%= link_to t('products.ready'), ready_category_products_path(category) %>
+              <small>(<%= category.products.ready.count.to_s %>)</small>
               <%= link_to t('products.done'), done_category_products_path(category) %>
             <%- end -%>
           </td>

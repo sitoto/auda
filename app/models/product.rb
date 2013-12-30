@@ -15,6 +15,8 @@ class Product
   belongs_to :last_edit_user, :class_name => 'User'
   belongs_to :last_agree_user, :class_name => 'User'
 
+  index :status => 1
+
   scope :draft, -> { where(status: 0) }
   scope :ready, -> { where(status: 1) }
   scope :done, -> { where(status: 2) }
