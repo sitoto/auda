@@ -6,7 +6,7 @@ class Property
   field :name, type: String
   field :value, type: String
   field :alias, type: String #Array ,default: [] 
-  field :required, type: Boolean, default: false
+  field :required, type: Mongoid::Boolean, default: false
   field :position, type: Integer, default: 100
 
   validates_presence_of :name

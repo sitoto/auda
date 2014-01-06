@@ -37,6 +37,7 @@
               <%= link_to t('products.ready'), ready_category_products_path(category) %>
               <small>(<%= category.products.ready.count.to_s %>)</small>
               <%= link_to t('products.done'), done_category_products_path(category) %>
+              <small>(<%= category.products.done.count.to_s %>)</small>
             <%- end -%>
           </td>
 
