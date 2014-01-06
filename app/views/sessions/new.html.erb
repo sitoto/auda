@@ -1,27 +1,16 @@
 
 <% if current_user %>
   <h4><%= t("users.profile") %></h4>
-  <p>
-  <strong><%= t('users.email') %></strong>
-  <%= current_user.email %>
-  </p>
-  <p>
-  <strong><%= t('users.role') %></strong>
-  <%= current_user.role %>
-  </p>
-  <p>
-  <strong><%= t('users.last_login_ip') %></strong>
-  <%= current_user.last_login_ip %>
-  </p>
-  <p>
-  <strong><%= t('users.name') %></strong>
-  <%= current_user.name %>
-  </p>
-  <p>
-  <strong><%= t('users.created_at') %></strong>
-  <%= current_user.created_at %>
-  </p>
+  <hr>
+  <dl class="dl-horizontal">
+    <dt><%= t('users.name') %></dt>
+    <dd><%= current_user.name %></dd>
+    <dt><%= t('users.email') %></dt>
+    <dd><%= current_user.email %></dd>
+    <dt><%= t('users.role') %></dt>
+    <dd><%= current_user.role %></dd>
 
+  </dl>
 
   <p><%= link_to t("logout"), logout_path %></p>
 <% else %>

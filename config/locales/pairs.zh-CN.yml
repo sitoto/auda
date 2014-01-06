@@ -1,8 +1,8 @@
 zh-CN:
   pairs:
-    list: "全部导入记录"
+    list: "导入记录"
     show: "导入记录"
-    catename: "品类名称"
+    catename: "类目名称"
     filename: "文件名称"
     username: "导入用户"
     hash_pairs: "标准属性-导入文件匹配"
