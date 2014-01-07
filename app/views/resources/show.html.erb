@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @resource.name %>
+</p>
+<p>
+<%= image_tag @resource.photo.url, :id => 'cropimage' %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @resource.size %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @resource.note %>
+</p>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>

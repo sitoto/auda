@@ -1,6 +1,9 @@
 Autodata::Application.routes.draw do
 
- resources :nodes
+  resources :resources
+  get  "/images/uploads/*path" => "gridfs#serve"
+
+  resources :nodes
 
   namespace :cpanel do
     resources :users
@@ -10,7 +13,7 @@ Autodata::Application.routes.draw do
   get 'categories/node/:node_id' => 'categories#node', as: :nodecategory
 
   resources :categories do
-   resources :properties
+    resources :properties
     resources :products do
       get :doing, :on => :member
       get :agree, :on => :member
@@ -37,10 +40,10 @@ Autodata::Application.routes.draw do
   get "/auth/:provider/failure", to: "sessions#failure"
   get "/logout", to: "sessions#destroy", :as => "logout"
   resources :identities
-  
+
   get "manage/export" => 'cpanel/manage#export'
   get "manage/events" => 'cpanel/manage#events'
- 
+
   #resources :products do
   #  resources :parameters
   #end
