@@ -1,5 +1,5 @@
 class Cpanel::ApplicationController < ApplicationController
-  #  layout "cpanel"
+  layout "cpanel"
   before_filter :require_user
   before_filter :require_admin
 

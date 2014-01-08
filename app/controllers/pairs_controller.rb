@@ -1,7 +1,6 @@
 class PairsController < ApplicationController
   #before_action :set_pair, only: [:show]
   load_and_authorize_resource except: [:create]
-  layout "main"
 
   def index
     @pairs = Pair.all.desc(:id).page params[:page]

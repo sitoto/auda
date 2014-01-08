@@ -5,7 +5,6 @@ class Cpanel::UsersController < Cpanel::ApplicationController
   # GET /cpanel/users.json
   def index
     @users = User.all
-    @identities = Identity.all
   end
 
   # GET /cpanel/users/1
@@ -16,11 +15,13 @@ class Cpanel::UsersController < Cpanel::ApplicationController
   # GET /cpanel/users/1/edit
   def edit
   end
+
   # PATCH/PUT /cpanel/users/1
   # PATCH/PUT /cpanel/users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
+        #debug
         format.html { redirect_to cpanel_user_url(@user), notice: t('updated') }
         format.json { head :no_content }
       else
@@ -48,6 +49,6 @@ class Cpanel::UsersController < Cpanel::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-     params.require(:user).permit(:name, :role)
+     params.require(:user).permit(:name, :role, :permission_ids => [])
     end
 end

@@ -2,6 +2,7 @@ class Cpanel::IdentitiesController < Cpanel::ApplicationController
   before_action :set_identity, only: [:edit, :destroy]
 
   def index
+    @identities = Identity.all
   end
 
   def edit

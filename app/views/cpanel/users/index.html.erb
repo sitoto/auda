@@ -1,4 +1,4 @@
-<h1> system users </h1>
+<h1>用户</h1>
 
 <table class="table m">
   <thead>
@@ -29,36 +29,3 @@
     <% end %>
   </tbody>
 </table>
-
-
-
-<h1> identities </h1>
-
-<table class="table m">
-  <thead>
-    <tr>
-      <th><%= t('users.name') %></th>
-      <th><%= t('users.email') %></th>
-
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @identities.each do |user| %>
-      <tr>
-        <td><%= user.name.to_s %></td>
-        <td><%= user.email.to_s %></td>
-
-        <td><%= link_to t('show'), cpanel_identity_path(user) %></td>
-        <td><%= link_to t('edit'), edit_cpanel_identity_path(user) %></td>
-        <td><%= link_to t('destroy'), cpanel_identity_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
-<%= link_to 'New Identity', new_identity_path %>

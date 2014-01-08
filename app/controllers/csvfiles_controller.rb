@@ -3,7 +3,6 @@ require 'roo'
 class CsvfilesController < ApplicationController
   before_action :set_csvfile, only: [:show, :edit, :update, :destroy, :download]
   load_and_authorize_resource except: [:create]
-  layout "main"
 
   def index
     @category = Category.find(params[:category_id])

@@ -1,25 +1,48 @@
-<%= form_for [:cpanel, @user] do |f| %>
+<%= form_for([:cpanel, @user], :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class"field">
-    <%= f.label :role %>
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize ,{:prompt => "select_role"} %>
+  <div class="form-group">
+    <%= f.label :email , class: 'col-sm-2, control-label' %>
+    <div class="col-sm-5">
+      <%= @user.email %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :name , class: 'col-sm-2, control-label' %>
+    <div class="col-sm-5">
+      <%= f.text_field :name, class: 'col-sm-5, control-label' %>
+    </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :role , class: 'col-sm-2, control-label' %>
+    <div class="col-sm-5">
+      <%= f.collection_select :role, User::ROLES, :to_s, :humanize ,{:prompt => "select_role"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :permissions, class: 'col-sm-2, control-label'  %>
+    <div class="col-sm-5">
+      <% for permission in Permission.all %>
+        <%= check_box_tag "user[permission_ids][]", permission.id, @user.permissions.include?(permission) %>
+        <%= permission.description %>
+      <% end %>
+      <%= hidden_field_tag "user[permission_ids][]", "" %>
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class='col-sm-offset-2 col-sm-5'>
+      <%= f.submit value: t('submit'), class: 'btn btn-primary' %>
+    </div>
+  </div>
+
 <% end %>

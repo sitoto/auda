@@ -1,0 +1,2 @@
+module Cpanel::PermissionsHelper
+end

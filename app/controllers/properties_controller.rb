@@ -1,7 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create]
-  layout "main"
 
   # GET /properties
   # GET /properties.json

@@ -21,3 +21,4 @@ zh-CN:
     created: "已经成功创建."
     updated: "已经被更新."
     delete: "确定删除品类: '%{name}' 吗?"
+    permissions: "权限列表"

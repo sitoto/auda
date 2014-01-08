@@ -1,0 +1,31 @@
+<h1><%= t('permissions.list') %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t('permissions.action') %></th>
+      <th><%= t('permissions.subject') %></th>
+      <th><%= t('permissions.description') %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @permissions.each do |cpanel_permission| %>
+      <tr>
+        <td><%= cpanel_permission.action %></td>
+        <td><%= cpanel_permission.subject %></td>
+        <td><%= cpanel_permission.description %></td>
+        <td><%= link_to t('show'), [:cpanel, cpanel_permission] %></td>
+        <td><%= link_to t('edit'), edit_cpanel_permission_path(cpanel_permission) %></td>
+        <td><%= link_to t('destroy'),  [:cpanel, cpanel_permission], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Permission', new_cpanel_permission_path %>

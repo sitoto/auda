@@ -18,6 +18,8 @@ class User
   has_many :properties
   has_many :events
 
+  has_and_belongs_to_many :permissions
+
   
 
   def self.from_omniauth(auth)

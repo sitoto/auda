@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Action:</strong>
+  <%= @permission.action %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @permission.subject %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @permission.description %>
+</p>
+
+<%= link_to 'Edit', edit_cpanel_permission_path(@permission) %> |
+<%= link_to 'Back', cpanel_permissions_path %>

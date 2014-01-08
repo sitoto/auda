@@ -13,9 +13,13 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><%= t('site_name') %></a> 
         </div>
-        <div class="collapse navbar-collapse bs-js-navbar-collapse">
-          <%= render "common/user_nav_li" %>
-        </div>
+
+        <ul class="nav navbar-nav">
+          <li><%= link_to t('categories.list'), categories_path  %></li>
+          <li><%= link_to t('pairs.list'), pairs_path  %></li>
+          <li><%= link_to t('nodes.list'), nodes_path  %></li>
+
+        </ul>
         </nav>
       </div>
     </div>

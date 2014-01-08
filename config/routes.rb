@@ -1,5 +1,9 @@
 Autodata::Application.routes.draw do
 
+  namespace :cpanel do
+    resources :permissions
+  end
+
   resources :resources
   get  "/images/uploads/*path" => "gridfs#serve"
 
