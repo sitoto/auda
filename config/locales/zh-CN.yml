@@ -4,6 +4,7 @@ zh-CN:
   home: "首页"
   logout: "注销"
   cpanel: "进入管理"
+  identity: "账户管理"
   show: "详情"
   new: "新建"
   edit: "编辑"

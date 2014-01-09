@@ -2,8 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    if !user.blank?
+      #cannot :manage , :all
+      basic_read_only
+    end
+
     user ||= User.new
-=begin
+
     user.permissions.each do |p|
       begin
         action = p.action.to_sym
@@ -20,16 +25,8 @@ class Ability
         Rails.logger.info "#{subject}"
       end
     end
-=end
+=begin
 
-    if !user.blank?
-      #cannot :manage , :all
-      basic_read_only
-    end
-
-    # Define abilities for the passed in user here. For example:
-    #
-    # user ||= User.new # guest user (not logged in)
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:data_manager)
@@ -76,6 +73,7 @@ class Ability
       can :node, Category
 
     end
+=end
     #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

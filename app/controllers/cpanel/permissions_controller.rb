@@ -1,4 +1,4 @@
-class Cpanel::PermissionsController < ApplicationController
+class Cpanel::PermissionsController < Cpanel::ApplicationController
   before_action :set_cpanel_permission, only: [:show, :edit, :update, :destroy]
 
   # GET /cpanel/permissions

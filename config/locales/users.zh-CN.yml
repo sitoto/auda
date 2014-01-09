@@ -1,6 +1,7 @@
 zh-CN:
   users:
     name: "用户名"
+    list: "用户列表"
     role: "角色"
     alias: "别名"
     new:  "注册"

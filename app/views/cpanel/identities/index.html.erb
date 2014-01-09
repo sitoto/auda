@@ -7,8 +7,6 @@
       <th><%= t('users.email') %></th>
 
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -18,8 +16,6 @@
         <td><%= user.name.to_s %></td>
         <td><%= user.email.to_s %></td>
 
-        <td><%= link_to t('show'), cpanel_identity_path(user) %></td>
-        <td><%= link_to t('edit'), edit_cpanel_identity_path(user) %></td>
         <td><%= link_to t('destroy'), cpanel_identity_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
