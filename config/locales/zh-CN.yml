@@ -50,7 +50,7 @@ zh-CN:
       user: "用户"
       node: "分类"
       permission: "权限表"
-
+      resource: "图片"
     attributes:
       category:
         alias: "别名"
@@ -100,4 +100,8 @@ zh-CN:
         action: "操作"
         subject: "主题"
         description: "权限描述"
+      resource:
+        name: "资源名称"
+        size: "大小"
+        note: "资源说明"
       

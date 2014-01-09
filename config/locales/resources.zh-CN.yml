@@ -1,0 +1,13 @@
+zh-CN:
+  resources:
+    list: "全部图片"
+    node: "分类"
+    name: "文件名称"
+    note: "说明"
+    new:  "新建图片"
+    edit: "编辑图片"
+    destroy: "删除图片"
+    back: "返回列表页"
+    created: "图片已经成功上传."
+    updated: "图片已经被更新."
+    delete: "确定删除图片: '%{name}' 吗?"

@@ -1,12 +1,12 @@
-<h1>Listing resources</h1>
+<h1><%= t('resources.list') %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Size</th>
-      <th>Note</th>
       <th></th>
+      <th><%= t('resources.name') %></th>
+      <th><%= t('resources.size') %></th>
+      <th><%= t('resources.note') %></th>
       <th></th>
       <th></th>
     </tr>
@@ -15,12 +15,12 @@
   <tbody>
     <% @resources.each do |resource| %>
       <tr>
+        <td><%= image_tag resource.photo.url %></td>
         <td><%= resource.name %></td>
         <td><%= resource.size %></td>
         <td><%= resource.note %></td>
-        <td><%= link_to 'Show', resource %></td>
-        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('show'), resource %></td>
+        <td><%= link_to t('resources.destroy'), resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Resource', new_resource_path %>
+<%= link_to t('resources.new'), new_resource_path %>
