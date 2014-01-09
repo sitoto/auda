@@ -5,6 +5,8 @@
   <%= @resource.name %>
 </p>
 <p>
+<strong>photo</strong>
+
 <%= image_tag @resource.photo.url, :id => 'cropimage' %>
 </p>
 
@@ -18,5 +20,5 @@
   <%= @resource.note %>
 </p>
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
+<%= link_to t('edit'), edit_resource_path(@resource) %> |
+<%= link_to t('back'), resources_path %>

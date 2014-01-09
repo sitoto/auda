@@ -4,7 +4,7 @@ zh-CN:
     node: "分类"
     name: "文件名称"
     note: "说明"
-    new:  "新建图片"
+    new:  "上传图片"
     edit: "编辑图片"
     destroy: "删除图片"
     back: "返回列表页"

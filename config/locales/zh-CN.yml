@@ -103,5 +103,6 @@ zh-CN:
       resource:
         name: "资源名称"
         size: "大小"
+        photo: "图片"
         note: "资源说明"
       

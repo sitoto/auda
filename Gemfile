@@ -10,6 +10,7 @@ gem 'bson_ext'
 gem 'carrierwave'
 gem "carrierwave-mongoid", git: "git://github.com/carrierwaveuploader/carrierwave-mongoid.git"
 gem "mongoid-grid_fs", github: "ahoward/mongoid-grid_fs", branch: "master"
+gem "mini_magick"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'

@@ -15,7 +15,7 @@
   <tbody>
     <% @resources.each do |resource| %>
       <tr>
-        <td><%= image_tag resource.photo.url %></td>
+        <td><%= image_tag resource.photo.url(:thumb) %></td>
         <td><%= resource.name %></td>
         <td><%= resource.size %></td>
         <td><%= resource.note %></td>

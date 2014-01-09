@@ -3,8 +3,8 @@
 class PhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  #  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -31,9 +31,13 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+  process :resize_to_fit => [800, 800]       #图片大小不超过800*800
 
+  version :thumb do                                 #版本名为thumb
+    process :resize_to_fill => [50,50]      #想图片处理成50*50大小
+  end
   # Create different versions of your uploaded files:
-  #version :thumb do
+  # version :thumb do
   #  process :scale => [50, 50]
   #end
 
