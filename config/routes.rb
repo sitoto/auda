@@ -5,9 +5,9 @@ Autodata::Application.routes.draw do
   end
 
   resources :resources
-#  if Rails.env.development?
+  if Rails.env.development?
     get  "/images/uploads/*path" => "gridfs#serve"
-#  end
+  end
   resources :nodes
 
   namespace :cpanel do
