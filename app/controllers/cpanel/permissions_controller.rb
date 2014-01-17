@@ -4,7 +4,7 @@ class Cpanel::PermissionsController < Cpanel::ApplicationController
   # GET /cpanel/permissions
   # GET /cpanel/permissions.json
   def index
-    @permissions = Permission.all
+    @permissions = Permission.all.asc(:subject ,:_id)
   end
 
   # GET /cpanel/permissions/1
