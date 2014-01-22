@@ -1,38 +1,42 @@
 <p>
 <%= link_to t('csvfiles.back'), category_csvfiles_path(@category) %>|
-<% if @csvfile.status == 0  %> <%= link_to t('csvfiles.import') , new_category_csvfile_pair_path(@category, @csvfile) %>  <% else %>  <%=  t('csvfiles.pipei') %> <%- end -%>
-|<%= link_to t('destroy'), category_csvfile_path(@category, @csvfile), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if @csvfile.status == 0  %> 
+  <%= link_to t('csvfiles.import') , new_category_csvfile_pair_path(@category, @csvfile) %>  
+  |<%= link_to t('destroy'), category_csvfile_path(@category, @csvfile), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% else %>  
+  <%= t('csvfiles.pipei') %> 
+<%- end -%>
 
 <%- if can? :download, @csvfile -%>
-|<%= link_to t('csvfiles.download'), download_category_csvfile_path(@category, @csvfile) %>
+  |<%= link_to t('csvfiles.download'), download_category_csvfile_path(@category, @csvfile) %>
 <%- end -%>
 </p>
 
 
-<h3><%=  @category.name + '>' + t('csvfiles.name') + '>' + @csvfile.name %><small><%= render_csvfile_status_tag(@csvfile.status) %></small></h3>
+<h3><%= @category.name + '>' + t('csvfiles.name') + '>' + @csvfile.name %><small><%= render_csvfile_status_tag(@csvfile.status) %></small></h3>
 
 <p>
 <strong><%= t('csvfiles.name') %></strong>
 <%= @csvfile.name %>
 </p>
 <div style="overflow: auto; width: 100%">
-<table class='table table-bordered'>
-  <%-item = @temproducts.first -%>
-  <tr> 
-    <th>ID</th>
-    <%- item.parameters.each do |p| -%>
-      <th><%= p.name %></th>
-    <%-end -%>
-  </tr>
-
-  <%- @temproducts.each_with_index do |item, i| -%>
-    <tr>
-      <td><%= i+1 %></td>
+  <table class='table table-bordered'>
+    <%-item = @temproducts.first -%>
+    <tr> 
+      <th>ID</th>
       <%- item.parameters.each do |p| -%>
-        <td><%= p.value %></td> 
+        <th><%= p.name %></th>
       <%-end -%>
     </tr>
 
-  <%- end -%>
-</table>
+    <%- @temproducts.each_with_index do |item, i| -%>
+      <tr>
+        <td><%= i+1 %></td>
+        <%- item.parameters.each do |p| -%>
+          <td><%= p.value %></td> 
+        <%-end -%>
+      </tr>
+
+    <%- end -%>
+  </table>
 </div>

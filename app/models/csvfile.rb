@@ -11,7 +11,7 @@ class Csvfile
   mount_uploader :source, SourcefileUploader
   validates_presence_of :source #name
 
-  has_many :temproducts
+  has_many :temproducts, dependent: :delete
 
   belongs_to :pair
   belongs_to :category, :inverse_of => :csvfiles

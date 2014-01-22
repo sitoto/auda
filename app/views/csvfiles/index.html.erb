@@ -30,6 +30,8 @@
         <td><%= timeago(csvfile.created_at) %></td>
         <td><% if csvfile.status == 0  %>
             <%= link_to t('csvfiles.import') , new_category_csvfile_pair_path(@category, csvfile) %>
+            |<%= link_to t('destroy'), category_csvfile_path(@category, csvfile), method: :delete, data: { confirm: 'Are you sure?' } %>
+
           <% else %>
             <%=  t('csvfiles.pipei') %>        <%- end -%>
         </td>
