@@ -1,8 +1,22 @@
 <h4><%= t('manages.events') %></h4>
-<% @events.each do |event|%>
-  <p>
-  <%= event.username %>,<%= event.name %>,ip:<%= event.note %><br />
-  <small><%= event.created_at %></small>
-  </p>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>用户</th>
+      <th>事件</th>
+      <th>IP地址</th>
+      <th>时间</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event|%>
+      <tr>
+        <td><%= event.username %></td>
+        <td><%= event.name %></td>
+        <td><%= event.note %></td>
+        <td><small><%= event.created_at %></small></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= paginate @events %>

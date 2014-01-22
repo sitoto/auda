@@ -37,8 +37,8 @@ zh-CN:
   blank: "无匹配数据！"
   pipei_blank: "必填属性 未选择匹配项，提交失败！"
   manages:
-    export: "导出"
-    events: "事件"
+    export: "数据导出"
+    events: "系统日志"
 
   mongoid:
     models:

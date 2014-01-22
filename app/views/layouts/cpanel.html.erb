@@ -13,14 +13,10 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><%= t('site_name') %></a> 
         </div>
-
-        <ul class="nav navbar-nav">
-          <li><%= link_to t('identity'), cpanel_identities_path  %></li>
-          <li><%= link_to t('users.list'), cpanel_users_path  %></li>
-          <li><%= link_to t('permissions.list'), cpanel_permissions_path  %></li>
-
-        </ul>
-        </nav>
+        <div class="collapse navbar-collapse bs-js-navbar-collapse">
+          <%= render "common/cpanel_nav_li" %>
+        </div>
+       </nav>
       </div>
     </div>
     <div class="container">
