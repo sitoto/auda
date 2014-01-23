@@ -1,4 +1,4 @@
-<h3><%= "#{@pair.category.name} > #{t('pairs.show')}" %></h3>
+<h3><%= "#{@pair.category.blank? ? "error" : @pair.category.name} > #{t('pairs.show')}" %></h3>
 <%= link_to t('back'), pairs_path %>
 <p>
 <strong><%= t('pairs.catename') %></strong>
