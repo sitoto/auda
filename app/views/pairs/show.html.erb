@@ -5,7 +5,7 @@
 <%= @pair.category.name %>
 <br />
 <strong><%= t('pairs.filename') %></strong>
-<%= @pair.csvfile.name %>
+<%= @pair.csvfile.blank? ? "error" : @pair.csvfile.name %>
 </p>
 
 <%- unless @pair.hash_pairs.blank? -%>
@@ -15,7 +15,7 @@
   <table class="table-bordered">
     <tr>
       <th width=150><%= @pair.category.name %></th>
-      <th><%= @pair.csvfile.name %></th>
+      <th><%= @pair.csvfile.blank? ? "error" : @pair.csvfile.name %></th>
     </tr>
     <% @pair.hash_pairs.each do |proid, parname| %>
       <tr><td><%= render_get_property_name_tag(proid) %></td><td><%= parname %> </td></tr>
