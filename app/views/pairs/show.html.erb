@@ -2,7 +2,7 @@
 <%= link_to t('back'), pairs_path %>
 <p>
 <strong><%= t('pairs.catename') %></strong>
-<%= @pair.category.name %>
+<%= @pair.category.blank? ? "error" : @pair.category.name %>
 <br />
 <strong><%= t('pairs.filename') %></strong>
 <%= @pair.csvfile.blank? ? "error" : @pair.csvfile.name %>
@@ -14,7 +14,7 @@
   <br />
   <table class="table-bordered">
     <tr>
-      <th width=150><%= @pair.category.name %></th>
+      <th width=150><%= @pair.category.blank? ? "error" : @pair.category.name %></th>
       <th><%= @pair.csvfile.blank? ? "error" : @pair.csvfile.name %></th>
     </tr>
     <% @pair.hash_pairs.each do |proid, parname| %>
