@@ -20,3 +20,5 @@ zh-CN:
     created: "已经导入."
     updated: "已经被更新."
     delete: "确定删除导入数据: '%{name}' 吗?"
+    destroy_products: "删除全部‘编辑中’数据"
+    note: "说明"

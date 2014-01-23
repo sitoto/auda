@@ -105,6 +105,7 @@ class PairsController < ApplicationController
       if pars.length > 0
         product.parameters = pars
         product.pair = @pair 
+        product.user = current_user
         product.save
       end
 
@@ -119,7 +120,9 @@ class PairsController < ApplicationController
 
   def destroy
     @pair = Pair.find(params[:id])
-    @pair.destroy
+    @pair.update(note: "数据被'#{current_user.email}'删除,#{Time.now}")
+    @pair.update(status: 1)
+    @pair.products.draft.destroy
     respond_to do |format|
       format.html { redirect_to pairs_url }
       format.json { head :no_content }
