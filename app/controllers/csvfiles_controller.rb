@@ -20,7 +20,7 @@ class CsvfilesController < ApplicationController
   end
 
   def show
-    @temproducts = @csvfile.temproducts.limit(100)
+    @temproducts = @csvfile.temproducts.limit(10)
     @page_title = @csvfile.name
   end
 

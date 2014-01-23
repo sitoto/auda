@@ -15,6 +15,9 @@ zh-CN:
     created: "已经成功创建."
     updated: "已经被更新."
     delete: "确定删除数据项: '%{name}' 吗?"
+    next: "下一条 >"
+    pre: "< 上一条"
+
   parameters:
     name: "名称"
     code: "代码"

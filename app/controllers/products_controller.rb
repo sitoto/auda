@@ -27,6 +27,10 @@ class ProductsController < ApplicationController
 
 
   def show
+    status = @product.status
+    @pre_product = @category.products.where(:_id.lt => params[:id], :status => status).asc(:_id).last
+    @next_product = @category.products.where(:_id.gt => params[:id], :status => status).asc(:_id).first
+
   end
 
   def doing

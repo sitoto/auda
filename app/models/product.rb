@@ -22,6 +22,7 @@ class Product
   scope :done, -> { where(status: 2) }
   scope :not_done, -> { where(:status.lt => 2) }
 
+
   before_create :init_last_active_mark_on_create
   def init_last_active_mark_on_create
     self.last_active_mark = Time.now.to_i

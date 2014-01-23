@@ -1,9 +1,8 @@
+<%= link_to t('products.back'), draft_category_products_path(@category) -%>
+
 <h3><%= "#{@category.name}> #{t('products.show')}" %><small><%= raw render_product_status_tag(@product) %></small></h3>
 <div class="row">
-  <div class="col-md-1">
-    <%= link_to t('products.back'), draft_category_products_path(@category) -%>
-  </div>
-  <div class="col-md-3">
+  <div class="col-xs-3">
     <%= raw render_product_status_tag(@product) %>
     <%- if @product.status == 0 -%>
       <%= link_to t('ready'), doing_category_product_path(@category, @product), remote: true, id: "ready" %>
@@ -11,20 +10,38 @@
       <%= link_to t('agree'), agree_category_product_path(@category, @product), remote: true, id: "agree" %>
     <%- end -%>
   </div>
-  <div class="col-md-3">
+
+  <div class="col-xs-5">
     <strong><%= t('products.user_name') %></strong>
     <%= @product.user.blank? ? "user" : @product.user.name %>
     <strong><%= t('last_editor') %></strong>
     <%= @product.last_edit_user.blank? ? "" : @product.last_edit_user.name %>
   </div>
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-3">
-    <%= link_to t('edit'), edit_category_product_path(@category, @product) -%>|
-    <%= link_to t('categories.back'), category_path(@category) -%>
-  </div>
 </div>
-</p>
+
+<div class="col-xs-12">
+  <ul class="pager">
+    <%- if @pre_product -%>
+      <li class="previous">
+      <%= link_to t('products.pre'), category_product_path(@category, @pre_product) %>
+      </li>
+    <%- else -%>
+      <li class="previous disabled">
+      <%= link_to t('no_pre_item'), "#"  %>
+      </li>
+    <%- end -%>
+
+    <%- if @next_product -%>
+      <li class="next"><%= link_to t('products.next'), category_product_path(@category, @next_product) %></li>
+    <%- else -%>
+      <li class="next disabled">
+      <%= link_to t('no_next_item'), "#" %>
+      </li>
+    <%- end -%>
+  </ul>
+
+</div>
+
 <dl class="dl-horizontal">
   <% @product.parameters.each do |para| %>
     <dt><%= para.name.to_s %></dt>
