@@ -9,14 +9,13 @@
 <%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>|
 <%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>
 </p>
+ <%= paginate @products %>
 <div style="overflow: auto; width: 100%">
-
   <% if @products.blank? %>
     <p class="alert alert-success">Nothing to do</p>
   <%- else -%>
-    <%= paginate @products %>
     <table class="table table-hover table-bordered">
-      <%- if @category.properties.length > 15 -%>
+      <%- if @category.properties.length > 30 -%>
         <thead>
           <tr>
             <td></td>

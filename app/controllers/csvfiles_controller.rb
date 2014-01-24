@@ -20,7 +20,7 @@ class CsvfilesController < ApplicationController
   end
 
   def show
-    @temproducts = @csvfile.temproducts.limit(10)
+    @temproducts = @csvfile.temproducts.asc(:position).limit(10)
     @page_title = @csvfile.name
   end
 
@@ -51,6 +51,7 @@ class CsvfilesController < ApplicationController
         product.parameters << parameter
       end
       product.csvfile = @csvfile
+      product.position = i
       product.save
     end
     params[:csvfile][:name] = file_name

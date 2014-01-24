@@ -105,6 +105,7 @@ class PairsController < ApplicationController
       if pars.length > 0
         product.parameters = pars
         product.pair = @pair 
+        product.position = tp.position
         product.user = current_user
         product.save
       end

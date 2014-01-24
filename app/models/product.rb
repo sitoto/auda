@@ -6,6 +6,7 @@ class Product
   field :user_name, type: String
   field :ip, type: String
   field :last_active_mark, :type => Integer
+  field :position, type: Integer, default: 0
 
   belongs_to :category
   embeds_many :parameters
@@ -16,11 +17,12 @@ class Product
   belongs_to :last_agree_user, :class_name => 'User'
 
   index :status => 1
+  index :position => 1
 
-  scope :draft, -> { where(status: 0) }
-  scope :ready, -> { where(status: 1) }
-  scope :done, -> { where(status: 2) }
-  scope :not_done, -> { where(:status.lt => 2) }
+  scope :draft, -> { where(status: 0).asc(:pair_id).asc(:position) }
+  scope :ready, -> { where(status: 1).asc(:pair_id).asc(:position)}
+  scope :done, -> { where(status: 2).asc(:pair_id).asc(:position) }
+  scope :not_done, -> { where(:status.lt => 2).asc(:pair_id).asc(:position) }
 
 
   before_create :init_last_active_mark_on_create

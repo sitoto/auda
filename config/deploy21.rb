@@ -12,15 +12,15 @@ set :application, "auda"
 set :repository,  "git://github.com/sitoto/auda.git"
 set :branch, "master"
 set :scm, :git
-set :user, "sitoto"
-set :deploy_to, "/jiapei/www/#{application}"
-set :runner, "sitoto"
+set :user, "ruby"
+set :deploy_to, "/data/www/#{application}"
+set :runner, "ruby"
 # set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 
-role :web, "192.168.2.9"   # Your HTTP server, Apache/etc
-role :app, "192.168.2.9"   # This may be the same as your `Web` server
-role :db,  "192.168.2.9", :primary => true # This is where Rails migrations will run
+role :web, "192.168.2.21"                          # Your HTTP server, Apache/etc
+role :app, "192.168.2.21"                          # This may be the same as your `Web` server
+role :db,  "192.168.2.21", :primary => true # This is where Rails migrations will run
 
 # unicorn.rb 路径
 set :unicorn_path, "#{deploy_to}/current/config/unicorn.rb"
