@@ -15,9 +15,8 @@
     <p class="alert alert-success">Nothing to do</p>
   <%- else -%>
     <%= paginate @products %>
-    <%- if @category.properties.length > 25 -%>
-
-      <table class="table-bordered">
+    <table class="table table-hover table-bordered">
+      <%- if @category.properties.length > 15 -%>
         <thead>
           <tr>
             <td></td>
@@ -35,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <%- @category.properties.each do |item| -%>
+          <%- @category.properties.asc(:position).each do |item| -%>
             <tr>
               <th><%= item.name -%></th>
               <%- @products.each do |product| -%>
@@ -44,13 +43,12 @@
             </tr>
           <%- end -%>
         </tbody>
-      </table>
-    <% else %>
-      <table class="table-bordered">
+
+      <% else %>
         <thead>
           <tr>
             <td></td>
-            <%- @category.properties.each do |item| -%>
+            <%- @category.properties.asc(:position).each do |item| -%>
               <th><%= item.name -%></th>
             <%- end -%>
           </tr>
@@ -59,17 +57,15 @@
           <%- @products.each do |product| -%>
             <tr>
               <td><%= render 'product_edit_nav', product: product %> </td>
-              <%- @category.properties.each do |item| -%>
+              <%- @category.properties.asc(:position).each do |item| -%>
                 <td><%= render_product_parameter_value_tag(product, item.id) -%> </td> 
               <%- end -%>
             </tr>
           </tbody>
         <%- end -%>
-
-      </table>
-
-    <%-end -%>
-<%- end -%>
+      <%-end -%>
+    </table>
+  <%- end -%>
 </div>
 
 <%= paginate @products %>
