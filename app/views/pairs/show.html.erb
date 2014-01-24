@@ -31,9 +31,9 @@
 </p>
 
 <% unless @products.blank?  %>
-  <%- if can? :agree, @pair && current_user.data_manager? -%>
+  <%- if can? :agree, @pair -%>
     <p><%= link_to t('pairs.agree'), agree_pair_path(@pair), method: :agree, data: {confirm: t('pairs.agree_confirm')} %></p>
-  <%- elsif can? :doing, @pair && current_user.data_editor?  -%>
+  <%- elsif can? :doing, @pair -%>
     <p><%= link_to t('pairs.doing'), doing_pair_path(@pair) , method: :doing, data: {confirm: t('pairs.ready_confirm')}%></p>
   <%- end -%>
   <div style="overflow: auto; width: 100%">
