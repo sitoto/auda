@@ -12,7 +12,7 @@
 /* Essentials - configure this */
 
 .droppy ul { width: 130px; }
-.droppy ul ul { left: 131px; }
+.droppy ul ul { left: 130px; }
 
 /* Everything else is theming */
  
@@ -20,7 +20,7 @@
 .droppy *:hover { background-color: none; }
 .droppy a { border-right: 1px solid white; color: white; font-size: 12px; padding: 6px; line-height: 1; }
   .droppy li.hover a { background-color: #999; }
-  .droppy ul { top: 31px; }
+  .droppy ul { top: 30px; }
     .droppy ul li a { background-color: #999; }
       .droppy ul a.has-subnav { background-color: #00c; }
 			.droppy ul a.hover { background-color: #33a; }
