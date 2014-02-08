@@ -1,20 +1,20 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- */
-/*
  *= require_self
+ *= require droppy 
  */
 $link-color: blue;
 
 @import "twitter/bootstrap";
+
+.navbar {
+  min-height: 30px;
+}
+.navbar-brand,
+.navbar-nav li a {
+  line-height: 30px;
+  height: 30px;
+  padding-top: 0;
+}
 
 .navbar-fixed-top {
   position:static;right:0;left:0;margin-bottom:20px;
@@ -81,6 +81,6 @@ table th, td{ word-break: keep-all;white-space:nowrap;}
   border-top: 1px solid rgb(229, 229, 229);
 }
 .bs-footer p{
-margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 

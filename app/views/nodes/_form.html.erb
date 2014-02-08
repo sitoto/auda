@@ -15,7 +15,7 @@
     <div class="form-group"> 
       <%= f.label  :parent_node_id , class: 'col-sm-2 control-label'  -%>
       <div class="col-sm-5">
-        <%= f.select :parent_node_id, root_tree, {:include_blank => t('nodes.select')}, :style => "width:145px", class: 'form-control' %>
+        <%= f.select :parent_node_id, node_tree, {:include_blank => t('nodes.select')}, :style => "width:145px", class: 'form-control' %>
       </div>
     </div>
 

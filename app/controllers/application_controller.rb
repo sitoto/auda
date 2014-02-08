@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   #    method = "#{resource}_params"
   #    params[resource] &&= send(method) if respond_to?(method, true)
   #  end
+  #
+
 
   def remote_ip
     if request.remote_ip == '127.0.0.1'
@@ -21,6 +23,9 @@ class ApplicationController < ActionController::Base
       request.remote_ip
     end
   end  
+
+
+
   private
 
   def current_user

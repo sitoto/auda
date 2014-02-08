@@ -4,7 +4,7 @@ zh-CN:
     node: "分类"
     property: "标准属性"
     select: "选择类目"
-    name: "名称"
+    name: "类目名称"
     note: "说明"
     alias: "别名"
     new:  "新建类目"

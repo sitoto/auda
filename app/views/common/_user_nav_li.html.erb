@@ -16,10 +16,10 @@
   <ul class="dropdown-menu">
     <li><%= link_to t('resources.list') , resources_path  %></li>
     <li><%= link_to t('resources.new') , new_resource_path  %></li>
-
   </ul>
   </li>
 </ul>
+
 <ul class="nav navbar-nav navbar-right">
   <li id="fat-menu" class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('option') %><b class="caret"></b></a>
@@ -31,11 +31,9 @@
       <%- end -%>
     <%- end -%> 
     <li role="presentation" class="divider"></li>
-
     <li role="presentation"><%= link_to t('nodes.list'), nodes_path  %></li>
     <li role="presentation"><%= link_to t('categories.list'), categories_path  %></li>
     <li role="presentation"><%= link_to t('pairs.list'), pairs_path   %></li>
-
   </ul>
   </li>
 </ul>

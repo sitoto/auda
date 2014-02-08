@@ -40,6 +40,22 @@ class Node
       end
     end
   end
+
+  def generate_tree(tree)
+    tree << "<li><a href='/categories/node/#{self.id}'>#{self.name}</a>"
+
+    if self.child_nodes?
+      tree << "<ul>"
+      self.child_nodes.each do |chi|
+        chi.generate_tree(tree)
+      end
+      tree << "</ul>"
+    end
+
+    tree << "</li>"
+  end
+
+
   def self.roots
     Node.where(parent_node: nil).asc(:position)
   end

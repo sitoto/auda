@@ -1,0 +1,23 @@
+<ul id='nav' class="nav navbar-nav" >
+  <%= raw multilevel_menu %>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+  <li id="fat-menu" class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('option') %><b class="caret"></b></a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+    <%- if current_user -%>
+      <li><%= link_to current_user.name + '(' + current_user.role + ')', root_url %></li>
+      <%- if current_user.admin? -%>
+        <li><%= link_to t('cpanel'), cpanel_users_path %></li>
+      <%- end -%>
+    <%- end -%> 
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><%= link_to t('nodes.list'), nodes_path  %></li>
+    <li role="presentation"><%= link_to t('categories.list'), categories_path  %></li>
+    <li role="presentation"><%= link_to t('pairs.list'), pairs_path   %></li>
+  </ul>
+  </li>
+</ul>
+
+

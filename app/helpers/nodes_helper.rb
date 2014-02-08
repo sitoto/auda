@@ -23,7 +23,17 @@ module NodesHelper
   end
  
   def render_parent_node_collection_tag
-    collection_select :node, :parent_node_id, Node.where(parent_node: nil), :id, :name, {:prompt => t('nodes.select')}, :style => "width:145px;"
+    collection_select :node, :parent_node_id, Node.(parent_node: nil), :id, :name, {:prompt => t('nodes.select')}, :style => "width:145px;"
  
   end
+
+
+  def multilevel_menu
+    menu_str = [] 
+    Node.roots.each do |node|
+      node.generate_tree(menu_str)
+    end
+    return menu_str.join()
+  end
+
 end

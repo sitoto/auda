@@ -18,3 +18,9 @@
 $(document).ready(function () {
   $("abbr.timeago").timeago();
 })
+
+
+/* multilevel menu  */
+$(function() {
+  $('#nav').droppy({speed:100});
+});
