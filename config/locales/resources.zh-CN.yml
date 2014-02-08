@@ -3,6 +3,7 @@ zh-CN:
     list: "全部图片"
     node: "分类"
     name: "文件名称"
+    size: "图片大小"
     note: "说明"
     new:  "上传图片"
     edit: "编辑图片"

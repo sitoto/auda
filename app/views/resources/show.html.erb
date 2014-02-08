@@ -1,22 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+<strong><%= t('resources.name') %></strong>
   <%= @resource.name %>
 </p>
 <p>
-<strong>photo</strong>
-
 <%= image_tag @resource.photo.url, :id => 'cropimage' %>
 </p>
-
+<hr />
 <p>
-  <strong>Size:</strong>
-  <%= @resource.size %>
-</p>
-
-<p>
-  <strong>Note:</strong>
+ <strong><%= t('resources.note') %></strong>
   <%= @resource.note %>
 </p>
 
