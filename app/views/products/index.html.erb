@@ -14,7 +14,8 @@
   <% if @products.blank? %>
     <p class="alert alert-success">Nothing to do</p>
   <%- else -%>
-    <table class="table table-hover table-bordered">
+     
+    <table class="table table-hover table-bordered table-condensed">
       <%- if @category.properties.length > 30 -%>
         <thead>
           <tr>
