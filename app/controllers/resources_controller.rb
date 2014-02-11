@@ -25,6 +25,14 @@ class ResourcesController < ApplicationController
   # POST /resources
   # POST /resources.json
   def create
+    if params[:resource][:photo].blank?
+      flash[:danger] = t('resources.select_upload')
+      redirect_to new_resource_path(@resource)  
+      return
+    end
+    begin
+
+
     @resource = Resource.new(resource_params)
     @resource.name =  params[:resource][:photo].original_filename
 
@@ -37,6 +45,11 @@ class ResourcesController < ApplicationController
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
     end
+  rescue StandardError  
+    flash[:danger] = t('resources.error_upload') + "Error: " + $!.to_s
+    redirect_to new_resource_path(@resource)  
+  end
+
   end
 
   # PATCH/PUT /resources/1
@@ -64,13 +77,13 @@ class ResourcesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_resource
-      @resource = Resource.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_resource
+    @resource = Resource.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def resource_params
-      params.require(:resource).permit(:name, :photo, :size, :note)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def resource_params
+    params.require(:resource).permit(:name, :photo, :size, :note)
+  end
 end

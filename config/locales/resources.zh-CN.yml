@@ -12,3 +12,5 @@ zh-CN:
     created: "图片已经成功上传."
     updated: "图片已经被更新."
     delete: "确定删除图片: '%{name}' 吗?"
+    error_upload: "上传图片错误,"
+    select_upload: "请选择需要上传的图片"

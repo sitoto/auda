@@ -5,4 +5,7 @@ class Resource
   field :note, type: String
 
   mount_uploader :photo, PhotoUploader
+
+  validates_presence_of :photo #name
+
 end
