@@ -26,6 +26,7 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
+    @resource.name =  params[:resource][:photo].original_filename
 
     respond_to do |format|
       if @resource.save
@@ -70,6 +71,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :photo, :note)
+      params.require(:resource).permit(:name, :photo, :size, :note)
     end
 end

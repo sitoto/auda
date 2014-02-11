@@ -17,7 +17,8 @@
       <tr>
         <td><%= image_tag resource.photo.url(:thumb) %></td>
         <td><%= resource.name %></td>
-        <td><%= resource.size %></td>
+        <td><%= resource.photo.blank? ? "" : resource.photo.size  %></td>
+
         <td><%= resource.note %></td>
         <td><%= link_to t('show'), resource %></td>
         <td><%= link_to t('resources.destroy'), resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
