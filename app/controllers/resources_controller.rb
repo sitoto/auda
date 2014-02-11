@@ -30,25 +30,24 @@ class ResourcesController < ApplicationController
       redirect_to new_resource_path(@resource)  
       return
     end
+
     begin
+      @resource = Resource.new(resource_params)
+      @resource.name =  params[:resource][:photo].original_filename
 
-
-    @resource = Resource.new(resource_params)
-    @resource.name =  params[:resource][:photo].original_filename
-
-    respond_to do |format|
-      if @resource.save
-        format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @resource }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @resource.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @resource.save
+          format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @resource }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @resource.errors, status: :unprocessable_entity }
+        end
       end
+    rescue StandardError  
+      flash[:danger] = t('resources.error_upload') + "Error: " + $!.to_s
+      redirect_to new_resource_path(@resource)  
     end
-  rescue StandardError  
-    flash[:danger] = t('resources.error_upload') + "Error: " + $!.to_s
-    redirect_to new_resource_path(@resource)  
-  end
 
   end
 
@@ -84,6 +83,6 @@ class ResourcesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:resource).permit(:name, :photo, :size, :note)
+    params.require(:resource).permit(:photo, :note)
   end
 end

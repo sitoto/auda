@@ -1,1 +1,1 @@
-json.extract! @resource, :name, :size, :note, :created_at, :updated_at
+json.extract! @resource, :name, :note, :created_at, :updated_at
