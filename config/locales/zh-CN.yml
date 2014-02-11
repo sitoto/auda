@@ -38,6 +38,7 @@ zh-CN:
   pipei_blank: "必填属性 未选择匹配项，提交失败！"
   no_next_item: "这是最后一条"
   no_pre_item: "这是第一条"
+  delete?: "确定删除？"
 
   manages:
     export: "数据导出"

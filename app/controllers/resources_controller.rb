@@ -5,12 +5,15 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all
+    @resources = Resource.all.asc(:id).page params[:page]
+    @page_title = t('resources.list')
+
   end
 
   # GET /resources/1
   # GET /resources/1.json
   def show
+    @page_title = @resource.name
   end
 
   # GET /resources/new
@@ -37,11 +40,9 @@ class ResourcesController < ApplicationController
 
       respond_to do |format|
         if @resource.save
-          format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @resource }
+          format.html { redirect_to @resource, notice: t('created') }
         else
-          format.html { render action: 'new' }
-          format.json { render json: @resource.errors, status: :unprocessable_entity }
+          format.html { render action: t('new') }
         end
       end
     rescue StandardError  

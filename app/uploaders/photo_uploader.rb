@@ -7,9 +7,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
-  # storage :grid_fs
+  storage :grid_fs
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -31,10 +31,14 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-  process :resize_to_fit => [800, 800]       #图片大小不超过800*800
+  # process :resize_to_fit => [800, 800]       #图片大小不超过800*800
+  
+  version :middle do                                 #版本名为middle
+    process :resize_to_fill => [800,800]      #
+  end
 
   version :thumb do                                 #版本名为thumb
-    process :resize_to_fill => [50,50]      #想图片处理成50*50大小
+    process :resize_to_fill => [50,50]      #图片处理成50*50大小
   end
   # Create different versions of your uploaded files:
   # version :thumb do

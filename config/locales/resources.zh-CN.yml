@@ -1,5 +1,6 @@
 zh-CN:
   resources:
+    image: "图片"
     list: "全部图片"
     node: "分类"
     name: "文件名称"

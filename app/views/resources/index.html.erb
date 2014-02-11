@@ -3,7 +3,7 @@
 <table class="table table-hover table-bordered table-condensed">
   <thead>
     <tr>
-      <th>Image</th>
+      <th><%= t('resources.image') %></th>
       <th><%= t('resources.name') %></th>
       <th><%= t('resources.size') %></th>
       <th><%= t('resources.note') %></th>
@@ -18,14 +18,14 @@
         <td><%= image_tag resource.photo.url(:thumb) %></td>
         <td><%= resource.name %></td>
         <td><%= resource.photo.blank? ? "" : resource.photo.size  %></td>
-
         <td><%= resource.note %></td>
         <td><%= link_to t('show'), resource %></td>
-        <td><%= link_to t('resources.destroy'), resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('resources.destroy'), resource, method: :delete, data: { confirm: t('delete?') } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @resources %>
 
 <br>
 
