@@ -9,8 +9,12 @@
   <%= link_to t('products.done'), done_category_products_path(@category) %>|
 <%- end -%>
 <%= link_to t('csvfiles.new'), new_category_csvfile_path(@category) %>|
-<%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>
+<%= link_to t('csvfiles.list'), category_csvfiles_path(@category) %>|
+<%= link_to t('resources.list'), category_resources_path(@category) %>
+
 </p>
+
+
 <p>
 <strong><%= t('categories.node') %></strong>
 <%= @category.node.blank? ? "" : @category.node.name %>

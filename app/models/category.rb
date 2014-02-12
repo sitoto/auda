@@ -15,7 +15,9 @@ class Category
   has_many :properties
   has_many :products
   has_many :csvfiles
-  has_many :pairs
+  has_many :pairs # 多次导入记录
+  has_many :resources # 有多张图片 区别于 prodcut
+
 
   belongs_to :node
   belongs_to :user

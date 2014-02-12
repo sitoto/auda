@@ -18,6 +18,8 @@ Autodata::Application.routes.draw do
   get 'categories/node/:node_id' => 'categories#node', as: :nodecategory
 
   resources :categories do
+
+    resources :resources
     resources :properties
     resources :products do
       get :doing, :on => :member
@@ -26,6 +28,8 @@ Autodata::Application.routes.draw do
       get :draft, :on => :collection
       get :ready, :on => :collection
       get :done, :on => :collection
+
+      resources :resources
     end
     resources :csvfiles do
       resources :pairs

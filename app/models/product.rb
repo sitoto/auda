@@ -13,6 +13,8 @@ class Product
   belongs_to :pair
   belongs_to :user
 
+  has_and_belongs_to_many :resources # 所属类目下的图片挑选来关联
+
   belongs_to :last_edit_user, :class_name => 'User'
   belongs_to :last_agree_user, :class_name => 'User'
 
