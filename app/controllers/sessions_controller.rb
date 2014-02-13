@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
   def create
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
-    Event.create!(name: t("users.signedin"), username: user.name, status: '1', note: remote_ip, user: user)
+    Event.create!(name: t("users.signedin"), username: user.name, status: '1', note: "#{user.email}/#{remote_ip}" , user: user)
     redirect_to root_path, notice: t("users.signedin")
   end
 
   def destroy
-    Event.create!(name: t("users.signedout"), username: current_user.name, status: '1', note: remote_ip, user: current_user)
+    Event.create!(name: t("users.signedout"), username: current_user.name, status: '1', note: current_user.email, user: current_user)
     session[:user_id] = nil
     redirect_to root_path, notice: t("users.signedout")
   end

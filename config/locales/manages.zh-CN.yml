@@ -1,0 +1,6 @@
+zh-CN:
+  manages:
+    name: "事件"
+    username: "用户"
+    note: "说明"
+    created_at: "发生时间"
