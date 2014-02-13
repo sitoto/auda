@@ -47,6 +47,7 @@ Autodata::Application.routes.draw do
   end
 
   root "sessions#new"
+  get "/sessions/new", to: "sessions#new"
   post "/auth/:provider/callback", to: "sessions#create"
   get "/auth/:provider/failure", to: "sessions#failure"
   get "/logout", to: "sessions#destroy", :as => "logout"
