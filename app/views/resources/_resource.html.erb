@@ -4,7 +4,7 @@
     <%= link_to t('show'), category_resource_path(@category, resource) %>
   <% else %>
     <%= link_to image_tag(resource.photo.url(:thumb)), resource , class: 'thumbnail', title: resource.name %>
-    <%= resource.category.blank? ? t("error_no_category") : resource.category.name %>
+    <%= resource.category.blank? ? t("resources.error_no_category") : resource.category.name %>
     <%= link_to t('show'), resource %>
 
   <% end %>
