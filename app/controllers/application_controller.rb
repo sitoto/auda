@@ -8,10 +8,11 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to main_app.root_url, :notice => t('cancanerror') #exception.message
   end
+
   def use_special_port
     class << request
       def port 
-        if remote_ip.eq?('server')
+        if remote_ip.eql?('server')
           80
         else
           8181 
