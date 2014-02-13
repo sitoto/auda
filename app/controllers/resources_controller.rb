@@ -50,7 +50,7 @@ class ResourcesController < ApplicationController
 
     if params[:resource][:photo].blank?
       flash[:danger] = t('resources.select_upload')
-      redirect_to new_category_resource_path(@resource)  
+      redirect_to new_category_resource_path(@category, @resource)  
       return
     end
 
