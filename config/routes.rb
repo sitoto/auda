@@ -4,7 +4,9 @@ Autodata::Application.routes.draw do
     resources :permissions
   end
 
-  resources :resources
+  resources :resources do
+    get 'all', :on => :collection
+  end
   if Rails.env.development?
     get  "/images/uploads/*path" => "gridfs#serve"
   end

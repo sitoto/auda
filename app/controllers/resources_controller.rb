@@ -5,20 +5,38 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
+    para_category_id = params[:category_id]
+    @category =  Category.find(para_category_id)
+    @resources = @category.resources.asc(:id).page params[:page]
+
+    @page_title = "#{@category.name}: #{t('resources.list')}"
+  end
+
+  def all 
     @resources = Resource.all.asc(:id).page params[:page]
     @page_title = t('resources.list')
-
   end
 
-  # GET /resources/1
-  # GET /resources/1.json
+
   def show
+    para_category_id = params[:category_id]
     @page_title = @resource.name
+    if para_category_id
+      @category = Category.find(para_category_id)
+    end
+
+
   end
 
-  # GET /resources/new
   def new
+    para_category_id = params[:category_id]
     @resource = Resource.new
+
+    if para_category_id
+      @category = Category.find(para_category_id)
+      @page_title = "#{ t('categories.name')}: #{@category.name} - #{ t('resources.new')}" 
+    end
+
   end
 
   # GET /resources/1/edit
@@ -28,19 +46,22 @@ class ResourcesController < ApplicationController
   # POST /resources
   # POST /resources.json
   def create
+    @category = Category.find(params[:category_id])
+
     if params[:resource][:photo].blank?
       flash[:danger] = t('resources.select_upload')
-      redirect_to new_resource_path(@resource)  
+      redirect_to new_category_resource_path(@resource)  
       return
     end
 
     begin
       @resource = Resource.new(resource_params)
+      @resource.category = @category
       @resource.name =  params[:resource][:photo].original_filename
 
       respond_to do |format|
         if @resource.save
-          format.html { redirect_to @resource, notice: t('created') }
+          format.html { redirect_to [@category, @resource], notice: t('created') }
         else
           format.html { render action: t('new') }
         end
@@ -52,8 +73,6 @@ class ResourcesController < ApplicationController
 
   end
 
-  # PATCH/PUT /resources/1
-  # PATCH/PUT /resources/1.json
   def update
     respond_to do |format|
       if @resource.update(resource_params)
@@ -70,9 +89,13 @@ class ResourcesController < ApplicationController
   # DELETE /resources/1.json
   def destroy
     @resource.destroy
-    respond_to do |format|
-      format.html { redirect_to resources_url }
-      format.json { head :no_content }
+
+    para_category_id = params[:category_id]
+    if para_category_id
+      @category = Category.find(para_category_id)
+      redirect_to category_resources_url(@category)
+    else
+      redirect_to all_resources_url
     end
   end
 

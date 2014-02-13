@@ -12,5 +12,8 @@
  <strong><%= t('resources.note') %></strong>
   <%= @resource.note %>
 </p>
-
-<%= link_to t('back'), resources_path %>
+<% if @category.blank? %>
+<%= link_to t('back'), all_resources_path %>
+<% else %>
+<%= link_to t('back'), category_resources_path(@category) %>
+<% end %>

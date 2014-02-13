@@ -1,5 +1,5 @@
-<h1><%= t('resources.new') %></h1>
+<h3><%= @page_title %></h3>
 
 <%= render 'form' %>
 
-<%= link_to t('back'), resources_path %>
+<%= link_to t('back'), category_resources_path(@category) %>
