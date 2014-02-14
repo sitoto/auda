@@ -1,7 +1,7 @@
 zh-CN:
   resources:
     image: "图片"
-    list: "全部图片"
+    list: "图片库"
     node: "分类"
     name: "文件名称"
     size: "图片大小"

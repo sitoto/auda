@@ -60,7 +60,7 @@ class ResourcesController < ApplicationController
       @resource.name =  params[:qqfile].to_s.strip
       respond_to do |format|
         if @resource.save
-          render json: { success: true, src: @resource.to_json }
+          render json: { "success" =>  "true" }
         else
           render json: @resource.errors.to_json 
         end
