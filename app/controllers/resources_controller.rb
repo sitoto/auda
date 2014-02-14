@@ -2,30 +2,28 @@ class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create]
 
-  # GET /resources
-  # GET /resources.json
   def index
     para_category_id = params[:category_id]
     @category =  Category.find(para_category_id)
     @resources = @category.resources.asc(:id).page params[:page]
 
     @page_title = "#{@category.name}: #{t('resources.list')}"
+    respond_to do |format|
+      format.html # index.html.erb    
+      format.js{ render :layout => false}
+    end
   end
 
   def all 
     @resources = Resource.all.asc(:id).page params[:page]
     @page_title = t('resources.list')
   end
-
-
   def show
     para_category_id = params[:category_id]
     @page_title = @resource.name
     if para_category_id
       @category = Category.find(para_category_id)
     end
-
-
   end
 
   def new
@@ -48,27 +46,28 @@ class ResourcesController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
 
-    if params[:resource][:photo].blank?
-      flash[:danger] = t('resources.select_upload')
-      redirect_to new_category_resource_path(@category, @resource)  
-      return
-    end
+    #    if params[:resource][:photo].blank?
+    #      flash[:danger] = t('resources.select_upload')
+    #      redirect_to new_category_resource_path(@category, @resource)  
+    #      return
+    #    end
 
     begin
-      @resource = Resource.new(resource_params)
+      file = params[:qqfile].is_a?(ActionDispatch::Http::UploadedFile) ? params[:qqfile] : params[:file]
+      @resource  = Resource.new
+      @resource.photo = file
       @resource.category = @category
-      @resource.name =  params[:resource][:photo].original_filename
-
+      @resource.name =  params[:qqfile].to_s.strip
       respond_to do |format|
         if @resource.save
-          format.html { redirect_to [@category, @resource], notice: t('created') }
+          render json: { success: true, src: @resource.to_json }
         else
-          format.html { render action: t('new') }
+          render json: @resource.errors.to_json 
         end
       end
     rescue StandardError  
       flash[:danger] = t('resources.error_upload') + "Error: " + $!.to_s
-      redirect_to new_resource_path(@resource)  
+      redirect_to category_resources_path(@category)
     end
 
   end
@@ -107,6 +106,6 @@ class ResourcesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:resource).permit(:photo, :note)
+    params.require(:resource).permit(:photo, :note, :qqfile)
   end
 end

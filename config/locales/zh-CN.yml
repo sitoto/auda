@@ -39,6 +39,7 @@ zh-CN:
   no_next_item: "这是最后一条"
   no_pre_item: "这是第一条"
   delete?: "确定删除？"
+  no_javascript_warning: "请启用javascript！"
 
   manages:
     export: "数据导出"

@@ -1,10 +1,49 @@
 <h3><%= @page_title %></h3>
-<div class="row">
-  <%= render @resources %>
+<div id="file-uploader">
+  <noscript>
+    <p><%= t('no_javascript_warning') %></p>
+    <!-- or put a simple form for upload here -->
+    <%= form_for([@category, Resource.new], :html => { :multipart => true }) do |f| %>
+      <div class="field">
+        <%= f.label :photo %><br>
+        <%= f.file_field :photo %>
+      </div>
+      <div class="field">
+        <%= f.label :note %><br>
+        <%= f.text_field :note %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </noscript>
 </div>
 
-<%= paginate @resources %>
+<script type="text/javascript">
+$(function(){
+  var uploader = new qq.FileUploader({
+    debug: false,
+    allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+    sizeLimit: 1048576, // max size: 1MB
+    minSizeLimit: 0, // min size
+    multiple: true,
+    element: document.getElementById('file-uploader'),
+    action: '<%= category_resources_path(@category) %>',
+    onComplete: function(id, fileName, responseJSON){
+       $.getScript("<%= category_resources_path(@category) %>");
+    },
+    onSubmit: function(id, fileName) {
+      uploader.setParams({
+        xx: "1",
+        yy: '2',
+        zz: '3',
+        authenticity_token: "<%= form_authenticity_token.to_s %>"
+      });
+    }
+  });
+});
+</script>
 
-<br>
-
-<%= link_to t('resources.new'), new_category_resource_path %>
+<div id ="resources_list">
+  <%= render @resources %>
+</div>

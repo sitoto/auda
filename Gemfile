@@ -7,10 +7,11 @@ gem 'mongo'
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
-gem 'carrierwave'
+gem 'carrierwave' , '0.9.0'
 gem "carrierwave-mongoid", git: "git://github.com/carrierwaveuploader/carrierwave-mongoid.git"
 gem "mongoid-grid_fs", github: "ahoward/mongoid-grid_fs", branch: "master"
-gem "mini_magick"
+gem "mini_magick", '3.7.0'
+gem 'rack-raw-upload', ' 1.1.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'
@@ -24,18 +25,15 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-gem 'omniauth-identity'
-gem 'cancan'
-gem 'simple_form'
-gem 'roo'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'omniauth-identity', '1.1.1'
+gem 'cancan', '1.6.10'
+gem 'simple_form','3.0.0.rc'
+gem 'roo', '1.13.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-gem 'kaminari'
+gem 'kaminari', '0.14.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

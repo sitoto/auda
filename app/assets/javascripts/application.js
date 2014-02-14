@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/bootstrap
-//= require_tree .
+//= require jquery.droppy
+//= require jquery.timeago
+//= require jquery.timeago.settings
+//= require fileuploader
 $(document).ready(function () {
   $("abbr.timeago").timeago();
 })

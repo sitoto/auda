@@ -32,13 +32,13 @@ class PhotoUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
   # process :resize_to_fit => [800, 800]       #图片大小不超过800*800
-  
+
   version :middle do                                 #版本名为middle
     process :resize_to_fill => [800,800]      #
   end
 
   version :thumb do                                 #版本名为thumb
-    process :resize_to_fill => [50,50]      #图片处理成50*50大小
+    process :resize_to_fill => [100,100]      #图片处理成100*100大小
   end
   # Create different versions of your uploaded files:
   # version :thumb do
@@ -56,5 +56,13 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  def filename
+    if super.present?
+      # current_path 是 Carrierwave 上传过程临时创建的一个文件，有时间标记，所以它将是唯一的
+      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+      "#{@name}.#{file.extension.downcase}"
+    end
+  end
+
 
 end
