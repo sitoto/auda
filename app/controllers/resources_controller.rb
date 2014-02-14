@@ -58,12 +58,10 @@ class ResourcesController < ApplicationController
       @resource.photo = file
       @resource.category = @category
       @resource.name =  params[:qqfile].to_s.strip
-      respond_to do |format|
-        if @resource.save
-          render json: { "success" =>  "true" }
-        else
-          render json: @resource.errors.to_json 
-        end
+      if @resource.save
+        render json: { "success" =>  "true" }
+      else
+        render json: @resource.errors.to_json 
       end
     rescue StandardError  
       flash[:danger] = t('resources.error_upload') + "Error: " + $!.to_s
