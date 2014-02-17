@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    Event.create!(name: t("users.signedout"), username: current_user.name, status: '1', note: current_user.email, user: current_user)
+    Event.create!(name: t("users.signedout"), username: session[:user_id] , status: '1', note: '' )
     session[:user_id] = nil
     redirect_to sessions_new_path, notice: t("users.signedout")
   end
