@@ -17,6 +17,7 @@ class User
   has_many :products
   has_many :properties
   has_many :events
+  has_many :resources
 
   has_and_belongs_to_many :permissions
 

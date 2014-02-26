@@ -1,19 +1,57 @@
 <p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @resource.name %> <small><%= @category.blank? ? @resource.username : @category.name %></small></h1>
+</div>
 
-<p>
-<strong><%= t('resources.name') %></strong>
-  <%= @resource.name %>
-</p>
-<p>
-<%= image_tag @resource.photo.url, :id => 'cropimage' %>
-</p>
-<hr />
-<p>
- <strong><%= t('resources.note') %></strong>
-  <%= @resource.note %>
-</p>
-<% if @category.blank? %>
-<%= link_to t('back'), all_resources_path %>
-<% else %>
-<%= link_to t('back'), category_resources_path(@category) %>
-<% end %>
+<dl class="dl-horizontal">
+  <dt><%= t('resources.created_at') %></dt>
+  <dd><%= @resource.created_at %></dd>
+  <dt><%= t('resources.note') %>  </dt>
+  <dd><%= @resource.note %></dd>
+  <dt></dt>
+  <dd>
+  <% if @category.blank? %>
+    <%= link_to t('back'), all_resources_path %>
+  <% else %>
+    <%= link_to t('back'), category_resources_path(@category) %>
+  <% end %>
+  </dd>
+</dl>
+
+<div class="col-xs-12">
+  <ul class="pager">
+    <%- if @pre_resource -%>
+      <li class="previous">
+      <% if @category %>
+        <%= link_to t('resources.pre'), category_resource_path(@category, @pre_resource) %>
+      <% else %>
+        <%= link_to t('resources.pre'), resource_path(@pre_resource) %>
+      <% end %>
+      </li>
+    <%- else -%>
+      <li class="previous disabled">
+      <%= link_to t('no_pre_item'), "#"  %>
+      </li>
+    <%- end -%>
+
+    <%- if @next_resource -%>
+      <li class="next">
+      <% if @category %>
+        <%= link_to t('resources.next'), category_resource_path(@category, @next_resource) %></li>
+      <% else %>
+        <%= link_to t('resources.next'), resource_path(@next_resource) %>
+      <% end %>
+
+    <%- else -%>
+      <li class="next disabled">
+      <%= link_to t('no_next_item'), "#" %>
+      </li>
+    <%- end -%>
+  </ul>
+
+</div>
+<div>
+  <%= image_tag @resource.photo.url, :id => 'cropimage',  class: "center-block" %>
+</div>
+
+

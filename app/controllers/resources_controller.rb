@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   def index
     para_category_id = params[:category_id]
     @category =  Category.find(para_category_id)
-    @resources = @category.resources.asc(:id).page params[:page]
+    @resources = @category.resources.desc(:id).page params[:page]
 
     @page_title = "#{@category.name}: #{t('resources.list')}"
     respond_to do |format|
@@ -15,14 +15,20 @@ class ResourcesController < ApplicationController
   end
 
   def all 
-    @resources = Resource.all.asc(:id).page params[:page]
+    @resources = Resource.all.desc(:id).page params[:page]
     @page_title = t('resources.list')
   end
   def show
     para_category_id = params[:category_id]
+    @next_resource = Resource.where(:_id.lt => params[:id]).asc(:_id).last
+    @pre_resource = Resource.where(:_id.gt => params[:id]).asc(:_id).first
+
     @page_title = @resource.name
     if para_category_id
       @category = Category.find(para_category_id)
+      @next_resource = @category.resources.where(:_id.lt => params[:id]).asc(:_id).last
+      @pre_resource = @category.resources.where(:_id.gt => params[:id]).asc(:_id).first
+
     end
   end
 
@@ -57,6 +63,9 @@ class ResourcesController < ApplicationController
       @resource  = Resource.new
       @resource.photo = file
       @resource.category = @category
+      @resource.user = current_user
+      @resource.username = current_user.email
+
       @resource.name =  params[:qqfile].to_s.strip
       if @resource.save
         render json: { "success" =>  "true" }

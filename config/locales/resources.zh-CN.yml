@@ -17,3 +17,6 @@ zh-CN:
     error_no_category: "无类目"
     select_upload: "请选择需要上传的图片"
     select_category: "请选择对应的类目"
+    created_at: "上传时间"
+    pre: "上一张"
+    next: "下一张"
