@@ -2,22 +2,11 @@
 <div class="page-header">
   <h1><%= @resource.name %> <small><%= @category.blank? ? @resource.username : @category.name %></small></h1>
 </div>
-
-<dl class="dl-horizontal">
-  <dt><%= t('resources.created_at') %></dt>
-  <dd><%= @resource.created_at %></dd>
-  <dt><%= t('resources.note') %>  </dt>
-  <dd><%= @resource.note %></dd>
-  <dt></dt>
-  <dd>
   <% if @category.blank? %>
     <%= link_to t('back'), all_resources_path %>
   <% else %>
     <%= link_to t('back'), category_resources_path(@category) %>
   <% end %>
-  </dd>
-</dl>
-
 <div class="col-xs-12">
   <ul class="pager">
     <%- if @pre_resource -%>
@@ -53,5 +42,13 @@
 <div>
   <%= image_tag @resource.photo.url, :id => 'cropimage',  class: "center-block" %>
 </div>
+
+<dl class="dl-horizontal">
+  <dt><%= t('resources.created_at') %></dt>
+  <dd><%= @resource.created_at %></dd>
+  <dt><%= t('resources.note') %>  </dt>
+  <dd><%= @resource.note %></dd>
+</dl>
+
 
 

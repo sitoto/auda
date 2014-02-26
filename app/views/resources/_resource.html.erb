@@ -9,7 +9,7 @@
   <div class="caption">
     <p><%=  resource.name %></p>
     <p><%= resource.category.blank? ? t("resources.error_no_category") : resource.category.name %></p>
-    <p><%= link_to t('show'), resource, :class => 'btn btn-primary' %>
+    <p><%= link_to t('show'), resource, :class => 'btn btn-sm btn-primary' %>
 
   <% end %>
  <%= link_to t('resources.destroy'), resource, method: :delete, :class => 'btn btn-sm btn-danger', data: { confirm: t('delete?') } %></p>
