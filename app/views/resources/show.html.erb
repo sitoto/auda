@@ -12,9 +12,9 @@
     <%- if @pre_resource -%>
       <li class="previous">
       <% if @category %>
-        <%= link_to t('resources.pre'), category_resource_path(@category, @pre_resource) %>
+        <%= link_to t('resources.pre'), category_resource_path(@category, @pre_resource) + "#main" %>
       <% else %>
-        <%= link_to t('resources.pre'), resource_path(@pre_resource) %>
+        <%= link_to t('resources.pre'), resource_path(@pre_resource)  + "#main"%>
       <% end %>
       </li>
     <%- else -%>
@@ -26,9 +26,9 @@
     <%- if @next_resource -%>
       <li class="next">
       <% if @category %>
-        <%= link_to t('resources.next'), category_resource_path(@category, @next_resource) %></li>
+        <%= link_to t('resources.next'), category_resource_path(@category, @next_resource)  + "#main"%></li>
       <% else %>
-        <%= link_to t('resources.next'), resource_path(@next_resource) %>
+        <%= link_to t('resources.next'), resource_path(@next_resource)  + "#main"%>
       <% end %>
 
     <%- else -%>
